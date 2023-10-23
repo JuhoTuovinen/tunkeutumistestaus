@@ -36,3 +36,5 @@ Otin yhteyttä verkkoselaimessa osoitteeseen google.com ja tallensin saamani tul
 ## Lähteet
 
 Karvinen, Tero: Oppitunnit 2023-10-23, tunkeutumistestaus, h0-alkutesti (https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h0-alkutesti)
+
+ChatGPT (https://chat.openai.com/)

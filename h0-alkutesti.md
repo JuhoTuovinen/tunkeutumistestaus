@@ -26,7 +26,7 @@ Käynnistin Wiresharkin komentokehotteessa
 
     wireshark
 
-Otin yhteyttä verkkoselaimessa osoitteeseen google.com ja tallensin saamani tulokset kuvankaappauksella. Tulosten analysointi on vielä kesken.
+Otin yhteyttä verkkoselaimessa osoitteeseen google.com ja tallensin saamani tulokset kuvankaappauksella. Kuvasta näkee, että DNS kyselyitä on tehty.
 
 <img src="/images/wire.png" alt="wire" title="wire" width="70%" height="70%">
 

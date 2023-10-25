@@ -45,4 +45,18 @@ valitsin sivulta https://2021.challenge.fi/challenges osint:geioint1, koska se v
  
 Laitoinkin kuvan Googlen käänteiseen kuvahakuun, mikä ehdotti minulle kuvia Amsterdamista. Seuraavaksi tätytyy selvittää, mikä katu on kyseessä. Kuvasta huomasin, että kadulla on hotellin kyltti "Hotel CC", joten Googletin hotellin. Google antoi hotellin sijainniksi "Warmoesstraat 42, 1012 JE Amsterdam", joten kokeilin kadun nimeä tehtävään ja vastaus oli oikea.
 
+## c) Ratkaise PortSwigger Labs: Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
+
+    https://0a5a0012045606be83f04618005200ae.web-security-academy.net/filter?category=Gifts%27+OR+1=1--
+
+
+käytin apuna: https://portswigger.net/web-security/sql-injection#sql-injection-examples
+
+
+d) Asenna Linux virtuaalikoneeseen. Suosittelen joko Kali (viimeisin versio) tai Debian 12-Bookworm.
+
+Minulla on jo ennestään asennetuna Kali Linux 2023.3 (kali-rolling) virtuaalikone.
+
+
+
 

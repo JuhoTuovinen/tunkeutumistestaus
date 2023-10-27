@@ -62,19 +62,33 @@ Verkkosivu hyökkäyksen jälkeen:
 
 <img src="/images/shop2.png" alt="wire" title="wire" width="50%" height="50%">
 
+Lisäsin URL:in loppun <code> '+OR+1=1-- </code>. Tämä suoritti SQL-kyselyn <code>SELECT * FROM products WHERE category = 'Gifts' OR 1=1--' AND released = 1</code>, joka paljastaa julkaisemattomat tuotteet, sillä kysely palauttaa kaikki kohteet, joissa joko kategoria on "Gifts" tai 1 on yhtä suuri kuin 1. Koska 1=1 on aina tosi, kysely palauttaa kaikki kohteet.
 
-Lisäsin URL:in loppun <code> '+OR+1=1-- </code>.
+käytin tehtävässä apuna: https://portswigger.net/web-security/sql-injection#sql-injection-examples.
 
+## d) Asenna Linux virtuaalikoneeseen.
 
-käytin apuna: https://portswigger.net/web-security/sql-injection#sql-injection-examples
+Minulla on jo ennestään asennetuna Kali Linux 2023.3 (kali-rolling) virtuaalikone. Asennustiedosto on ladattu sivustolta https://www.kali.org/. Virtuaalikone on asennettu UTM-virtualisointiohjelmistoon.
 
+Speksit:
+````
+PRETTY_NAME="Kali GNU/Linux Rolling"
+NAME="Kali GNU/Linux"
+VERSION_ID="2023.3"
+VERSION="2023.3"
+VERSION_CODENAME=kali-rolling
+ID=kali
+ID_LIKE=debian
+HOME_URL="https://www.kali.org/"
+SUPPORT_URL="https://forums.kali.org/"
+BUG_REPORT_URL="https://bugs.kali.org/"
+ANSI_COLOR="1;31"
+````
 
-## d) Asenna Linux virtuaalikoneeseen. Suosittelen joko Kali (viimeisin versio) tai Debian 12-Bookworm.
-
-Minulla on jo ennestään asennetuna Kali Linux 2023.3 (kali-rolling) virtuaalikone.
+<img src="/images/kali.png" alt="wire" title="wire" width="50%" height="50%">
 
 ## e) Porttiskannaa 1000 tavallisinta tcp-porttia omasta koneestasi (localhost). Analysoi tulokset.
-Kello 16.50. Ensiksi katkaisin yhteyden virtuaalikoneestani internetiin varmuuden vuoksi, jotta en vahingossa skannaisi muiden laitteita tai verkkoja. Tarkistin sen ping ja myös selaimesta, että verkkoon ei saada yhteyttä. Seuraavaksi skannaan portit 1-1000.
+Ensiksi katkaisin yhteyden virtuaalikoneestani internetiin varmuuden vuoksi, jotta en vahingossa skannaisi muiden laitteita tai verkkoja. Tarkistin sen pingaamalla googlen nimipalvelinta <code> ping google.com </code> ja myös selaimesta, että verkkoon ei saada yhteyttä. Seuraavaksi skannaan portit 1-1000.
 
     sudo nmap -p 1-1000 localhost
     
@@ -98,7 +112,7 @@ Nmapin raportista nähdään esimerkiksi:
 
 ## f) Porttiskannaa kaikki koneesi (localhost) tcp-portit. Analysoi tulokset. (Edellisissä kohdissa mainittuja analyyseja ei tarvitse toistaa, voit vain viitata niihin ja keskittyä eroihin).
 
-Kello 17.25. Seuraavaksi skannasin kaikki portit koneeltani
+Seuraavaksi skannasin kaikki portit koneeltani.
 
     sudo nmap -p- localhost
 
@@ -149,4 +163,5 @@ Huomioita: kokeiltuani työkalua, huomasin, että työkalu mahdollisesti "mainos
 Tein challenge.fi vuoden 2021 tehtävät OSINT-alueelta. Tehtävät olivat mielenkiintoisia ja tietoa täytyi hakea internetin syövereistä. Vinkit auttoivat myös, jos ei meinannut tietoa löytyä. Tehtävissä, jossa täytyi tunnistaa sijainti tai esine kuvan avulla, käytin google käänteistä kuvahakua, joka osoittautui erittäin hyväksi työkaluksi näissä tehtävissä.
 
 <img src="/images/challenge.png" alt="wire" title="wire" width="50%" height="50%">
+
 

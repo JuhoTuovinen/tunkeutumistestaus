@@ -16,38 +16,54 @@ Ohjelmistot
 
 ## Ratkaise Over The Wire: Bandit kolme ensimmäistä tasoa (0-2).
 
-Taso 0 
+Taso 0. Kirjauduin sisään peliin käyttäen SSH-yhteyttä.
+
     ssh bandit0@bandit.labs.overthewire.org -p 2220
 
-<img src="/images/taso0.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/taso0.png" alt="wire" title="wire" width="50%" height="50%">
 
-Tasolle 1
+Taso 1. Löysin salasanan tiedostosta "readme", käyttämällä komentoja <code> ls </code> ja <code> cat readme </code>.
 
-  ls ja cat readme
+<img src="/images/taso1.png" alt="wire" title="wire" width="50%" height="50%">
 
-<img src="/images/taso1.png" alt="wire" title="wire" width="70%" height="70%">
+Kirjauduin sisään toiselle käyttäjälle "bandit1" ja käytin äsken saamaani salasanaa.
 
-Tasolle 2
+    ssh bandit1@bandit.labs.overthewire.org -p 2220   
 
-poistuin painallamma exit ja ssh bandit1@bandit.labs.overthewire.org -p 2220 äsken saadulla salasanalla.
+<img src="/images/taso2.png" alt="wire" title="wire" width="50%" height="50%">
 
-<img src="/images/taso2.png" alt="wire" title="wire" width="70%" height="70%">
+Taso 2. Salasana löytyy tiedostosta "-". Avasin tiedoston.
 
-Tasolle 3
+    cat ./-
 
-<img src="/images/taso3.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/taso3.png" alt="wire" title="wire" width="50%" height="50%">
 
-käytin apuna sivustoa https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal
+Tehtävässä käytin apuna sivustoa https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal.
 
 ## Ratkaise Challenge.fi:stä yksi tehtävä
 
-valitsin sivulta https://2021.challenge.fi/challenges osint:geioint1, koska se vaikutti mielenkiintoiselta. sain kuvan ja vihjeet "Land of clogs & tulips" ja "Near Centraal Station". Minusta kuvan maisema muistutti Alankomaita ja Alankomaissa puukengät ja tulppaanit ovat perinteisiä symboleita ja Amsterdamin päärautatieasema on Centraal Station.
+Valitsin sivulta https://2021.challenge.fi/challenges tehtävän OSINT:GEOINT1, koska se vaikutti mielenkiintoiselta. Sain kuvan ja vihjeet "Land of clogs & tulips" ja "Near Centraal Station". Minusta kuvan maisema muistutti Alankomaita ja Alankomaissa puukengät ja tulppaanit ovat perinteisiä symboleita ja Amsterdamin päärautatieasema on Centraal Station.
+
+<img src="/images/geoint.png" alt="wire" title="wire" width="50%" height="50%">
  
-Laitoinkin kuvan Googlen käänteiseen kuvahakuun, mikä ehdotti minulle kuvia Amsterdamista. Seuraavaksi tätytyy selvittää, mikä katu on kyseessä. Kuvasta huomasin, että kadulla on hotellin kyltti "Hotel CC", joten Googletin hotellin. Google antoi hotellin sijainniksi "Warmoesstraat 42, 1012 JE Amsterdam", joten kokeilin kadun nimeä tehtävään ja vastaus oli oikea.
+Laitoin kuvan Googlen käänteiseen kuvahakuun, mikä ehdotti minulle kuvia Amsterdamista. Seuraavaksi tätytyy selvittää, mikä katu on kyseessä. Kuvasta huomasin, että kadulla on hotellin kyltti "Hotel CC", joten Googletin hotellin. Google antoi hotellin sijainniksi "Warmoesstraat 42, 1012 JE Amsterdam", joten kokeilin kadun nimeä tehtävään ja vastaus oli oikea.
+
+<img src="/images/hotelcc.png" alt="wire" title="wire" width="50%" height="50%">
 
 ## c) Ratkaise PortSwigger Labs: Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
 
-    https://0a5a0012045606be83f04618005200ae.web-security-academy.net/filter?category=Gifts%27+OR+1=1--
+Tehtävä löytyy sivulta https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data. Tehtävän tarkoituksena on saada selville verkkokaupan julkaisematomia tuotteita, jotka eivät kuuluisi olla saatavilla. Tarkoitus on tehdä SQL-injektio käyttämällä URL-syöttöä. 
+
+Verkkosivu ennen hyökkäystä:
+
+<img src="/images/shop1.png" alt="wire" title="wire" width="50%" height="50%">
+
+Verkkosivu hyökkäyksen jälkeen:
+
+<img src="/images/shop2.png" alt="wire" title="wire" width="50%" height="50%">
+
+
+Lisäsin URL:in loppun <code> '+OR+1=1-- </code>.
 
 
 käytin apuna: https://portswigger.net/web-security/sql-injection#sql-injection-examples
@@ -68,7 +84,7 @@ Kello 16.50. Ensiksi katkaisin yhteyden virtuaalikoneestani internetiin varmuude
 - <code> -p 1-1000 </code> skannataan portit 1-1000
 - <code> local host </code> skannataan portit omalta koneelta
 
-<img src="/images/nmap1000.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/nmap1000.png" alt="wire" title="wire" width="50%" height="50%">
 
 Nmapin raportista nähdään esimerkiksi:
 - Versio: Skannauksessa käytetty Nmap-versio on 7.94
@@ -86,13 +102,13 @@ Kello 17.25. Seuraavaksi skannasin kaikki portit koneeltani
 
     sudo nmap -p- localhost
 
-<img src="/images/nmapf.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/nmapf.png" alt="wire" title="wire" width="50%" height="50%">
 
 Raportti on lekein sama kuin aikaisemmin. Kuitenkin nähdään, että portteja on skannattu yhteensä 65535 ja skannaus kesti hieman pidempään (yhteensä 1.13 sekuntia).
 
 ## g) Tee laaja porttiskanaus (nmap -A) omalle koneellesi (localhost), kaikki portit. Selitä, mitä -A tekee. Analysoi tulokset. (Edellisissä kohdissa mainittuja analyyseja ei tarvitse toistaa, voit vain viitata niihin ja keskittyä eroihin.).
 
-<img src="/images/nmapg.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/nmapg.png" alt="wire" title="wire" width="50%" height="50%">
 
 Tulokset olivat taas amanlaisia kuin aikaisemmin 1000 porttia skannatessa. Skannaus kesti yhteensä 2.22 sekuntia. Uusia huomioita:
 
@@ -110,7 +126,7 @@ Sen jälkeen suoriti porttiskannin kaikkille porteille koneellani.
 
     sudo nmap -p- loclhost
 
-<img src="/images/nmaph.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/nmaph.png" alt="wire" title="wire" width="50%" height="50%">
 
 Raportista nähdään, että portti 80 on auki HTTP-palvelimelle.
 
@@ -122,7 +138,7 @@ KAtsoin asennusohjeet GitHubista (https://github.com/sherlock-project/sherlock) 
 
     pyhton3 sherlock juhotuovinen
 
-<img src="/images/sherlock.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/sherlock.png" alt="wire" title="wire" width="50%" height="50%">
 
 Kuvasta blurrasin pois haut, jotka mahdollisesti olivat jonkun toisen, tai en tunnistanut niitä omaksi. Tuloksesta näemme, että Sherlock löysin minun käyttäjän esim. GitHubista, Replitistä, Twitteristä ja freecodecamp.com:sta.
 
@@ -132,5 +148,5 @@ Huomioita: kokeiltuani työkalua, huomasin, että työkalu mahdollisesti "mainos
 
 Tein challenge.fi vuoden 2021 tehtävät OSINT-alueelta. Tehtävät olivat mielenkiintoisia ja tietoa täytyi hakea internetin syövereistä. Vinkit auttoivat myös, jos ei meinannut tietoa löytyä. Tehtävissä, jossa täytyi tunnistaa sijainti tai esine kuvan avulla, käytin google käänteistä kuvahakua, joka osoittautui erittäin hyväksi työkaluksi näissä tehtävissä.
 
-<img src="/images/challenge.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/challenge.png" alt="wire" title="wire" width="50%" height="50%">
 

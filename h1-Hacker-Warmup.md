@@ -2,7 +2,7 @@
 
 Juho Tuovinen
 
-Tässä raportissa aioin kertoa kuinka suoritin tehtävät, jotka on annettu Haaga Helian Tunkeutumisteustaus kurssilla.Tehtävät löytyy [täältä].(https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h1-hacker-warmup)
+Tässä raportissa aioin kertoa kuinka suoritin tehtävät, jotka on annettu Haaga Helian Tunkeutumisteustaus kurssilla. Tehtävät löytyvät [täältä](https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h1-hacker-warmup).
 
 Tietokoneen speksit, jolla suoritan toimenpiteen:
 - Apple MacBook 2015

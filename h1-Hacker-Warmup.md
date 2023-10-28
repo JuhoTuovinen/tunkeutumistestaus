@@ -18,6 +18,8 @@ Ohjelmistot
 
 [Santos et al: The Art of Hacking (Video Collection): [..] 4.3 Surveying Essential Tools for Active Reconnaissance](https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/)
 
+Active reconnaissance on toimintaa, jolla löydetään tietoa tai haavoittuvuuksia kohdejärjestelmästä tai verkosta. Toimintaa on esimerkiski porttiskannaus, web-palveluiden haavoittuvuuksien skannaaminen ja verkon haavoittuvuuksien skannaaminen.
+
 Porttiskannaustyökaluja
 - Nmap (monipuolisin työkalu porttiskannaukseen)
 - Masscan (nopea, muttei monipuolinen) voi skannata koko inernetin minuuteissa.

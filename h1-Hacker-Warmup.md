@@ -42,11 +42,11 @@ Web-haavoittuvuuskannereita:
 [Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains](https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf), chapters Abstract, 3.2 Intrusion Kill Chain
 
 - Perinteiset verkkoturvakeinot eivät riitä Advanced Persistent Threats (APT) -hyökkäysten torjumiseen, sillä ne pyrkivät vaarantamaan sensitiivistä tietoa.
-- Esitellyssä mallissa yhdistyvät tiedustelupohjainen tietokoneverkkojen puolustus ja kill chain -malli, joka mahdollistaa hyökkäysten analysoinnin vaiheittain: tiedustelu, aseistaminen, toimitus, hyväksikäyttö, asennus, komento ja hallinta sekä tavoitteiden toteuttaminen.
+- Kill Chain on uusi tiedustelupohjainen tietokoneverkon puolustusmalli, joka perustuu uhkien kohdennettuun analyysiin ja puolustuksen lieventämiseen, tarjoten etulyöntiaseman APT-tason vastustajia vastaan. Malli mahdollistaa hyökkäysten analysoinnin vaiheittain: tiedustelu, aseistaminen, toimitus, hyväksikäyttö, asennus, komento ja hallinta sekä tavoitteiden toteuttaminen.
 - Kill chain -malli antaa rakenteen hyökkäysten analysointiin ja puolustustoimenpiteiden suuntaamiseen, ja se auttaa puolustajia priorisoimaan investointejaan.
 - Indikaattorit jaetaan kolmeen tyyppiin: atomiset, laskennalliset ja käyttäytymisperusteiset, ja ne ovat avainasemassa puolustuksen suunnittelussa.
 - Kampanja-analyysi auttaa tunnistamaan samankaltaisuuksia useiden hyökkäysten välillä ja ymmärtämään hyökkääjien toimintamalleja ja taktiikoita.
-- Hyökkäysketju tarjoaa tavan ymmärtää hyökkäysten etenemistä ja auttaa puolustajia toimimaan ennakoivasti hyökkääjien liikkeisiin nähden.
+- Kill chain tarjoaa tavan ymmärtää hyökkäysten etenemistä ja auttaa puolustajia toimimaan ennakoivasti hyökkääjien liikkeisiin nähden.
 
 
 

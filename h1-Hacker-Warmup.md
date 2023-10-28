@@ -41,15 +41,13 @@ Web-haavoittuvuuskannereita:
   
 [Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains](https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf), chapters Abstract, 3.2 Intrusion Kill Chain
 
-Perinteiset verkkoturvakeinot eivät riitä Advanced Persistent Threats (APT) -nimellä tunnettujen kohdennettujen ja pitkäaikaisten verkkohyökkäysten torjumiseen. APT-hyökkäykset ovat vaikeasti havaittavia ja ne pyrkivät kompromessoimaan herkkää tietoa. Artikkelissa esitetään uusi tiedustelupohjainen tietokoneverkon puolustusmalli, joka perustuu uhkien kohdennettuun analyysiin ja puolustuksen lieventämiseen, tarjoten etulyöntiaseman APT-tason vastustajia vastaan.
+- Perinteiset verkkoturvakeinot eivät riitä Advanced Persistent Threats (APT) -hyökkäysten torjumiseen, sillä ne pyrkivät vaarantamaan sensitiivistä tietoa.
+- Esitellyssä mallissa yhdistyvät tiedustelupohjainen tietokoneverkkojen puolustus ja kill chain -malli, joka mahdollistaa hyökkäysten analysoinnin vaiheittain: tiedustelu, aseistaminen, toimitus, hyväksikäyttö, asennus, komento ja hallinta sekä tavoitteiden toteuttaminen.
+- Kill chain -malli antaa rakenteen hyökkäysten analysointiin ja puolustustoimenpiteiden suuntaamiseen, ja se auttaa puolustajia priorisoimaan investointejaan.
+- Indikaattorit jaetaan kolmeen tyyppiin: atomiset, laskennalliset ja käyttäytymisperusteiset, ja ne ovat avainasemassa puolustuksen suunnittelussa.
+- Kampanja-analyysi auttaa tunnistamaan samankaltaisuuksia useiden hyökkäysten välillä ja ymmärtämään hyökkääjien toimintamalleja ja taktiikoita.
+- Hyökkäysketju tarjoaa tavan ymmärtää hyökkäysten etenemistä ja auttaa puolustajia toimimaan ennakoivasti hyökkääjien liikkeisiin nähden.
 
-Puolustusvoimien julkaisussa kuvataan kill chain -malli vaiheilla etsi, korjaa, seuraa, kohdista, osallistu ja arvioi. Ilmavoimat ovat käyttäneet tätä kehystä tunnistamaan aukkoja tiedustelu-, valvonta- ja tiedustelukyvyssä. Uhkaketjumalleja on käytetty myös improvisoitujen räjähdevälineiden (IED) hyökkäysten mallintamiseen, jossa älykkäät puolustuspyrkimykset kohdistuvat kuhunkin IED-uhkaketjun vaiheeseen. Tämä malli on sovellettavissa myös perustutkimustarpeiden tunnistamiseen.
-
-Tiedustelupohjainen tietokoneverkon puolustus on jatkuva prosessi, joka analysoi hyökkääjiä ja niiden toimintaa. Uusi intrusion kill cjain -malli auttaa analysoimaan hyökkäyksiä ja ohjaa puolustustoimia. Yksi onnistunut torjunta voi estää koko toiminnan.
-
-Indikaattori on mikä tahansa tieto, joka kuvailee objektiivisesti hyökkäystä. Indikaattorit jaetaan kolmeen tyyppiin: atomiset (kuten IP-osoitteet ja sähköpostiosoitteet), laskennalliset (kuten tiivistearvot ja säännölliset lausekkeet) ja käyttäytymisperusteiset (kokoelma laskennallisia ja atomisia indikaattoreita). 
-
-Kill chain on järjestelmällinen prosessi, jossa pyritään tunnistamaan ja hyökkäämään vastustajaan halutun lopputuloksen saavuttamiseksi. Malli keskittyy verkkohyökkäyksiin ja hyökkäys etenee vaiheittain: tiedustelu, aseistaminen, toimitus, hyväksikäyttö, asennus, komento ja hallinta sekä tavoitteiden toteuttaminen.
 
 
 ## Ratkaise Over The Wire: Bandit kolme ensimmäistä tasoa (0-2).

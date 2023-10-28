@@ -1,6 +1,8 @@
 # Hacker Warmup
 
-Tässä raportissa aioin kertoa kuinka suoritin tehtävät, jotka on annettu Haaga Helian Tunkeutumisteustaus kurssilla.Tehtävät löytyy osoitteessa https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h1-hacker-warmup.
+Juho Tuovinen
+
+Tässä raportissa aioin kertoa kuinka suoritin tehtävät, jotka on annettu Haaga Helian Tunkeutumisteustaus kurssilla.Tehtävät löytyy [täältä].(https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h1-hacker-warmup)
 
 Tietokoneen speksit, jolla suoritan toimenpiteen:
 - Apple MacBook 2015
@@ -41,12 +43,12 @@ Web-haavoittuvuuskannereita:
   
 [Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains](https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf), chapters Abstract, 3.2 Intrusion Kill Chain
 
-- Perinteiset verkkoturvakeinot eivät riitä Advanced Persistent Threats (APT) -hyökkäysten torjumiseen, sillä ne pyrkivät vaarantamaan sensitiivistä tietoa.
-- Kill Chain on uusi tiedustelupohjainen tietokoneverkon puolustusmalli, joka perustuu uhkien kohdennettuun analyysiin ja puolustuksen lieventämiseen, tarjoten etulyöntiaseman APT-tason vastustajia vastaan. Malli mahdollistaa hyökkäysten analysoinnin vaiheittain: tiedustelu, aseistaminen, toimitus, hyväksikäyttö, asennus, komento ja hallinta sekä tavoitteiden toteuttaminen.
-- Kill chain -malli antaa rakenteen hyökkäysten analysointiin ja puolustustoimenpiteiden suuntaamiseen, ja se auttaa puolustajia priorisoimaan investointejaan.
-- Indikaattorit jaetaan kolmeen tyyppiin: atomiset, laskennalliset ja käyttäytymisperusteiset, ja ne ovat avainasemassa puolustuksen suunnittelussa.
-- Kampanja-analyysi auttaa tunnistamaan samankaltaisuuksia useiden hyökkäysten välillä ja ymmärtämään hyökkääjien toimintamalleja ja taktiikoita.
-- Kill chain tarjoaa tavan ymmärtää hyökkäysten etenemistä ja auttaa puolustajia toimimaan ennakoivasti hyökkääjien liikkeisiin nähden.
+- Perinteiset verkkoturvakeinot eivät riitä Advanced Persistent Threats (APT) -hyökkäysten torjumiseen, sillä ne pyrkivät vaarantamaan sensitiivistä tietoa
+- Kill Chain on uusi tiedustelupohjainen tietokoneverkon puolustusmalli, joka perustuu uhkien kohdennettuun analyysiin ja puolustuksen lieventämiseen, tarjoten etulyöntiaseman APT-tason vastustajia vastaan. Malli mahdollistaa hyökkäysten analysoinnin vaiheittain: tiedustelu, aseistaminen, toimitus, hyväksikäyttö, asennus, komento ja hallinta sekä tavoitteiden toteuttaminen
+- Kill chain -malli antaa rakenteen hyökkäysten analysointiin ja puolustustoimenpiteiden suuntaamiseen, ja se auttaa puolustajia priorisoimaan investointejaan
+- Indikaattorit jaetaan kolmeen tyyppiin: atomiset, laskennalliset ja käyttäytymisperusteiset, ja ne ovat avainasemassa puolustuksen suunnittelussa
+- Kampanja-analyysi auttaa tunnistamaan samankaltaisuuksia useiden hyökkäysten välillä ja ymmärtämään hyökkääjien toimintamalleja ja taktiikoita
+- Kill chain tarjoaa tavan ymmärtää hyökkäysten etenemistä ja auttaa puolustajia toimimaan ennakoivasti hyökkääjien liikkeisiin nähden
 
 
 
@@ -74,13 +76,17 @@ Taso 2. Salasana löytyy tiedostosta "-". Avasin tiedoston.
 
 <img src="/images/taso3.png" alt="wire" title="wire" width="70%" height="70%">
 
-Tehtävässä käytin apuna sivustoa https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal.
+Tehtävään hain apua [StackOverflow](https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal):sta.
 
 ## Ratkaise Challenge.fi:stä yksi tehtävä
 
-Valitsin sivulta https://2021.challenge.fi/challenges tehtävän OSINT:GEOINT1, koska se vaikutti mielenkiintoiselta. Sain kuvan ja vihjeet "Land of clogs & tulips" ja "Near Centraal Station". Minusta kuvan maisema muistutti Alankomaita ja Alankomaissa puukengät ja tulppaanit ovat perinteisiä symboleita ja Amsterdamin päärautatieasema on Centraal Station.
+Valitsin [Challenge.fi 2021](https://2021.challenge.fi/challenges) tehtävän OSINT:GEOINT1, koska se vaikutti mielenkiintoiselta. Sain kuvan ja vihjeet "Land of clogs & tulips" ja "Near Centraal Station". Minusta kuvan maisema muistutti Alankomaita ja Alankomaissa puukengät ja tulppaanit ovat perinteisiä symboleita ja Amsterdamin päärautatieasema on Centraal Station.
 
 <img src="/images/geoint.png" alt="wire" title="wire" width="70%" height="70%">
+
+Geo-kuva:
+
+<img src="/images/osint1.PNG" alt="wire" title="wire" width="70%" height="70%">
  
 Laitoin kuvan Googlen käänteiseen kuvahakuun, mikä ehdotti minulle kuvia Amsterdamista. Seuraavaksi tätytyy selvittää, mikä katu on kyseessä. Kuvasta huomasin, että kadulla on hotellin kyltti "Hotel CC", joten Googletin hotellin. Google antoi hotellin sijainniksi "Warmoesstraat 42, 1012 JE Amsterdam", joten kokeilin kadun nimeä tehtävään ja vastaus oli oikea.
 
@@ -184,13 +190,13 @@ Raportista nähdään, että portti 80 on auki HTTP-palvelimelle.
 
 Kokeilin työkalua nimeltä Sherlock (https://github.com/sherlock-project/sherlock). Sherlock on Python-pohjainen OSINT-työkalu, joka on suunniteltu etsimään käyttäjätilejä ja muita online-tunnisteita eri sosiaalisen median ja verkkopalveluiden alustoilta. Käyttäjänimen syöttämällä työkalu etsii eri alustoilta (GitHub, Instagram, Twitter jne.) samannimistä käyttäjää. Sherlockin toiminnallisuus perustuu hakukoneiden ja verkkopalveluiden rajapintoihin sekä avoimiin tietolähteisiin. Se ei vaadi kirjautumista mihinkään palveluun, eikä se ylitä palveluiden antamia hakurajoituksia.
 
-Katsoin asennusohjeet GitHubista (https://github.com/sherlock-project/sherlock) ja etenin niiden mukaan. Kokeilin hakemalla itseäni, käyttäen käyttäjänimeä juhotuovinen, joka minull aon käytössä muutamalla alustalla.
+Katsoin asennusohjeet GitHubista (https://github.com/sherlock-project/sherlock) ja etenin niiden mukaan. Kokeilin hakemalla itseäni, käyttäen käyttäjänimeä juhotuovinen, joka minulla on käytössä muutamalla alustalla.
 
     pyhton3 sherlock juhotuovinen
 
 <img src="/images/sherlock.png" alt="wire" title="wire" width="70%" height="70%">
 
-Kuvasta blurrasin pois haut, jotka mahdollisesti olivat jonkun toisen, tai en tunnistanut niitä omaksi. Tuloksesta näemme, että Sherlock löysin minun käyttäjän esim. GitHubista, Replitistä, Twitteristä ja freecodecamp.com:sta.
+Kuvasta tummensin pois haut, jotka mahdollisesti olivat jonkun toisen, tai en tunnistanut niitä omaksi. Tuloksesta näemme, että Sherlock löysin käyttäjänimeni esim. GitHubista, Replitistä, Twitteristä ja freecodecamp.com:sta.
 
 Huomioita: kokeiltuani työkalua, huomasin, että työkalu mahdollisesti "mainostaa" tiettyjä sivustoja, eikä haku ole tarkka. Kokeiltuani hakuun useita käyttäjänimiäni, huomasin, että Sherlock tarjoaa samoja sivustoja, jossa ei olisi kyseistä käyttäjää olemassa, eikä näytä profiilia vaan menee sivuston etusivulle. Työkalua käyttäessä täytyy myös pitää mielessä, että jollakin toisella henkilöllä voi olla käytössä käyttämäsi käyttäjänimi ja voi näyttää siis muidenkin henkilöiden profiileja kuin omasi tai sen käyttäjän, jota olet etsimässä.
 
@@ -207,11 +213,11 @@ Karvinen, Tero: Oppitunnit 2023-10-23, Tunkeutumistestaus, h1-Hacker Warmup (htt
 
 ChatGPT, https://chat.openai.com
 
-https://2021.challenge.fi/challenges
+Cahllenge.fi, GenZ Hack Challenge 2021, https://2021.challenge.fi/challenges
 
-https://portswigger.net/web-security/sql-injection#sql-injection-examples
+PortSwigger, SQL injection, https://portswigger.net/web-security/sql-injection#sql-injection-examples
 
-https://www.kali.org/
+Kali, https://www.kali.org/
 
 
 

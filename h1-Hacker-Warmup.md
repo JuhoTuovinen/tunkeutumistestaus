@@ -164,6 +164,10 @@ Raportti on lekein sama kuin aikaisemmin. Kuitenkin nähdään, että portteja o
 
 ## g) Tee laaja porttiskanaus (nmap -A) omalle koneellesi (localhost), kaikki portit. Selitä, mitä -A tekee. Analysoi tulokset. (Edellisissä kohdissa mainittuja analyyseja ei tarvitse toistaa, voit vain viitata niihin ja keskittyä eroihin.).
 
+Skannasin 1000 tavallisinta TCP-porttia ja -A -parametri suorittaa laajan skannauksen, joka sisältää versionkyselyn, OS-tunnistuksen, sekä lisää muita kattavia skannaustoimintoja, kuten päivitystietojen hakemisen ja skannatun palvelimen haavoittuvuuksien arvioinnin.
+
+    sudo nmap -A localhost
+
 <img src="/images/nmapg.png" alt="wire" title="wire" width="70%" height="70%">
 
 Tulokset olivat taas amanlaisia kuin aikaisemmin 1000 porttia skannatessa. Skannaus kesti yhteensä 2.22 sekuntia. Uusia huomioita:

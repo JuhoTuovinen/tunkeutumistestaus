@@ -28,7 +28,7 @@ Käynnistin Wiresharkin komentokehotteessa
 
 Otin yhteyttä verkkoselaimessa osoitteeseen google.com ja tallensin saamani tulokset kuvankaappauksella. Kuvasta näkee, että DNS kyselyitä on tehty.
 
-<img src="/images/wire.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/wire1.png" alt="wire" title="wire" width="70%" height="70%">
 
 
 

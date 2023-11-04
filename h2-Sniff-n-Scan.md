@@ -18,6 +18,21 @@ Ohjelmistot
 
 Hoikkala "joohoi" 2020: [Still Fuzzing Faster (U fool)](https://www.youtube.com/watch?v=mbmsT3AhwWU). In HelSec Virtual meetup #1.
 
+- Esityksessä Joona Hoikkala esittelee ohjelmistoaan ffuf:ia ja kertoo Web Fuzzauksesta.
+- käyttäjä voi suodattaa pyyntöjä suodattimien avulla
+- tavallisimmat kohteet ovat GET-parametrit, Headerit ja POST data
+- Matchereiden avulla voidaan etsiä yhtenäisyyksiä, esim. vastauskoodit, sisältö tai vastauksien koko
+- Vastaavia työkaluja: Burp Suite, OWASP ZAP, dirb, dirbuster, wfuzz, gobuster
+- Joona esittelee ffuf:ia. Hän suosittelee ffufia käyttäessä sanalistojen hyödyntämisen pyyntöjä tehdessä. Hän asittelee muutaman yleisimmän parametrin merkitysen:
+   * <code>-w</code> määrittää sanalistan jota halutaan hyödyntää
+   * <code>-u</code> URL, johon pyynnöt/hyökkäys tehdään
+   * <code>-e</code> laajettu haku, johon voilisätä esim. <code>.php</code>, jolloin ohjelma etsii polkuja ja tiedostoja, jotka päättyvät .php
+   * <code>-c</code> väritetty tulostus
+   * <code>-v</code> verbose; saadaan yksityiskohtaisempaa tietoa pyynnön edistymisestä
+   * <code>FUZZ</code>kohta, johon fuzzataan hyödyntäen sanalistoja
+- ffufia voi hyödyntää myös käyttäjätunnuksien murtamisessa bruteforce tekniikalla
+- ffufia voihyödyntää myös XSS-injektioiden kehittämisessä
+
 Lyon 2009: Nmap Network Scanning: Chapter 15. Nmap Reference Guide:
 - [Port Scanning Basics](https://nmap.org/book/man-port-scanning-basics.html)
 - [Port Scanning Techniques](https://nmap.org/book/man-port-scanning-techniques.html)
@@ -332,6 +347,39 @@ redhat                  [Status: 200, Size: 15, Words: 2, Lines: 1, Duration: 3m
 
 Tehtävän mukaan subdomain <code>redhat</code> pitäisi löytyä ja niinhän se löytyi!
 
+## Porttiskannaa paikallinen kone (127.0.0.2 tms), sieppaa liikenne snifferillä, analysoi.
+Ensiksi varmistin, että koneeni on kytketty pois internetistä vahinkojen välttämiseksi.
+### nmap TCP connect scan -sT
+
+Annoin komennon <code>nmap -sT localhost</code> ja käynnistin Wiresharkin analysoidakseni tuloksia.
+
+Nmap:
+
+````
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-04 13:10 EET
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00018s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.13 seconds
+
+````
+Portti 80 on auki edellisestä tehtävästä (ffufme).
+
+<code>-sT localhost</code> parametri määrittää Nmapin suorittamaan TCP-yhteyskävelyskannauksen eli Nmap yrittää muodostaa täydellisen TCP-yhteyden jokaisen skannatun kohteen kanssa. Se käyttää TCP Three-Way Handshakea jokaisen tarkastellun portin kohdalla.
+
+Wireshark:
+
+<img src="/images/wire2.png" alt="wire" title="wire" width="70%" height="70%">
+
+Kuvasta näkyy, että Three-Way Handshake on tapahtunut onnistuneesti porttiin 80 <code>[SYN]</code>, <code>[SYN, ACK]</code>, <code>[ACK]</code>.
+
+###d) nmap TCP SYN "used to be stealth" scan, -sS (tätä käytetään skannatessa useimmin)
+
 ## Lähteet
 
 
@@ -342,5 +390,11 @@ https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories
 https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge
 
 https://terokarvinen.com/2023/fuffme-web-fuzzing-target-debian/
+
+https://www.youtube.com/watch?v=mbmsT3AhwWU
+
+https://nmap.org/book/man-port-scanning-basics.html
+
+https://nmap.org/book/man-port-scanning-techniques.html
 
 

@@ -243,7 +243,7 @@ Hakemistot <code>/admin</code>, <code>/admin/users</code> ja <code>/admin/users/
 
 ### Content Discovery With File Extensions
 
-Tehtävän suomennos: "Olemme törmänneet hakemistoon nimeltä /logs, mutta sisältöä ei nähdä. Voimme tehdä oletuksen, että tässä hakemistossa olevat tiedostot käyttävät .log-tiedostopäätettä. Käytä skannausta -e-kytkimellä määrittääksesi tiedostopääte, joka lisätään jokaisen sanalistan sanan loppuun oikean lokitiedoston löytämiseksi." Lähdin kokeilemaan annetulla komennolla <code>ffuf -w ~/wordlists/common.txt -e .log -u http://localhost/cd/ext/logs/FUZZ/code>. Skannauksen jälkeen hakemisto <code>/logusers.log</code> pitäisi löytyä.
+Tehtävän suomennos: "Olemme törmänneet hakemistoon nimeltä /logs, mutta sisältöä ei nähdä. Voimme tehdä oletuksen, että tässä hakemistossa olevat tiedostot käyttävät .log-tiedostopäätettä. Käytä skannausta -e-kytkimellä määrittääksesi tiedostopääte, joka lisätään jokaisen sanalistan sanan loppuun oikean lokitiedoston löytämiseksi." Lähdin kokeilemaan annetulla komennolla <code>ffuf -w ~/wordlists/common.txt -e .log -u http://localhost/cd/ext/logs/FUZZ/</code>. Skannauksen jälkeen hakemisto <code>/logusers.log</code> pitäisi löytyä.
 
 Tuloste:
 

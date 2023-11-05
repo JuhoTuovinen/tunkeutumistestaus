@@ -118,7 +118,7 @@ chmod u+x dirfuzt-1
 ````
 <img src="/images/nothing.png" alt="" title="" width="70%" height="70%">
 
-Ennen Ffuf:n käyttöä kytken virtuaalikoneen pois verkosta. KOkeilin manuaalisesti löytyisikö sivulta <code> /admin </code>, <code> /secret </code> tai esim <code> /robots.txt </code>, mutta ei löytynyt. Kokeilin ensiksi komentoa <code> ./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ</code>, jossa käytän aikaisemmin ladattua sanalistaa.
+Ennen Ffuf:n käyttöä kytken virtuaalikoneen pois verkosta. Kokeilin manuaalisesti löytyisikö sivulta <code>/admin</code>, <code>/secret</code> tai esim <code>/robots.txt</code>, mutta ei löytynyt. Kokeilin ensiksi komentoa <code>./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ</code>, jossa käytän aikaisemmin ladattua sanalistaa.
 
 
 ````
@@ -153,7 +153,7 @@ ________________________________________________
 .... tuloste jatkuu tuhansia rivejä...
 ````
 
-Tulosteesta nähdään, että jokaisen ei-toivotun vastauksen koko on 154 tavua eli 154 ASCII-merkkiä. Filteröin käyttäen apuna tätä tietoa komennolla <code> ./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -fs 154 </code>. Tulosteesta löytyi seuraavat tiedot:
+Tulosteesta nähdään, että jokaisen ei-toivotun vastauksen koko on 154 tavua eli 154 ASCII-merkkiä. Filteröin käyttäen apuna tätä tietoa komennolla <code>./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -fs 154</code>. Tulosteesta löytyi seuraavat tiedot:
 
 ````
 [Status: 301, Size: 41, Words: 3, Lines: 3, Duration: 0ms]
@@ -177,7 +177,7 @@ Tulosteesta nähdään, että jokaisen ei-toivotun vastauksen koko on 154 tavua 
 [Status: 200, Size: 182, Words: 6, Lines: 11, Duration: 0ms]
     * FUZZ: wp-admin
 ````
-<code> /wp-admin</code>-kansio kuullosti kiinnostavimmalta, joten liitin sen URL:iin <code>http://127.0.0.2:8000/wp-admin</code>. TADAA! Oikeasivu ja lippu löytyi!
+<code>/wp-admin</code>-kansio kuullosti kiinnostavimmalta, joten liitin sen URL:iin <code>http://127.0.0.2:8000/wp-admin</code>. TADAA! Oikeasivu ja lippu löytyi!
 <img src="/images/flag.png" alt="" title="" width="70%" height="70%">
 
 Lippu: FLAG{tero-wpadmin-3364c855a2ac87341fc7bcbda955b580}
@@ -187,7 +187,7 @@ Lippu: FLAG{tero-wpadmin-3364c855a2ac87341fc7bcbda955b580}
 Asensin Fuff:in ja Fuffme:n artikkelin ohjeiden mukaan. Otin koneeni pois netistä ja aloitin testaamisen. 
 
 ### Basic Content Discovery
-Komennolla <code> ffuf -w $HOME/wordlists/common.txt -u http://localhost/cd/basic/FUZZ </code> löysin halutut kansiot <code>class</code> ja <code>development.log</code>.
+Komennolla <code>ffuf -w $HOME/wordlists/common.txt -u http://localhost/cd/basic/FUZZ</code> löysin halutut kansiot <code>class</code> ja <code>development.log</code>.
 
 `````
 
@@ -260,7 +260,7 @@ Hakemisto löyty!
 
 ### No 404 Status
 
-Tehtävän suomennos: "Ideaalimaailmassa kaikki verkkosivustot vastaisivat oikein oikeilla HTTP-tilakoodilla. Kokeillaan ajaa seuraava ffuf-esimerkki ja katsotaan, mitä tapahtuu: <code>ffuf -w ~/wordlists/common.txt -u http://localhost/cd/no404/FUZZ/code>."
+Tehtävän suomennos: "Ideaalimaailmassa kaikki verkkosivustot vastaisivat oikein oikeilla HTTP-tilakoodilla. Kokeillaan ajaa seuraava ffuf-esimerkki ja katsotaan, mitä tapahtuu: <code>ffuf -w ~/wordlists/common.txt -u http://localhost/cd/no404/FUZZ</code>."
 
 Tuloste on pitkä ja siitä näkyy, että jokainen pyytämäsi tiedosto on palannut löydettynä. Se johtuu siitä, siitä, että verkkosivusto, joka näyttää "Sivua ei löydy" -viestin, ei palauta 404-otsikkotietoa.
 
@@ -294,7 +294,7 @@ Ohjeen mukaan puuttuva parametri <code>debug</code> pitäisi löytyä ja niin l�
 
 Tehtävän suomennos: "Ajoittain palvelut rajoittavat pyyntöjen määrää sekunnissa. Tämä tarkoittaa, että voit lähettää vain tietyn määrän pyyntöjä sekunnissa. Tässä tapauksessa hakemisto, jota yritämme fuzzata, on rajoitettu 50 pyyntöön sekunnissa. Jos yrität ajaa seuraavan komennon, huomaat, että saat paljon 429 HTTP-tilakoodeja, mikä tarkoittaa, että olet tilapäisesti estetty lähettämästä pyyntöjä muutaman sekunnin ajan. Käytämme -mc-kytkintä näyttääksemme vain HTTP-tilakoodit 200 ja 429. Tämä auttaa meitä seuraamaan sekä onnistuneet että rajoitukset aiheuttaneet pyynnöt.
 
-Ajoin ohjeessa annetun komennon <code>ffuf -w ~/wordlists/common.txt -u http://ffuf.test/cd/rate/FUZZ -mc 200,429/code> ja sain seuraavan syötteen:
+Ajoin ohjeessa annetun komennon <code>ffuf -w ~/wordlists/common.txt -u http://ffuf.test/cd/rate/FUZZ -mc 200,429</code> ja sain seuraavan syötteen:
 
 ````
 :: Progress: [636/4686] :: Job [1/1] :: 0 req/sec :: Duration: [0:00:00] :: Errors: 597 :
@@ -321,7 +321,7 @@ Sain tulosteen:
 :: Progress: [4686/4686] :: Job [1/1] :: 51 req/sec :: Duration: [0:01:35] :: Errors: 468
 `````
 
-En saanut toivottua tulosta. Tiedostoa <code>oracle</code> eii löytynyt. Vian selvitys kesken.
+En saanut toivottua tulosta. Tiedostoa <code>oracle</code> ei löytynyt. Vian selvitys kesken.
 
 ### Subdomains - Virtual Host Enumeration
 
@@ -378,7 +378,7 @@ Wireshark:
 
 Kuvasta näkyy, että Three-Way Handshake on tapahtunut onnistuneesti porttiin 80 <code>[SYN]</code>, <code>[SYN, ACK]</code>, <code>[ACK]</code>. Muista porteista ei saada tuloksia.
 
-###d) nmap TCP SYN "used to be stealth" scan, -sS (tätä käytetään skannatessa useimmin)
+### d) nmap TCP SYN "used to be stealth" scan, -sS (tätä käytetään skannatessa useimmin)
 
 Ajoin komennon <code>sudo nmap -sS localhost</code>. Tuloste:
 

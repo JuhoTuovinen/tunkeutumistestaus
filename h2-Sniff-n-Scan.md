@@ -35,7 +35,16 @@ Hoikkala "joohoi" 2020: [Still Fuzzing Faster (U fool)](https://www.youtube.com/
 
 Lyon 2009: Nmap Network Scanning: Chapter 15. Nmap Reference Guide:
 - [Port Scanning Basics](https://nmap.org/book/man-port-scanning-basics.html)
+  * <code>Open</code>: Portti on avoin ja palvelu on käynnissä kyseisellä portilla.
+  * <code>Closed</code>: Portti on suljettu eikä palvelua ei ole käynnissä kyseisellä portilla.
+  * <code>Filtered</code>: Portti on suodatettu, eli Nmap ei saanut vastausta porttiin liittyviin kyselyihin, eikä pysty sanomaan onko portti auki. 
+  * <code>Unfiltered</code>: Portti voi olla auki tai suljettu, mutta Nmap ei pysty sitä täsmällisesti määrittämään.
+  * <code>Open|Filtered</code>: Nmap ei pysty varmuudella sanomaan, onko portti avoin vai suodatettu. Portti ei vastaa täysin avoimesti eikä täysin suodatetusti.
+  * <code>Closed|Filtered</code>: Nmap ei pysty varmuudella sanomaan, onko portti suljettu vai suodatettu. Portti ei vastaa täysin suljetusti eikä täysin suodatetusti.
 - [Port Scanning Techniques](https://nmap.org/book/man-port-scanning-techniques.html)
+  * <code>-sS (TCP SYN scan)</code>: SYN-skannaus mahdollistaa nopean ja huomaamattoman porttien tarkistuksen. Tätä tekniikkaa kutsutaan puoliksi avoimeksi skannaukseksi, ja se perustuu SYN-pakettien lähettämiseen odottaen vastausta, jonka perusteella voidaan erottaa avoimet, suljetut ja suodatetut portit.
+  * <code>-sT (TCP connect scan)</code>: TCP Connect -skannaus on Nmapin oletusmenetelmä, kun SYN-skannaus ei ole mahdollinen. Se pyytää käyttöjärjestelmää luomaan yhteyden kohdekoneeseen ja porttiin, mikä tekee siitä vähemmän huomaamattoman, mutta hitaamman vaihtoehdon verrattuna SYN-skannaukseen.
+  * <code>-sU (UDP scans)</code>: UDP-skannus on hidas ja haastava skannausmenetelmä. Se lähettää UDP-paketin jokaiseen kohdeporttiin ja tulkkaa vastauksia ICMP-virheviesteistä, kuten porttiin tavoittamattomista virheistä, jotta voidaan määrittää porttien tilat.
 
 ## a) Fuff. Ratkaise [Teron ffuf-haastebinääri](https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge). Artikkelista [Find Hidden Web Directories - Fuzz URLs with ffuf](https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/)voi olla apua.
 
@@ -564,22 +573,32 @@ Näyttäisi siltä, että UDP-skannaus tehtiin, mutta pyynnöt eivät mene peril
 
 ### l) Miksi UDP-skannaus on hankalaa ja epäluotettavaa? Miksi UDP-skannauksen kanssa kannattaa käyttää --reason flagia ja snifferiä? (tässä alakohdassa vain vastaus viitteineen, ei tarvita testiä tietokoneella)
 
+UDP ei tarjoa virheenkorjausta, joten se on epäluotettava protokolla. Toisin sanoen pakettien toimitusta ei taata. UDP-datagrammit lähetetään ilman kuittausta. Koska lähettäjän ja vastaanottajan välillä ei ole virtuaalista yhteyttä, UDP:n sanotaan olevan myös yhteydetön (ScienceDirect, 2023, https://www.sciencedirect.com/topics/computer-science/user-datagram-protocol). 
+
+UDP-skannauksen kanssa --reason-lippu on hyödyllinen, koska se tarjoaa lisätietoja skannauksen tuloksista. Kun UDP-palvelut eivät vastaa skannaukseen, --reason-lippu voi sisältää virheviestejä tai muita selityksiä, jotka auttavat ymmärtämään, miksi yhteys epäonnistui (ChatGPT, https://chat.openai.com/). 
+
+Snifferiä käytetään UDP-skannauksessa tarkkailemaan verkossa kulkevaa tietoliikennettä. UDP-pakettien liikenteen seuraaminen snifferin avulla auttaa havaitsemaan palvelinvasteita, jotka eivät välttämättä näy skannausraporteissa (ChatGPT, https://chat.openai.com/).
+
 
 ## Lähteet
 
 
 Karvinen, Tero: Oppitunnit 2023-10-23, Tunkeutumistestaus, h2-Hacker Warmup (https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h2-sniff-n-scan)
 
-https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories
+Karvinen, Tero: Find Hidden Web Directories - Fuzz URLs with ffuf, https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories
 
-https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge
+Karvinen, Tero: Find Hidden Web Directories - Fuzz URLs with ffuf
+, https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge
 
+Karvinen, Tero: Fuffme - Install Web Fuzzing Target on Debian,
 https://terokarvinen.com/2023/fuffme-web-fuzzing-target-debian/
 
-https://www.youtube.com/watch?v=mbmsT3AhwWU
+HelSec, 0x03 Still Fuzzing Faster (U Fool) - joohoi - HelSec Virtual meetup #1, https://www.youtube.com/watch?v=mbmsT3AhwWU
 
-https://nmap.org/book/man-port-scanning-basics.html
+Nmap, Port Scanning Basics, https://nmap.org/book/man-port-scanning-basics.html
 
-https://nmap.org/book/man-port-scanning-techniques.html
+Nmap, Port Scanning Techniques, https://nmap.org/book/man-port-scanning-techniques.html
+
+ScienceDirect, 2023, https://www.sciencedirect.com/topics/computer-science/user-datagram-protocol
 
 

@@ -374,11 +374,196 @@ Portti 80 on auki edellisestä tehtävästä (ffufme).
 
 Wireshark:
 
-<img src="/images/wire2.png" alt="wire" title="wire" width="70%" height="70%">
+<img src="/images/wire1.png" alt="wire" title="wire" width="70%" height="70%">
 
-Kuvasta näkyy, että Three-Way Handshake on tapahtunut onnistuneesti porttiin 80 <code>[SYN]</code>, <code>[SYN, ACK]</code>, <code>[ACK]</code>.
+Kuvasta näkyy, että Three-Way Handshake on tapahtunut onnistuneesti porttiin 80 <code>[SYN]</code>, <code>[SYN, ACK]</code>, <code>[ACK]</code>. Muista porteista ei saada tuloksia.
 
 ###d) nmap TCP SYN "used to be stealth" scan, -sS (tätä käytetään skannatessa useimmin)
+
+Ajoin komennon <code>sudo nmap -sS localhost</code>. Tuloste:
+
+`````
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-05 00:37 EET
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000090s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.14 seconds
+`````
+
+Sain seuraavat tulokset Wiresharkista:
+
+<img src="/images/wire2.png" alt="wire" title="wire" width="70%" height="70%">
+
+Tuloksista näkyy, että Three-Way Handshake on aloitettu ja porttiin 80 on lähetetty SYN-lippu. Tähän on myös vastattu SYN/ACK-lipulla, mutta viimeisestä vaiheetta (ACK) ei tapahdukaan. Muista porteista ei saada tuloksia.
+
+### e) nmap ping sweep -sn
+
+Ajoin komennon <code>nmap -sn localhost</code>. Tuloste:
+````
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-05 01:03 EET
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0012s latency).
+Other addresses for localhost (not scanned): ::1
+Nmap done: 1 IP address (1 host up) scanned in 0.01 seconds
+
+````
+Sain seuraavat tulokset Wiresharkista:
+
+<img src="/images/wire3.png" alt="wire" title="wire" width="70%" height="70%">
+
+Nähdään taas onnistunut Three-Way Handshake portissa 80, mutta oletin näkeväni ICMP-pakettien liikettä. Voi olla mahdollista, että ICMP-pakettien lähetys on estetty.
+
+
+### f) nmap don't ping -Pn
+
+Suoritetaan skannaus ilman ping-testausta: <code>nmap -Pn localhost</code>. Tuloste:
+`````
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-05 01:18 EET
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00063s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.14 seconds
+`````
+Sain seuraavat tulokset Wiresharkista:
+
+<img src="/images/wire4.png" alt="wire" title="wire" width="70%" height="70%">
+
+Koska Nmap ei tee ping-testiä, kuuluisi vain näkyä TCP-pyyntöjä. Ja siltä tulos näyttäisi.
+
+### g) nmap version detection -sV (esimerkki yhdestä palvelusta yhdessä portissa riittää)
+Suoritetaan skannaus komennolla <code>nmap -sV -p 80 localhost</code>. Tuloste:
+````
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-05 01:32 EET
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00022s latency).
+Other addresses for localhost (not scanned): ::1
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    nginx 1.18.0 (Ubuntu)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 6.55 seconds
+````
+Nmap tunnisti palvelun käyttöjäsrjestelmän (Ubuntu).
+
+Sain seuraavat tulokset Wiresharkista:
+
+<img src="/images/wire5.png" alt="wire" title="wire" width="70%" height="70%">
+
+En huomannut mitään mikä olisi kiinnittänyt huomioni. Tuloksena TCP-pyyntöjä, joita jo aikaisemmin näkyi.
+
+### h) nmap output files -oA foo. Miltä tiedostot näyttävät? Mihin kukin tiedostotyyppi sopii?
+Suoritin komennon <code>nmap -oA foo localhost</code> ja Nmap tallensi minulle tiedostot <code>foo.gnmap</code>, <code>foo.nmap</code> ja <code>foo.xml</code>.
+- <code>foo.gnmap</code> samankaltainen kuin foo.nmap, mutta se on tarkoitettu käytettäväksi ohjelmallisesti. Se on yleensä tarkoitettu erilaisiin skripteihin tai automatisoituun analyysiin.
+- <code>foo.nmap</code> sisältää skannauksen yksityiskohtaiset tulokset (kohdelaitteiden IP-osoitteet, avoimet portit, palveluiden versiot, käytetyt skannaustyypit ja muut yksityiskohdat) Nmapin omassa tekstiformaatissa. Käytetään yksityiskohtaisten skannatiedostojen tallentamiseen ja käsin tehtävään analyysiin.
+- <code>foo.xml</code> sisältää skannauksen tulokset XML-muodossa. XML-tiedosto on rakenteellinen ja helposti parsittava tiedostomuoto, jota voidaan käyttää erilaisissa automatisoiduissa prosesseissa.
+
+### i) nmap ajonaikaiset toiminnot (man nmap: runtime interaction): verbosity v/V, help ?, packet tracing p/P, status s (ja moni muu nappi)
+
+Ensiksi ajoin komennon <code>nmap localhost</code> ja painoin "v". Tuloste:
+
+````
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-05 02:31 EET
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Verbosity Increased to 1.
+Verbosity Increased to 2.
+Discovered open port 39377/tcp on 127.0.0.1
+Completed Connect Scan at 02:31, 3.20s elapsed (65535 total ports)
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00018s latency).
+Other addresses for localhost (not scanned): ::1
+Scanned at 2023-11-05 02:31:09 EET for 3s
+Not shown: 65533 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+80/tcp    open  http
+39377/tcp open  unknown
+
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 3.30 seconds
+````
+Tämä nosti skannauksen tulostustasoa ja tulosti yksityiskohtaisemmin kuin tavallisessa skannauksessa. 
+
+Seuraavaksi ajoin saman komennon ja painoin "p". Tuloste:
+`````
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-05 02:28 EET
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Packet Tracing enabled.
+CONN (0.2741s) TCP localhost > 127.0.0.1:2146 => Operation now in progress
+CONN (0.2743s) TCP localhost > 127.0.0.1:2966 => Operation now in progress
+CONN (0.2744s) TCP localhost > 127.0.0.1:47313 => Operation now in progress
+CONN (0.2745s) TCP localhost > 127.0.0.1:34842 => Operation now in progress
+CONN (0.2746s) TCP localhost > 127.0.0.1:58131 => Operation now in progress
+CONN (0.2747s) TCP localhost > 127.0.0.1:60876 => Operation now in progress
+CONN (0.2748s) TCP localhost > 127.0.0.1:31162 => Operation now in progress
+CONN (0.2749s) TCP localhost > 127.0.0.1:23987 => Operation now in progress
+CONN (0.2750s) TCP localhost > 127.0.0.1:24926 => Operation now in progress
+CONN (0.2751s) TCP localhost > 127.0.0.1:31660 => Operation now in progress
+CONN (0.2752s) TCP localhost > 127.0.0.1:31351 => Operation now in progress
+CONN (0.2753s) TCP localhost > 127.0.0.1:23682 => Operation now in progress
+CONN (0.2754s) TCP localhost > 127.0.0.1:39068 => Operation now in progress
+CONN (0.2760s) TCP localhost > 127.0.0.1:5747 => Operation now in progress
+CONN (0.2761s) TCP localhost > 127.0.0.1:59095 => Operation now in progress
+....MORE....
+`````
+Packet Tracing -toiminto otettiin käyttöön ja se näyttää lähetyt ja vastaanotetut paketit reaaliajassa.
+
+### j) Ninjojen tapaan. Piiloutuuko nmap-skannaus hyvin palvelimelta?
+"Vinkkejä: Asenna Apache. Aja nmap-versioskannaus -sV tai -A omaan paikalliseen weppipalvelimeen. Etsi Apachen lokista tätä koskevat rivit. Wiresharkissa "http" on kätevä filtteri, se tulee siihen yläreunan "Apply a display filter..." -kenttään. Nmap-ajon aikana p laittaa packet tracing päälle. Vapaaehtoinen lisäkohta: jääkö Apachen lokiin jokin todiste nmap-versioskannauksesta?"
+
+Asensin Apachen ja käynnistin sen. Lokitiedoista näkee Nmapin lähettämät HTTP-pyynnöt:
+`````
+$ cat /var/log/apache2/access.log
+127.0.0.1 - - [05/Nov/2023:02:45:36 +0200] "GET / HTTP/1.0" 200 10975 "-" "-"
+127.0.0.1 - - [05/Nov/2023:02:45:36 +0200] "GET /nmaplowercheck1699145136 HTTP/1.1" 404 451 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+127.0.0.1 - - [05/Nov/2023:02:45:36 +0200] "POST /sdk HTTP/1.1" 404 451 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+127.0.0.1 - - [05/Nov/2023:02:45:36 +0200] "GET / HTTP/1.0" 200 10975 "-" "-"
+127.0.0.1 - - [05/Nov/2023:02:45:36 +0200] "GET /evox/about HTTP/1.1" 404 451 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+127.0.0.1 - - [05/Nov/2023:02:45:36 +0200] "GET /HNAP1 HTTP/1.1" 404 451 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+127.0.0.1 - - [05/Nov/2023:02:45:36 +0200] "GET / HTTP/1.0" 200 10975 "-" "-"
+127.0.0.1 - - [05/Nov/2023:02:45:36 +0200] "GET / HTTP/1.1" 200 10956 "-" "-"
+127.0.0.1 - - [05/Nov/2023:02:46:59 +0200] "GET / HTTP/1.0" 200 10975 "-" "-"
+127.0.0.1 - - [05/Nov/2023:02:46:59 +0200] "GET / HTTP/1.0" 200 10975 "-" "-"
+127.0.0.1 - - [05/Nov/2023:02:46:59 +0200] "GET /nmaplowercheck1699145219 HTTP/1.1" 404 451 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+127.0.0.1 - - [05/Nov/2023:02:46:59 +0200] "POST /sdk HTTP/1.1" 404 451 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+127.0.0.1 - - [05/Nov/2023:02:46:59 +0200] "GET /evox/about HTTP/1.1" 404 451 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+127.0.0.1 - - [05/Nov/2023:02:46:59 +0200] "GET /HNAP1 HTTP/1.1" 404 451 "-" "Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)"
+127.0.0.1 - - [05/Nov/2023:02:46:59 +0200] "GET / HTTP/1.0" 200 10975 "-" "-"
+127.0.0.1 - - [05/Nov/2023:02:46:59 +0200] "GET / HTTP/1.1" 200 10956 "-" "-"
+`````
+### k) UDP-skannaus. UDP-skannaa paikkalinen kone (-sU). "Mulla olis vitsi UDP:sta, mutta en tiedä menisikö se perille":
+
+Annoin komennon <code>sudo nmap -sU localhost</code>. Tuloste:
+`````
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-05 02:56 EET
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000010s latency).
+Other addresses for localhost (not scanned): ::1
+All 1000 scanned ports on localhost (127.0.0.1) are in ignored states.
+Not shown: 1000 closed udp ports (port-unreach)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.38 seconds
+`````
+Wireshark:
+<img src="/images/wire6.png" alt="wire" title="wire" width="70%" height="70%">
+
+Näyttäisi siltä, että UDP-skannaus tehtiin, mutta pyynnöt eivät mene perille.
+
+### l) Miksi UDP-skannaus on hankalaa ja epäluotettavaa? Miksi UDP-skannauksen kanssa kannattaa käyttää --reason flagia ja snifferiä? (tässä alakohdassa vain vastaus viitteineen, ei tarvita testiä tietokoneella)
+
 
 ## Lähteet
 

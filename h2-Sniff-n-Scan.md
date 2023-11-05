@@ -48,74 +48,7 @@ Lyon 2009: Nmap Network Scanning: Chapter 15. Nmap Reference Guide:
 
 ## a) Fuff. Ratkaise [Teron ffuf-haastebinääri](https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge). Artikkelista [Find Hidden Web Directories - Fuzz URLs with ffuf](https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/)voi olla apua.
 
-Ffuf-työkalu ei ole minulle aikaisemmin tuttu, joten luin artikkelin ja lähdin etenemään harjoitusta artikkelin mukaan. Asensin virtuaalikoneelleni harjoituskohteen artikkelista löytyvien ohjeiden mukaan:
-
-````
-$ wget https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/dirfuzt-0
-$ chmod u+x dirfuzt-0
-$ ./dirfuzt-0
-Learn more at TeroKarvinen.com
-http://127.0.0.2:8000
-
-````
-
-Avasin osoitteen <code> http://127.0.0.2:8000 </code> virtuaalikoneeni selaimessa ja se näytti samalta kuin ohjeessa, eli asennus on onnistunut.
-
-<img src="/images/nothing.png" alt="" title="" width="70%" height="70%">
-
-Seuraavaksi asensin ffuf-työkalun artikkelin ohjeiden mukaan:
-
-````
-$ wget https://github.com/ffuf/ffuf/releases/download/v2.0.0/ffuf_2.0.0_linux_amd64.tar.gz
-$ tar -xf ffuf_2.0.0_linux_amd64.tar.gz
-$ ./ffuf
-Fuzz Faster U Fool - v2.0.0
-...
-
-````
-
-Lastasin Daniel Miesslerin [Seclists](https://github.com/danielmiessler/SecLists) sanalistan.
-
-    $ wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/common.txt
-
-
-Ohjeissa kehotetaan varmuudeksi ottamaan kone pois internetistä, joten teen sen.
-
-Seuraavaksi syötin komennon <code> ./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ </code> ja tuloste oli seuraava:
-
-````
-
-        /'___\  /'___\           /'___\       
-       /\ \__/ /\ \__/  __  __  /\ \__/       
-       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
-        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
-         \ \_\   \ \_\  \ \____/  \ \_\       
-          \/_/    \/_/   \/___/    \/_/       
-
-       v2.0.0
-________________________________________________
-
- :: Method           : GET
- :: URL              : http://127.0.0.2:8000/FUZZ
- :: Wordlist         : FUZZ: /home/kali/common.txt
- :: Follow redirects : false
- :: Calibration      : false
- :: Timeout          : 10
- :: Threads          : 40
- :: Matcher          : Response status: 200,204,301,302,307,401,403,405,500
-________________________________________________
-
-[Status: 200, Size: 132, Words: 6, Lines: 10, Duration: 0ms]
-    * FUZZ: .bash_history
-
-[Status: 200, Size: 132, Words: 6, Lines: 10, Duration: 0ms]
-    * FUZZ: .bashrc
-
-.... tuloste jatkuu tuhansia rivejä ....
-````
-
-
-TEHTÄVÄ ALKAA:
+Ffuf-työkalu ei ole minulle aikaisemmin tuttu, joten luin artikkelin ja lähdin etenemään harjoitusta artikkelin mukaan. Asensin virtuaalikoneelleni harjoituskohteen artikkelista löytyvien ohjeiden mukaan ja siirryin sen jälkeen harjoitukseen.
 
 
 Latasin harjoituskohteen [dirfuzt-1](https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/dirfuzt-1) ja ajoin sen. 

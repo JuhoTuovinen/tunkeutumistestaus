@@ -336,7 +336,7 @@ Tuloste:
 :: Progress: [1907/1907] :: Job [1/1] :: 1459 req/sec :: Duration: [0:00:01] :: Errors: 0
 
 `````
-"Kun tarkastelet tuloksia, huomaat, että jokainen tulos palautuu koon ollessa 1495 tavua. Kokeile nyt ajaa alla oleva FFUF-skannaus, mutta tällä kertaa käytä -fs-kytkintä suodattaaksesi pois kaikki tulokset, joiden koko on 1495 tavua: <code>ffuf -w ~/wordlists/subdomains.txt -H "Host: FUZZ.ffuf.me" -u http://localhost -fs 1495/code>"
+"Kun tarkastelet tuloksia, huomaat, että jokainen tulos palautuu koon ollessa 1495 tavua. Kokeile nyt ajaa alla oleva FFUF-skannaus, mutta tällä kertaa käytä -fs-kytkintä suodattaaksesi pois kaikki tulokset, joiden koko on 1495 tavua: <code>ffuf -w ~/wordlists/subdomains.txt -H "Host: FUZZ.ffuf.me" -u http://localhost -fs 1495</code>"
 
 Tuloste:
 

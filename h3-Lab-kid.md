@@ -130,7 +130,7 @@ Skannasin Metasploitablen komennolla <code>db_nmap -A -p0- 192.168.12.3</code>.
 -<code>A</code>: Suorittaa aggressiivisen skannauksen, joka sisältää käyttöjärjestelmän havaitsemisen, versiotietojen keräämisen, palveluiden tunnistamisen, sekä muita yksityiskohtaisia tietoja.
 -<code>-p0-</code>: Skannaa kaikki portit nollasta eteenpäin.
 
-<img src="/images/pdnmap.png" alt="" title="" width="70%" height="70%">
+<img src="/images/dbnmap.png" alt="" title="" width="70%" height="70%">
 
 Tulostus oli pitkä. Tämä tarkoittaa, että avoimia portteja ja palveluja on käytössä kohteessa harvinaisen paljon. Tämä on huolestuttavaa tietoturvan kannalta, sillä useampi avonainen portti laajentaa hyökkäyspintaa. Muutamat erikoiset havainnot, joita tein:
 - Useassa palvelussa on vanhentuneet järjestelmät, eikä niitä ole päivitetty. Tämä mahdollistaa hyökkääjän käyttää löydettyjä ja tunnettuja exploiteja palveluihin (esim. OpenSSH 4.7p1 ja Apache httpd 2.2.8

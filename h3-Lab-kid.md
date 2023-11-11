@@ -12,6 +12,7 @@ Tietokoneen speksit, jolla suoritan toimenpiteen:
 Ohjelmistot
 - UTM Version 4.1.6 (75)
 - VM OS: Kali Linux 2023.3 (kali-rolling)
+- VirtualBox Version 7.0.6 r155176 (Qt5.15.2)
 
 ## Lue/katso ja tiivistä.
 - Velu 2022: [Mastering Kali Linux for Advanced Penetration Testing 4ed: Chapter 10 - Exploitation](https://learning.oreilly.com/library/view/mastering-kali-linux/9781801819770/Text/Chapter_10.xhtml#_idParaDest-257): kappaleet "The Metasploit Framework", "The exploitation of targets using Metasploit" ja "Using public exploits".
@@ -77,18 +78,43 @@ Lähde: rikurikurikuriku, H2 Turbo Mode, b), GitHub,  https://github.com/rikurik
 
 
 ## a) Asenna Kali virtuaalikoneeseen
+Asennan Kali Linux -käyttöjärjestelmän VirtualBoxiin. Minulla on on valmiiksi ladattu Kali Linux 2023.2a iso-tiedosto (todettu toimivaksi omassa Macissani), jota käytän tehtävässä. Tiedosto peräisin kali.org. Annan koneelle seuraavat speksit:
+
+- Base Memory: 4096 MB
+- Processors: 4
+- Disk Size: 50,00 GB
+
+Asennus näytti edistyvän normaalisti, mutta bootatessa ruutu oli musta ja siinä välkkyi valkoinen kursori. Boottaus ei edennyt. Minulla on ollut aikaisemmin sama ongelma VirtualBoxin kanssa.
+
+
 ## b) Asenna Metasploitable 2 virtuaalikoneeseen
 Menin ohjeiden mukaan: https://docs.rapid7.com/metasploit/metasploitable-2/
-Latasin sen täältä: https://sourceforge.net/projects/metasploitable/postdownload
+Latasin sen täältä: https://sourceforge.net/projects/metasploitable
 
+Asensin https://www.youtube.com/watch?v=E3IJ_d3rAgA
 
-
+Valitsin Host-ONly network
+käynnistin koneen ja kirjauduin sisään.
+<img src="/images/msf1.png" alt="" title="" width="70%" height="70%">
 
 
 ## c) Tee koneille virtuaaliverkko, jossa
 - Kali saa yhteyden Internettiin, mutta sen voi laittaa pois päältä
 - Kalin ja Metasploitablen välillä on host-only network, niin että porttiskannatessa ym. koneet on eristetty intenetistä, mutta ne saavat yhteyden toisiinsa
 - Osoita eri komennoilla, että Internet-yhteys katkeaa: 'ping 1.1.1.1', 'ping www.google.com', 'curl www.google.com'
+
+UTM-virtualisointiohjelmasta olen valinnut molempiin virtuali koneisiin Host-Only -vaihtoehdon. Tällä hetkellä Kali eikä Metasploitable ole yhteydessä internetiin ja testin suoritin pingaamalla googlea <code>ping 8.8.8.8</code>.
+Kali:
+<img src="/images/testi1.png" alt="" title="" width="70%" height="70%">
+Metasploitable:
+<img src="/images/msf2.png" alt="" title="" width="70%" height="70%">
+
+Pingasin koneilla myös toisiaan testatakseni, että yhteys toisiinsa löytyy.
+
+<img src="/images/testi2.png" alt="" title="" width="70%" height="70%">
+<img src="/images/testi3.png" alt="" title="" width="70%" height="70%">
+
+
 ## d) Etsi Metasploitable porttiskannaamalla (db_nmap -sn). Tarkista selaimella, että löysit oikean IP:n - Metasploitablen weppipalvelimen etusivulla lukee Metasploitable. Katso, ettei skannauspaketteja vuoda Internetiin - kannattaa irrottaa koneet netistä skannatessa.
 ## e) Porttiskannaa Metasploitable huolellisesti (db_nmap -A -p0-). Analysoi tulos. Kerro myös ammatillinen mielipiteesi (uusi, vanha, tavallinen, erikoinen), jos jokin herättää ajatuksia.
 ## f) Murtaudu Metasploitablen VsFtpd-palveluun Metasploitilla (search vsftpd, use 0, set RHOSTS - varmista osoite huolella, exploit, id)

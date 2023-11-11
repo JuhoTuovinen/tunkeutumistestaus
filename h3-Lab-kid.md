@@ -14,6 +14,13 @@ Ohjelmistot
 - VM OS: Kali Linux 2023.3 (kali-rolling)
 
 ## Lue/katso ja tiivistä.
+- Velu 2022: [Mastering Kali Linux for Advanced Penetration Testing 4ed: Chapter 10 - Exploitation](https://learning.oreilly.com/library/view/mastering-kali-linux/9781801819770/Text/Chapter_10.xhtml#_idParaDest-257): kappaleet "The Metasploit Framework", "The exploitation of targets using Metasploit" ja "Using public exploits".
+  * The Metasploit Framework
+    - joujou
+
+
+
+
 ## a) Asenna Kali virtuaalikoneeseen
 ## b) Asenna Metasploitable 2 virtuaalikoneeseen
 Menin ohjeiden mukaan: https://docs.rapid7.com/metasploit/metasploitable-2/
@@ -39,6 +46,10 @@ Latasin sen täältä: https://sourceforge.net/projects/metasploitable/postdownl
 ## n) Vapaaehtoinen: Murtaudu johonkin toiseen Metasploitablen palveluun.
 ## o) Vapaaehtoinen: Asenna ja korkkaa Metasploitable 3. Karvinen 2018: Install Metasploitable 3 – Vulnerable Target Computer
 
+## Lähteet
+
+
+Karvinen, Tero: Oppitunnit 2023-11-06, Tunkeutumistestaus, h2-Lab Kid (https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h3-lab-kid)
 
 
 

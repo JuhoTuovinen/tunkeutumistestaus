@@ -181,7 +181,21 @@ ChatGPT:n mukaan: "Virheilmoituksesi "Unable to negotiate with 192.168.12.3 port
 
 ## h) Etsi, tutki ja kuvaile jokin hyökkäys ExploitDB:sta. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi)
 
-Kesken.
+Hetken selailtuani ExploitDB:tä, löysin [Microsoft Office 365 Version 18.2305.1222.0 - Elevation of Privilege + RCE](https://www.exploit-db.com/exploits/51609) exploitin, joka kiinnosti minua.
+
+- Title: Microsoft Office 365 Version 18.2305.1222.0 - Elevation of Privilege + RCE.
+- Author: nu11secur1ty
+- Date: 07.18.2023
+- Vendor: https://www.microsoft.com/
+- Software: https://www.microsoft.com/en-us/microsoft-365/microsoft-office
+- Reference: https://portswigger.net/web-security/access-control
+- CVE-2023-33148
+- Staus: HIGH Vulnerability
+
+Kyseinen exploit on Microsoft Office 365 -versioon 18.2305.1222.0. Sovellus on haavoittuvainen oikeuksien nostolle (Elevation of Privilege).Hyökkääjä voi käyttää tätä haavoittuvuutta liittämällä vaarallisen Word-tiedoston Outlook-sähköpostisovellukseen, joka on osa Microsoft Office 365:tä ja voi helposti huijata uhria napsauttamaan sitä. Avatessaan sen, hyökkäys suorittaa erittäin vaarallisen komentokehoteen paikallisen tietokoneen taustalla. Tämä suoritus tapahtuu ilman tämän haitallisen tiedoston lataamista.
+
+Hyökkäyksen voi katsoa [täältä](https://www.youtube.com/watch?time_continue=3&v=h9UWf7R49H8&embeds_referring_euri=https%3A%2F%2Fwww.nu11secur1ty.com%2F&source_ve_path=MzY4NDIsMzY4NDIsMzY4NDIsMTM5MTE3LDM2ODQyLDM2ODQyLDI4NjY2&feature=emb_logo).
+
 
 ## i) Etsi, tutki ja kuvaile hyökkäys 'searchsploit' -komennolla. Muista päivittää. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi. Valitse eri hyökkäys kuin edellisessä kohdassa.)
 ## j) Kokeile vapaavalintaista haavoittuvuusskanneria johonkin Metasploitablen palveluun. (Esim. nikto, wpscan, openvas, nessus, nucleus tai joku muu)
@@ -201,5 +215,7 @@ https://0xdf.gitlab.io/2023/11/09/htb-broker.html
 
 https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h2_laksyt.md
 
+https://www.youtube.com/watch?time_continue=3&v=h9UWf7R49H8&embeds_referring_euri=https%3A%2F%2Fwww.nu11secur1ty.com%2F&source_ve_path=MzY4NDIsMzY4NDIsMzY4NDIsMTM5MTE3LDM2ODQyLDM2ODQyLDI4NjY2&feature=emb_logo
 
+https://www.exploit-db.com/exploits/51609
 

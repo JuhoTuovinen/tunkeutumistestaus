@@ -227,9 +227,71 @@ Eli kyseessä on DoS- hyökkäys, joka pyrkii tekemään Apache HTTP Serverin ta
 
 Päätin tässä harjoituksessa kokeilla Niktoa, sillä se on jo valmiiksi Kali Linux:issa asennettuna.
 
+Nikto on avoimen lähdekoodin web-palvelimen skannaus- ja testausohjelmisto, joka on suunniteltu etsimään haavoittuvuuksia web-palvelimissa.
 
+Skannasin kohdekoneeni (Metasploitable) komennolla <code>nikto -h 192.168.12.3</code>.
+- <code>-h</code>: määrittää skannauksen kohteen
+- <code>192.168.12.3</code>: skannauksen kohde (Metasploitable)
 
+<img src="/images/nikto.png" alt="" title="" width="70%" height="70%">
+
+Skannauksesta tuli hyvin dataa. Kun tutkitaan tulostusta, Nikto löytää useita haavoittuvuuksia, joita voidaan hyödyntää. Tässä esiteltynä muutama:
+- Apache/2.2.8 appears to be outdated (vanhempaan versioon varmasti löytyy tunnettuja haavoittuvuuksia)
+- /doc/: Directory indexing found (verkkopalvelin sallii hakemistojen sisällön näkymisen verkkoselaimessa)
+- /index: Apache mod_negotiation is enabled with MultiViews, which allows attackers to easily brute force file names.
+  
 ## k) Kokeile jotain itsellesi uutta työkalua, joka mainittiin x-kohdan läpikävelyohjeessa.
+
+Läpikävelyohjeessa [HackTheBox - Download](https://www.youtube.com/watch?v=UUn9x7mw1i0) käytetään Gobusteria, joten päätin testata kyseistä ohjelmaa. Gobuster on FFUF:n kaltainen työkalu, joka on tarkoitettu verkkosivuston hakemistorakenteen tutkimiseen.
+
+Liitin hetkeksi Kali-koneeni verkkoon ja asensin Gobusterin komennolla <code>sudo apt-get install gobuster</code>. Asennuksen jälkeen laitoin koneen takaisin Host-Only -tilaan, jotta vältetään ylimääräiset vahingot seuraavassa testivaiheessa. 
+
+Lähdin testaamaan työkalua Metasploit-kohteeseeni komennolla <code>gobuster dir -u 192.168.12.3 -w ~/wordlists/common.txt</code>.
+
+- <code>dir</code> kertoo Gobusterille, että kyseessä hakemistoskannaus
+- <code>-u [URL]</code>määrittelee kohdesivuston osoitteen, jonka rakennetta halutaan tutkia
+- <code>-w wordlist.txt</code> määrittelee sanalistan, jota halutaa hyödyntää
+
+Käytin tehtävässä samaa sanalistaa kuin aikaisemmissa FFUF-tehtävissä.
+
+Tulostus:
+
+````
+===============================================================
+Gobuster v3.6
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://192.168.12.3
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /home/kali/wordlists/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/.htaccess            (Status: 403) [Size: 294]
+/.hta                 (Status: 403) [Size: 289]
+/.htpasswd            (Status: 403) [Size: 294]
+/cgi-bin/             (Status: 403) [Size: 293]
+/dav                  (Status: 301) [Size: 315] [--> http://192.168.12.3/dav/]
+/index                (Status: 200) [Size: 891]
+/index.php            (Status: 200) [Size: 891]
+/phpMyAdmin           (Status: 301) [Size: 322] [--> http://192.168.12.3/phpMyAdmin/]
+/phpinfo              (Status: 200) [Size: 47978]
+/phpinfo.php          (Status: 200) [Size: 47990]
+/server-status        (Status: 403) [Size: 298]
+/test                 (Status: 301) [Size: 316] [--> http://192.168.12.3/test/]
+/twiki                (Status: 301) [Size: 317] [--> http://192.168.12.3/twiki/]
+Progress: 4686 / 4687 (99.98%)
+===============================================================
+Finished
+===============================================================
+````
+Gobuster paljastaa meille mm. <code>/phpMyAdmin</code>-sivun, jossa kirjautuminen tapahtuu ja <code>/phpinfo</code>, joka antaa yksityiskohtaista tietoa PHP-asennuksesta ja -konfiguraatiosta ja voi sisältää arkaluonteista tietoa.
+
+
 ## m) Vapaaehtoinen: Kokeile hyökkäystä, joka löytyy ExploitDB:sta. Huomaa, että joidenkin vanhempien hyökkäysten mukana tulee harjoitusmaali.
 ## n) Vapaaehtoinen: Murtaudu johonkin toiseen Metasploitablen palveluun.
 ## o) Vapaaehtoinen: Asenna ja korkkaa Metasploitable 3. Karvinen 2018: Install Metasploitable 3 – Vulnerable Target Computer

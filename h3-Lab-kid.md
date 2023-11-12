@@ -180,6 +180,7 @@ ChatGPT auttoi neuvomaan kokeilemaan seuraavaa komentoa: <code>ssh -oHostKeyAlgo
 
 ChatGPT:n mukaan: "Virheilmoituksesi "Unable to negotiate with 192.168.12.3 port 22: no matching host key type found. Their offer: ssh-rsa,ssh-dss" viittaa siihen, että SSH-asiakas ei löytänyt yhteensopivaa avaintyyppiä, kun yritettiin neuvotella SSH-yhteyttä palvelimen kanssa.Tämä voi johtua siitä, että SSH-palvelin tukee avaintyyppejä, joita SSH-asiakkaasi ei tue. Voit yrittää ratkaista tämän ongelman lisäämällä -o-vaihtoehdon käyttäen HostKeyAlgorithms-määritystä. <code>ssh -oHostKeyAlgorithms=+ssh-rsa user1@192.168.12.3</code> -komento määrää käyttämään ssh-rsa-avaintyyppiä neuvotteluissa."
 
+Myöhemmin tajusin. että käyttäjälle olisi voinut antaa admin-oikeudet.
 
 ## h) Etsi, tutki ja kuvaile jokin hyökkäys ExploitDB:sta. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi)
 

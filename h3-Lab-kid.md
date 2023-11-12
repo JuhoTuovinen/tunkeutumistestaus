@@ -201,9 +201,34 @@ Hyökkäyksen voi katsoa [täältä](https://www.youtube.com/watch?time_continue
 
 ## i) Etsi, tutki ja kuvaile hyökkäys 'searchsploit' -komennolla. Muista päivittää. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi. Valitse eri hyökkäys kuin edellisessä kohdassa.)
 
-Kesken.
+Päivitin SearchSploit-tietokannan komennolla <code>sudo searchsploit -u</code>. Sen jälkeen etsin Exploit Databasesta Apacheen liittyvät haavoittuvuudet ja hyökkäykset komennolla <code>searchsploit apache</code>.
+
+<img src="/images/searchsploit1.png" alt="" title="" width="70%" height="70%">
+
+Valitsin sattumanvaraisesti "Apache - Denial of Service" ja lähdin tutkimaan sitä. Komennolla <code>searchsploit -p 20558</code> nähdään hieman enemmän tietoja haavoittuvuudesta. 20558 on haavoittuvuuden ID, jolla etsin lisätietoa.
+
+
+`````
+msf6 > searchsploit -p 20558
+[*] exec: searchsploit -p 20558
+
+  Exploit: Apache 1.2 - Denial of Service
+      URL: https://www.exploit-db.com/exploits/20558
+     Path: /usr/share/exploitdb/exploits/multiple/dos/20558.txt
+    Codes: CVE-1999-0107, OSVDB-5821
+ Verified: True
+File Type: ASCII text
+`````
+Lähdin tutkimaan mainittua [verkko-osoitetta](https://www.exploit-db.com/exploits/20558) ja siellä kerrotaan haavoittuvuuden toimivan suomennettuna näin: "Apache Web Server 1.2 ja sitä aiemmat versiot ovat alttiita palvelunestohyökkäykselle. Pyytämällä virheellistä GET-pyyntöä, joka koostuu epätavallisen suuresta määrästä '/'-merkkejä, hyökkääjä voi aiheuttaa prosessorin käytön äkillisen kasvun. Palvelun normaalin toiminnan palauttamiseksi on suoritettava palvelimen uudelleenkäynnistys."
+
+Eli kyseessä on DoS- hyökkäys, joka pyrkii tekemään Apache HTTP Serverin tai siihen liittyvän verkkopalvelimen saavuttamattomaksi tai heikentämään sen suorituskykyä estämällä laillisen liikenteen käsittelyä.
 
 ## j) Kokeile vapaavalintaista haavoittuvuusskanneria johonkin Metasploitablen palveluun. (Esim. nikto, wpscan, openvas, nessus, nucleus tai joku muu)
+
+Päätin tässä harjoituksessa kokeilla Niktoa, sillä se on jo valmiiksi Kali Linux:issa asennettuna.
+
+
+
 ## k) Kokeile jotain itsellesi uutta työkalua, joka mainittiin x-kohdan läpikävelyohjeessa.
 ## m) Vapaaehtoinen: Kokeile hyökkäystä, joka löytyy ExploitDB:sta. Huomaa, että joidenkin vanhempien hyökkäysten mukana tulee harjoitusmaali.
 ## n) Vapaaehtoinen: Murtaudu johonkin toiseen Metasploitablen palveluun.
@@ -223,4 +248,6 @@ https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h2_laksyt.md
 https://www.youtube.com/watch?time_continue=3&v=h9UWf7R49H8&embeds_referring_euri=https%3A%2F%2Fwww.nu11secur1ty.com%2F&source_ve_path=MzY4NDIsMzY4NDIsMzY4NDIsMTM5MTE3LDM2ODQyLDM2ODQyLDI4NjY2&feature=emb_logo
 
 https://www.exploit-db.com/exploits/51609
+
+https://www.exploit-db.com/exploits/20558
 

@@ -118,6 +118,8 @@ Käynnistin Metasploitablen tarvitseman tietokannan komennolla <code>sudo system
 <img src="/images/msf4.png" alt="" title="" width="70%" height="70%">
 <img src="/images/msfsivu.png" alt="" title="" width="70%" height="70%">
 
+Tehtävään sain apua [Vilpun GitHubista](https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h2_laksyt.md).
+
 ## e) Porttiskannaa Metasploitable huolellisesti (db_nmap -A -p0-). Analysoi tulos. Kerro myös ammatillinen mielipiteesi (uusi, vanha, tavallinen, erikoinen), jos jokin herättää ajatuksia.
 Skannasin Metasploitablen komennolla <code>db_nmap -A -p0- 192.168.12.3</code>.
 

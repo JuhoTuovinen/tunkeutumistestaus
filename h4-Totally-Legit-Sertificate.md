@@ -21,8 +21,6 @@ Ohjelmistot
     - yleisimpiä pääsynhallinnan haavoittuvuuksia: valtuuksien rikkominen, tarkistusten kiertäminen, toisen tilin katselu tai muokkaaminen, puutteellinen pääsynhallinta API-toiminnoissa, oikeuden nosto, metatietojen manipulointi, CORS-konfigurointivirhe, force browsing
     - kuinka estää väärinkäyttö: tehokas pääsynhallinta, käytä luotettavia palvelimia, joissa hyvä koodi, poista web-palvelimen hakemistoluettelo, varmista etteivät tiedostojen metatiedot tai varmuuskopiot ole saatavilla verkkohakemistoissa, kirjaa pääsynhallinnan epäonnistumiset ja ilmoita tarvittaessa, aseta API:n käyttöön rajoituksia
   - [A10:2021 – Server-Side Request Forgery (SSRF)](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/)
-    - 
-
 - PortSwigget Academy:
   - [Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control) (IDOR on osa tätä)
   - [Server-side template injection](https://portswigger.net/web-security/server-side-template-injection)https://portswigger.net/web-security/server-side-template-injection

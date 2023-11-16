@@ -17,7 +17,11 @@ Ohjelmistot
 
 - OWASP 2021: OWASP Top 10:2021
   - [A01:2021 – Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/) (IDOR ja path traversal ovat osa tätä)
+    - pääsynhallinta valvoo, että käyttäjät eivät voi toimia lupien ulkopuolella. Jos lupia päästään kiertämään on mahdollista, että valtuuttamattomia tietoja paljastuuu, muokkataan tai tuhotaan, tai toiminnallisuuksien suorittamiseen käyttäjän rajojen ulkopuolella
+    - yleisimpiä pääsynhallinnan haavoittuvuuksia: valtuuksien rikkominen, tarkistusten kiertäminen, toisen tilin katselu tai muokkaaminen, puutteellinen pääsynhallinta API-toiminnoissa, oikeuden nosto, metatietojen manipulointi, CORS-konfigurointivirhe, force browsing
+    - kuinka estää väärinkäyttö: tehokas pääsynhallinta, käytä luotettavia palvelimia, joissa hyvä koodi, poista web-palvelimen hakemistoluettelo, varmista etteivät tiedostojen metatiedot tai varmuuskopiot ole saatavilla verkkohakemistoissa, kirjaa pääsynhallinnan epäonnistumiset ja ilmoita tarvittaessa, aseta API:n käyttöön rajoituksia
   - [A10:2021 – Server-Side Request Forgery (SSRF)](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/)
+    - 
 
 - PortSwigget Academy:
   - [Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control) (IDOR on osa tätä)
@@ -79,3 +83,18 @@ apuna: https://www.youtube.com/watch?v=d6dOGlzpz8w
 - Cross Site Scripting (XSS)
   - i) [Reflected XSS into HTML context with nothing encoded](https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded)
   - j) [Stored XSS into HTML context with nothing encoded](https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded)
+
+## k) Asenna Webgoat 2023.4. (Uusi versio, jossa on eri tehtäviä kuin vanhemmissa)
+## Ratkaise WebGoat 2023.4:
+- m) (A1) Broken Access Control (WebGoat 2023.4)
+  - Hijack a session (1)
+  - Insecure Direct Object References (4)
+  - Missing Function Level Access Control (3)
+  - Spoofing an Authentication Cookie (1)
+- n) (A7) Identity & Auth Failure (WebGoat 2023.4)
+  - Authentication Bypasses (1)
+  - Insecure Login (1)
+- o) (A10) Server-side Request Forgery (WebGoat 2023.4)
+  - Server-Side Request Forgery (2)
+- p) Client side (WebGoat 2023.4)
+  - Bypass front-end restrictions (2)

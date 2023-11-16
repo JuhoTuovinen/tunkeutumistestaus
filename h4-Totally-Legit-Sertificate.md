@@ -28,10 +28,46 @@ Ohjelmistot
 - Karvinen 2020: [Using New Webgoat 2023.4 to Try Web Hacking](https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/)
 
 ## a) Totally Legit Sertificate. Asenna OWASP ZAP, generoi CA-sertifikaatti ja asenna se selaimeesi. Laita ZAP proxyksi selaimeesi. Osoita, että hakupyynnöt ilmestyvät ZAP:n käyttöliittymään. (Ei toimi localhost:lla ilman Foxyproxya)
+
+#### ZAP asennus
+- tarkistin, että java on asennettukomennolla <code>java -version</code> ja näyttäisi olevan:
+````
+Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true
+openjdk version "17.0.9-ea" 2023-10-17
+OpenJDK Runtime Environment (build 17.0.9-ea+6-Debian-1)
+OpenJDK 64-Bit Server VM (build 17.0.9-ea+6-Debian-1, mixed mode, sharing)
+````
+- latasin owasp zap -linux installer virtuaalikoneelle osoitteesta [osoite](https://github.com/zaproxy/zaproxy/releases/download/v2.14.0/ZAP_2_14_0_unix.sh)
+- loin knasion "zap", jonne siirsin ladatun <code>.sh</code> tiedoston.
+- annoin suoritusoikeuden tiedostolle <code>chmod +x ZAP_2_14_0_unix.sh</code>
+- käynnistin asennuksen <code>sudo ./ZAP_2_14_0_unix.sh</code>
+- <code>standard installation</code>
+- asennus valmis
+  
+<img src="/images/zap.png" alt="" title="" width="70%" height="70%">
+
+- Firefoxin asetuksista laitoin HTTP Proxyksi: localhost ja portti 8080.
+
+<img src="/images/fire1.png" alt="" title="" width="70%" height="70%">
+
+- ZAP:ista Tools - Options - Dynamic SSL Certificate - Go To New Screen ja sieltä tallensin CA Certificaten työpöydälleni.
+- Firefoxin asetuksista Settings- Privacy & Security - Certificates - View Certificates...- Import... ja lisäsin aikaisemmin tallettamani CA Certificaten.
+
+<img src="/images/certi.png" alt="" title="" width="70%" height="70%">
+<img src="/images/ca.png" alt="" title="" width="70%" height="70%">
+  
+- ZAP:issa ajoin käyttämällä localhost:8080
+
+<img src="/images/zap2.png" alt="" title="" width="70%" height="70%">
+
+
+apuna: https://www.youtube.com/watch?v=d6dOGlzpz8w 
 ## b) Kettumaista. Asenna FoxyProxy Standard Firefox Addon, ja lisää ZAP proxyksi siihen.
 ## PortSwigger Labs. Ratkaise tehtävät. Selitä ratkaisusi: mitä palvelimella tapahtuu, mitä eri osat tekevät, miten hyökkäys löytyi, mistä vika johtuu. (Voi käyttää ZAPia, vaikka malliratkaisut käyttävät harjoitusten tekijän maksullista ohjelmaa)
 - Insecure Direct Object Reference (IDOR)
   - c) [Insecure direct object references](https://portswigger.net/web-security/access-control/lab-insecure-direct-object-references)
+   
+    
 - Path traversal
   - d) [File path traversal, simple case](https://portswigger.net/web-security/file-path-traversal/lab-simple)
   - e) [File path traversal, traversal sequences blocked with absolute path bypass](https://portswigger.net/web-security/file-path-traversal/lab-absolute-path-bypass)

@@ -27,14 +27,15 @@ Ohjelmistot
         - hajauttamalla etäresurssien käyttöominaisuudet eri verkkoihin
         - Zero trust -periaatetta noudattavat palomuuri- tai verkkopääsyvalvontasäännöt, jotka estävät kaiken paitsi välttämättömän intranet-liikenteen
       - Sovelluskerros:
-        - Puhdista ja validoi kaikki käyttäjän antamat syötteet
+        - puhdista ja validoi kaikki käyttäjän antamat syötteet
         - älä lähetä raakoja vastauksia asiakkaille
         - poista HTTP-uudelleenohjaukset käytöstä
         - älä käytä estoluetteloita, ne voidaan ohittaa
-    - Esmierkki skenaario: hyökkääjät voivat päästä käsiksi paikallisiin tiedostoihin tai sisäisiin palveluihin saadakseen arkaluonteista tietoa, kuten file:///etc/passwd ja http://localhost:28017/
+    - Esimerkki skenaario: hyökkääjät voivat päästä käsiksi paikallisiin tiedostoihin tai sisäisiin palveluihin saadakseen arkaluonteista tietoa, kuten file:///etc/passwd ja http://localhost:28017/
 
 - PortSwigget Academy:
   - [Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control) (IDOR on osa tätä)
+    -
   - [Server-side template injection](https://portswigger.net/web-security/server-side-template-injection)https://portswigger.net/web-security/server-side-template-injection
   - [Server-side request forgery (SSRF)](https://portswigger.net/web-security/ssrf)https://portswigger.net/web-security/ssrf
   - [Cross-site scripting](https://portswigger.net/web-security/cross-site-scripting)https://portswigger.net/web-security/cross-site-scripting

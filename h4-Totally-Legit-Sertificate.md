@@ -21,6 +21,18 @@ Ohjelmistot
     - yleisimpiä pääsynhallinnan haavoittuvuuksia: valtuuksien rikkominen, tarkistusten kiertäminen, toisen tilin katselu tai muokkaaminen, puutteellinen pääsynhallinta API-toiminnoissa, oikeuden nosto, metatietojen manipulointi, CORS-konfigurointivirhe, force browsing
     - kuinka estää väärinkäyttö: tehokas pääsynhallinta, käytä luotettavia palvelimia, joissa hyvä koodi, poista web-palvelimen hakemistoluettelo, varmista etteivät tiedostojen metatiedot tai varmuuskopiot ole saatavilla verkkohakemistoissa, kirjaa pääsynhallinnan epäonnistumiset ja ilmoita tarvittaessa, aseta API:n käyttöön rajoituksia
   - [A10:2021 – Server-Side Request Forgery (SSRF)](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/)
+    - Server-Side Request Forgery tapahtuu silloin, kun verkkosovellus hakee etäresurssia ilman käyttäjän antaman URL-osoitteen tarkistusta. Tämä mahdollistaa hyökkääjän saada sovellus lähettämään erikoispyyntöjä odottamattomaan paikkaan, vaikka sovellusta olisi suojeltu palomuurilla, VPN:llä tai muilla verkon käyttöoikeusluetteloilla.
+    - kuinka suojautua:
+      - Verkkokerros:
+        - hajauttamalla etäresurssien käyttöominaisuudet eri verkkoihin
+        - Zero trust -periaatetta noudattavat palomuuri- tai verkkopääsyvalvontasäännöt, jotka estävät kaiken paitsi välttämättömän intranet-liikenteen
+      - Sovelluskerros:
+        - Puhdista ja validoi kaikki käyttäjän antamat syötteet
+        - älä lähetä raakoja vastauksia asiakkaille
+        - poista HTTP-uudelleenohjaukset käytöstä
+        - älä käytä estoluetteloita, ne voidaan ohittaa
+    - Esmierkki skenaario: hyökkääjät voivat päästä käsiksi paikallisiin tiedostoihin tai sisäisiin palveluihin saadakseen arkaluonteista tietoa, kuten file:///etc/passwd ja http://localhost:28017/
+
 - PortSwigget Academy:
   - [Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control) (IDOR on osa tätä)
   - [Server-side template injection](https://portswigger.net/web-security/server-side-template-injection)https://portswigger.net/web-security/server-side-template-injection

@@ -71,13 +71,25 @@ OpenJDK 64-Bit Server VM (build 17.0.9-ea+6-Debian-1, mixed mode, sharing)
 <img src="/images/certi.png" alt="" title="" width="70%" height="70%">
 <img src="/images/ca.png" alt="" title="" width="70%" height="70%">
   
-- ZAP:issa ajoin käyttämällä localhost:8080
+- hakutulokset näkyivat ZAP:issa.
 
 <img src="/images/zap2.png" alt="" title="" width="70%" height="70%">
 
-
-apuna: https://www.youtube.com/watch?v=d6dOGlzpz8w 
 ## b) Kettumaista. Asenna FoxyProxy Standard Firefox Addon, ja lisää ZAP proxyksi siihen.
+
+- latasin täältä: https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/
+
+<img src="/images/foxy.png" alt="" title="" width="70%" height="70%">
+
+- seuraavsta ponnahdusikkunasta hyväksyin seuraavat ehdot ja lisäsin laajennuksen
+
+<img src="/images/add.png" alt="" title="" width="70%" height="70%">
+
+- lisäsin proxyt HTTP- ja HTTPS-protokollalle
+
+<img src="/images/foxy1.png" alt="" title="" width="70%" height="70%">
+<img src="/images/foxy2.png" alt="" title="" width="70%" height="70%">
+
 ## PortSwigger Labs. Ratkaise tehtävät. Selitä ratkaisusi: mitä palvelimella tapahtuu, mitä eri osat tekevät, miten hyökkäys löytyi, mistä vika johtuu. (Voi käyttää ZAPia, vaikka malliratkaisut käyttävät harjoitusten tekijän maksullista ohjelmaa)
 - Insecure Direct Object Reference (IDOR)
   - c) [Insecure direct object references](https://portswigger.net/web-security/access-control/lab-insecure-direct-object-references)

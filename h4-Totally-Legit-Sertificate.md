@@ -98,7 +98,9 @@ Tehtävän aloitus on seuraavanlainen. Kuvauksessa annettiin vinkkiä chat-omina
 
 <img src="/images/aloitus.png" alt="" title="" width="70%" height="70%">
 
-Testailin chat-ominaisuutta kirjoittamalla chattiin. Mielenkiintoisempi ominaisuus oli "View transcript"- nappi, joka lataa tekstitiedostona keskustelunne. Painamalla selaimess f12, se avaa meille kehittäjä työkalut. Seuratessa sivuston verkkoliikennettä lataamalla tiedosto, löydämme minne chatit tallennetaan.
+Testailin chat-ominaisuutta kirjoittamalla chattiin. Mielenkiintoisempi ominaisuus oli "View transcript"- nappi, joka lataa tekstitiedostona keskustelunne. Painamalla selaimess f12, se avaa meille kehittäjätyökalut. Seuratessa sivuston verkkoliikennettä lataamalla tiedosto, löydämme minne chatit tallennetaan.
+
+<img src="/images/f12.png" alt="" title="" width="70%" height="70%">
 
 <img src="/images/f12.png" alt="" title="" width="70%" height="70%">
 
@@ -120,9 +122,35 @@ Pääsimme kirjautumaan tunnuksilla sisään.
 
 Labra on ratkaistu.
 
-    
 - Path traversal
   - d) [File path traversal, simple case](https://portswigger.net/web-security/file-path-traversal/lab-simple)
+    Tämä tehtävä sisältää polkuhakemistohaavoittuvuuden tuotteiden kuvien näyttämisessä. Tehtävä pitää ratkaista hakemalla tiedoston <code>/etc/passwd</code> sisältö.
+
+<img src="/images/aloitus1.png" alt="" title="" width="70%" height="70%">
+
+File path traversal liittyy verkkosovellusten ja palvelimien tietojen käsittelyyn ja haavoittuvuus mahdollistaa hyökkääjän siirtyä sovelluksen määrittelemän polun ulkopuolelle ja saada pääsy tiedostoihin tai hakemistoihin, joihin heillä ei pitäisi olla oikeuksia.
+
+Lähdin tutkimaan mihin polkuun kuvat ovat tallennettu. Se selvisi äskeiseen tapaan käyttämällä selaimen kehittäjätyökaluja painamalla f12.
+
+<img src="/images/image.png" alt="" title="" width="70%" height="70%">
+
+Polku kuvaan on <code>	https://0a6e00b6043143718122025800c900e3.web-security-academy.net/image?filename=45.jpg</code>. 
+
+Haluttu sisältö on polussa <code>/etc/passwd</code>, joten poistin URL:sta "45.jpg" ja lisäsin polun sen tilalle.
+
+<img src="/images/nofile.png" alt="" title="" width="70%" height="70%">
+
+Saamme ilmoituksen "No such file". Lisäämme polkuun <code>../</code>, sillä haluttu sisältö voi olla jossakin toisessa hakemistossa. Osoitteella <code>https://0a6e00b6043143718122025800c900e3.web-security-academy.net/image?filename=../../../etc/passwd</code> näkymä oli erilainen ja tämä kiinnitti huomioni:
+
+<img src="/images/f12a.png" alt="" title="" width="70%" height="70%">
+
+Poistin URL:sta sanan "image" ja labra saatiin suoritettua.
+
+    https://0a6e00b6043143718122025800c900e3.web-security-academy.net/?filename=../../../etc/passwd
+
+<img src="/images/solved2.png" alt="" title="" width="70%" height="70%">
+
+    
   - e) [File path traversal, traversal sequences blocked with absolute path bypass](https://portswigger.net/web-security/file-path-traversal/lab-absolute-path-bypass)
   - f) [File path traversal, traversal sequences stripped non-recursively](https://portswigger.net/web-security/file-path-traversal/lab-sequences-stripped-non-recursively)
 - Server Side Template Injection (SSTI)

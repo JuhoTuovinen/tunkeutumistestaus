@@ -175,39 +175,80 @@ Harjoituksessa on sama kuvaus ja tehtävä kuin aikaisemmissa. Lähdin seuortitt
   - h) [Basic SSRF against the local server](https://portswigger.net/web-security/ssrf/lab-basic-ssrf-against-localhost)
     Harjoitustehtävässä on varaston tarkistustoiminto, joka hakee tietoja sisäisestä järjestelmästä. Tehtävä tulee ratkaista vaihtamalla varaston tarkistuksen URL-osoite niin, että se kohdistaa admin-käyttöliittymään osoitteessa http://localhost/admin ja poista käyttäjän nimeltä "carlos".
 
-
+Ensiksi suuntasin kohtaan "My account", josta löytyy kirjautumiskohta.
   
 <img src="/images/login1.png" alt="" title="" width="70%" height="70%">
 
-- kokeilien /admin, mutta sinne ei päässyt kirjautumatta
+Kokeilin, jos pääkäyttäjälle pääsee lisäämällä URL:iin <code>/admin</code>, mutta sivua ei näytetty kirjautumatta.
 <img src="/images/admin.png" alt="" title="" width="70%" height="70%">
 
-- menin tuotteen kohdalle ja sieltä löytyi "Check stock" nappi, joka tarkistaa tuotteen saatavuuden.
-- lisäsin http://localhost/admin alkuperäisen tilalle
+Menin takaisin pääsivulle ja valitsin tuotteen. Tuotteen kohdalta löytyi "Check stock" nappi, joka tarkistaa tuotteen saatavuuden. Lisäsin <code>http://localhost/admin</code> osoitteen tilalle. Tällöin painamalla "Check stock" lähetän pyynnön määrittelemääni URL-osoitteeseen.
+
 <img src="/images/stock.png" alt="" title="" width="70%" height="70%">
 
-- ilmestyi lisäinfoa, josta paljastuukäyttäjät wiener ja carlos sekä mahdollisuus poistaa käyttäjät
+Pyyntö paljasti näytölle lisäinfoa, josta paljastuu käyttäjät "wiener" ja "carlos" sekä mahdollisuus poistaa käyttäjät.
+
 <img src="/images/users.png" alt="" title="" width="70%" height="70%">
-- nappi ei kuitenkaan poistanut käyttäjää mutta saimme http://localhost/admin/delete?username=carlos
-- lisäsin tämän urlin edellisen tilalle ja saimme poistettua carlos käyttäjän
+
+Nappi ei kuitenkaan poistanut käyttäjää, mutta saimme osoitteen, jota voimme hyödyntää: <code>http://localhost/admin/delete?username=carlos</code>. Lisäsin tämän osoitteen samaan kohtaan kuin edellisen, ja saimme poistettua käyttäjän "carlos".
+
 <img src="/images/stock2.png" alt="" title="" width="70%" height="70%">
-
-
 <img src="/images/solved5.png" alt="" title="" width="70%" height="70%">
-
-- labra on suoritettu
-
-
+Labra on suoritettu.
 
     
 - Cross Site Scripting (XSS)
   - i) [Reflected XSS into HTML context with nothing encoded](https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded)
+    Harjoituksessa on reflected cross-site scripting- haavoittuvuus hakutoiminnassa. Tehtävä ratkaistaan suorittamalla cross-site scripting -hyökkäys, joka kutsuu alert-funktiota.
+
+Hakutoiminto tulee vastaan kun labra aukeaa. Tehtävässä halutaan käyttää alert-funktiota, joten ajan hyökkäyksen antamalla kyselyn <code><script>alert(document.domain)</script></code>. 
+<img src="/images/asd.png" alt="" title="" width="70%" height="70%">
+Tällöin ilmestyy alert-ponnahduikkuna ja labra saadaan suoritettua. 
+<img src="/images/alert.png" alt="" title="" width="70%" height="70%">
+<img src="/images/solved6.png" alt="" title="" width="70%" height="70%">
+
+Jos hakutoiminnassa on vastaavanlainen haavoittuvuus, hyökkääjä voi silloin suorittaa haluamaansa koodia.
+
   - j) [Stored XSS into HTML context with nothing encoded](https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded)
+    Harjoituksessa on stored cross-site scripting-haavoittuvuus. Tehtävä ratkaistaan lähettämällä kommentti, joka kutsuu alert-funktiota, kun blogipostaus on nähty.
+
+    Löysin kommenttiosion, jonne hyökkäys on tarkoitus tehdä. 
+
+<img src="/images/comment.png" alt="" title="" width="70%" height="70%">
+
+Lisäsin kommentiksi aikaisemman komennon <code<script>alert(document.domain)</script></code> ja saimme sillä tehtävän ratkaistua.
+<img src="/images/asd1.png" alt="" title="" width="70%" height="70%">
+<img src="/images/solved7.png" alt="" title="" width="70%" height="70%">
+
 
 ## k) Asenna Webgoat 2023.4. (Uusi versio, jossa on eri tehtäviä kuin vanhemmissa)
+Lähdin suorittamaan asennusta Tero Karvisen [Try Web Hacking](https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/) on New Webgoat 2023.4 ohjeen mukaisesti.
+
+Asensin Javan ja palomuurin, ja laitoin sen myös päälle.
+
+````
+sudo apt-get update
+sudo apt-get install openjdk-17-jre
+sudo apt-get install ufw
+sudo ufw enable
+````
+Latasin WebGoat 2023.4, sillä se on uusin versio.
+
+    wget https://github.com/WebGoat/WebGoat/releases/download/v2023.4/webgoat-2023.4.jar
+
+Koska meillä on ZAP proxy, vaihdetaan WebGoat porttiin 8888. 
+
+    java -Dfile.encoding=UTF-8 -Dwebgoat.port=8888 -Dwebwolf.port=9090 -jar webgoat-2023.4.jar
+
+Tämän jälkeen WebGoat käynnistyy ja ehdottaa menemään sivulle <code>http://127.0.0.1:8888/WebGoat</code>.
+<img src="/images/wg.png" alt="" title="" width="70%" height="70%">
+
+Loin käyttäjän.
+
 ## Ratkaise WebGoat 2023.4:
 - m) (A1) Broken Access Control (WebGoat 2023.4)
   - Hijack a session (1)
+    
   - Insecure Direct Object References (4)
   - Missing Function Level Access Control (3)
   - Spoofing an Authentication Cookie (1)

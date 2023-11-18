@@ -152,11 +152,49 @@ Poistin URL:sta sanan "image" ja labra saatiin suoritettua.
 
     
   - e) [File path traversal, traversal sequences blocked with absolute path bypass](https://portswigger.net/web-security/file-path-traversal/lab-absolute-path-bypass)
+Tehtävä on samankaltainen kuin edellinen. Tehtävässä sovellus estää polkuhakemiston sekvenssit, mutta käsittelee annettua tiedostonimeä suhteessa oletushakemistoon. Tehtävä ratkaistaan hakemalla tiedoston /etc/passwd sisältö.
+
+Lähdin kokeilemaan samalla lähestymistavalla kuin aikasemman tehtävän: etsin kuvan plun, sen jälkeen laitoin kuvan tiedoston nimen tilalle <code>/etc/passwd</code>, jonka jälkeen sain samanlaisen näkymän kuin edellisessä tehtävässä.
+
+    https://0a0f00f104aebb1184007974002d0097.web-security-academy.net/image?filename=/etc/passwd
+
+<img src="/images/f12b.png" alt="" title="" width="70%" height="70%">
+
+Poistin "image"-sanan ja labra oli suoritettu.
+
+<img src="/images/solved3.png" alt="" title="" width="70%" height="70%">
+    
   - f) [File path traversal, traversal sequences stripped non-recursively](https://portswigger.net/web-security/file-path-traversal/lab-sequences-stripped-non-recursively)
+Harjoituksessa on sama kuvaus ja tehtävä kuin aikaisemmissa. Lähdin seuortittamaan testausta samalla tavalla kuin aikaisemmissa tehtävissä, mutta vaikuttaa siltä ettei hakemistoa löydy. Kokeilin hyödyntää <code>....//</code> URL:issa, jolloin yritetään siirtyä useita tasoja ylemmälle hakemistossa. Lopulta päätteellä <code>/?filename=/....//....//....//etc/passwd</code> löysimme halutun hakemiston.
+
+<img src="/images/solved4.png" alt="" title="" width="70%" height="70%">
+
 - Server Side Template Injection (SSTI)
   - g) [Server-side template injection with information disclosure via user-supplied objects](https://portswigger.net/web-security/server-side-template-injection/exploiting/lab-server-side-template-injection-with-information-disclosure-via-user-supplied-objects) (Tämä on merkitty hieman vaikeammaksi, jätä viimeiseksi jos näyttää hankalalta)
 - Server Side Request Forgery (SSRF)
   - h) [Basic SSRF against the local server](https://portswigger.net/web-security/ssrf/lab-basic-ssrf-against-localhost)
+    Harjoitustehtävässä on varaston tarkistustoiminto, joka hakee tietoja sisäisestä järjestelmästä. Tehtävä tulee ratkaista vaihtamalla varaston tarkistuksen URL-osoite niin, että se kohdistaa admin-käyttöliittymään osoitteessa http://localhost/admin ja poista käyttäjän nimeltä "carlos".
+
+- kokeilien /admin, mutta sinne ei päässyt kirjautumatta
+- menin tuotteen kohdalle ja sieltä löytyi "Check stock" nappi, joka tarkistaa tuotteen saatavuuden.
+- lisäsin http://localhost/admin alkuperäisen tilalle
+- ilmestyi lisäinfoa, josta paljastuukäyttäjät wiener ja carlos sekä mahdollisuus poistaa käyttäjät
+- nappi ei kuitenkaan poistanut käyttäjää mutta saimme http://localhost/admin/delete?username=carlos
+- lisäsin tämän urlin edellisen tilalle ja saimme poistettua carlos käyttäjän
+- labra on suoritettu
+  
+<img src="/images/login1.png" alt="" title="" width="70%" height="70%">
+<img src="/images/admin.png" alt="" title="" width="70%" height="70%">
+<img src="/images/stock.png" alt="" title="" width="70%" height="70%">
+<img src="/images/users.png" alt="" title="" width="70%" height="70%">
+<img src="/images/stock2.png" alt="" title="" width="70%" height="70%">
+<img src="/images/solved5.png" alt="" title="" width="70%" height="70%">
+
+
+
+
+
+    
 - Cross Site Scripting (XSS)
   - i) [Reflected XSS into HTML context with nothing encoded](https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded)
   - j) [Stored XSS into HTML context with nothing encoded](https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded)

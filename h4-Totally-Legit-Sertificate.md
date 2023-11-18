@@ -35,7 +35,6 @@ Ohjelmistot
 
 - PortSwigget Academy:
   - [Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control) (IDOR on osa tätä)
-    -
   - [Server-side template injection](https://portswigger.net/web-security/server-side-template-injection)https://portswigger.net/web-security/server-side-template-injection
   - [Server-side request forgery (SSRF)](https://portswigger.net/web-security/ssrf)https://portswigger.net/web-security/ssrf
   - [Cross-site scripting](https://portswigger.net/web-security/cross-site-scripting)https://portswigger.net/web-security/cross-site-scripting
@@ -93,7 +92,34 @@ OpenJDK 64-Bit Server VM (build 17.0.9-ea+6-Debian-1, mixed mode, sharing)
 ## PortSwigger Labs. Ratkaise tehtävät. Selitä ratkaisusi: mitä palvelimella tapahtuu, mitä eri osat tekevät, miten hyökkäys löytyi, mistä vika johtuu. (Voi käyttää ZAPia, vaikka malliratkaisut käyttävät harjoitusten tekijän maksullista ohjelmaa)
 - Insecure Direct Object Reference (IDOR)
   - c) [Insecure direct object references](https://portswigger.net/web-security/access-control/lab-insecure-direct-object-references)
-   
+  Labrassa kerrotaan, että harjoitustehtävä tallentaa käyttäjien chat-lokit suoraan palvelimen tiedostojärjestelmään ja hakee ne staattisten URL-osoitteiden avulla. Ratkaise tehtävä löytämällä salasana käyttäjälle "carlos" ja kirjaudu sisään tilille.
+
+Tehtävän aloitus on seuraavanlainen. Kuvauksessa annettiin vinkkiä chat-ominaisuudesta, joten lähdin tutkimaan sitä.
+
+<img src="/images/aloitus.png" alt="" title="" width="70%" height="70%">
+
+Testailin chat-ominaisuutta kirjoittamalla chattiin. Mielenkiintoisempi ominaisuus oli "View transcript"- nappi, joka lataa tekstitiedostona keskustelunne. Painamalla selaimess f12, se avaa meille kehittäjä työkalut. Seuratessa sivuston verkkoliikennettä lataamalla tiedosto, löydämme minne chatit tallennetaan.
+
+<img src="/images/f12.png" alt="" title="" width="70%" height="70%">
+
+Kopioin osoitteen, mutta muutankin osoitetta niin, että tiedoston nimeksi tulee "1.txt":
+
+    https://0a85004003acbc2c818dcf5000e80052.web-security-academy.net/download-transcript/1.txt
+
+Tällöin tietokoneelleni latautuu tiedosto, jossa on Carloksen keskustelu ja hän paljastaa siinä salasanansa.
+
+<img src="/images/chat.png" alt="" title="" width="70%" height="70%">
+
+Seuraavaksi suuntaamme "My account"-kohtaan ja kokeilemme toimiiko saamamme tunnukset.
+
+<img src="/images/login.png" alt="" title="" width="70%" height="70%">
+
+Pääsimme kirjautumaan tunnuksilla sisään.
+
+<img src="/images/solved.png" alt="" title="" width="70%" height="70%">
+
+Labra on ratkaistu.
+
     
 - Path traversal
   - d) [File path traversal, simple case](https://portswigger.net/web-security/file-path-traversal/lab-simple)

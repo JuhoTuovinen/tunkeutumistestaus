@@ -175,22 +175,27 @@ Harjoituksessa on sama kuvaus ja tehtävä kuin aikaisemmissa. Lähdin seuortitt
   - h) [Basic SSRF against the local server](https://portswigger.net/web-security/ssrf/lab-basic-ssrf-against-localhost)
     Harjoitustehtävässä on varaston tarkistustoiminto, joka hakee tietoja sisäisestä järjestelmästä. Tehtävä tulee ratkaista vaihtamalla varaston tarkistuksen URL-osoite niin, että se kohdistaa admin-käyttöliittymään osoitteessa http://localhost/admin ja poista käyttäjän nimeltä "carlos".
 
-- kokeilien /admin, mutta sinne ei päässyt kirjautumatta
-- menin tuotteen kohdalle ja sieltä löytyi "Check stock" nappi, joka tarkistaa tuotteen saatavuuden.
-- lisäsin http://localhost/admin alkuperäisen tilalle
-- ilmestyi lisäinfoa, josta paljastuukäyttäjät wiener ja carlos sekä mahdollisuus poistaa käyttäjät
-- nappi ei kuitenkaan poistanut käyttäjää mutta saimme http://localhost/admin/delete?username=carlos
-- lisäsin tämän urlin edellisen tilalle ja saimme poistettua carlos käyttäjän
-- labra on suoritettu
+
   
 <img src="/images/login1.png" alt="" title="" width="70%" height="70%">
+
+- kokeilien /admin, mutta sinne ei päässyt kirjautumatta
 <img src="/images/admin.png" alt="" title="" width="70%" height="70%">
+
+- menin tuotteen kohdalle ja sieltä löytyi "Check stock" nappi, joka tarkistaa tuotteen saatavuuden.
+- lisäsin http://localhost/admin alkuperäisen tilalle
 <img src="/images/stock.png" alt="" title="" width="70%" height="70%">
+
+- ilmestyi lisäinfoa, josta paljastuukäyttäjät wiener ja carlos sekä mahdollisuus poistaa käyttäjät
 <img src="/images/users.png" alt="" title="" width="70%" height="70%">
+- nappi ei kuitenkaan poistanut käyttäjää mutta saimme http://localhost/admin/delete?username=carlos
+- lisäsin tämän urlin edellisen tilalle ja saimme poistettua carlos käyttäjän
 <img src="/images/stock2.png" alt="" title="" width="70%" height="70%">
+
+
 <img src="/images/solved5.png" alt="" title="" width="70%" height="70%">
 
-
+- labra on suoritettu
 
 
 

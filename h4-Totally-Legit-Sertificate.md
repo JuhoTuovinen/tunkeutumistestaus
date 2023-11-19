@@ -398,7 +398,7 @@ Aluksi kirjoitin kysymyksine kohdalle "test" ja katsoin ZAP:ista miltä näyttä
 
 <img src="/images/sec2.png" alt="" title="" width="70%" height="70%">
 
-Poistin myös kohdan <code>verifyMethod=SEC_QUESTIONS</code>, sekään ei toiminut. Tehtävä ratkesi sillä, että muutti parametrit <code>secQuestion111=test&secQuestion000=test>/code>.
+Poistin myös kohdan <code>verifyMethod=SEC_QUESTIONS</code>, sekään ei toiminut. Tehtävä ratkesi sillä, että muutti parametrit <code>secQuestion111=test&secQuestion000=test</code>.
 
 <img src="/images/sec2.png" alt="" title="" width="70%" height="70%">
 

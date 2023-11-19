@@ -212,8 +212,11 @@ Labra on suoritettu.
     Harjoituksessa on reflected cross-site scripting- haavoittuvuus hakutoiminnassa. Tehtävä ratkaistaan suorittamalla cross-site scripting -hyökkäys, joka kutsuu alert-funktiota.
 
 Hakutoiminto tulee vastaan kun labra aukeaa. Tehtävässä halutaan käyttää alert-funktiota, joten ajan hyökkäyksen antamalla kyselyn <code><script>alert(document.domain)</script></code>. 
+
 <img src="/images/asd.png" alt="" title="" width="70%" height="70%">
+
 Tällöin ilmestyy alert-ponnahduikkuna ja labra saadaan suoritettua. 
+
 <img src="/images/alert.png" alt="" title="" width="70%" height="70%">
 <img src="/images/solved6.png" alt="" title="" width="70%" height="70%">
 

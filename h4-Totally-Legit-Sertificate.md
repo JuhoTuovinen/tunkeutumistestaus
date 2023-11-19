@@ -260,7 +260,10 @@ Loin käyttäjän.
 ## Ratkaise WebGoat 2023.4:
 - m) (A1) Broken Access Control (WebGoat 2023.4)
   - Hijack a session (1)
- Painoin access. löydämme cookien f12 - storage-cookie. meitä kiinnostaa JESSIONID.tallensin sen tekstieditoriin. 
+ Painoin access. löydämme cookien f12 - storage-cookie. meitä kiinnostaa JESSIONID.tallensin sen tekstieditoriin.
+
+kesken, jatkuu pian.
+
   - Insecure Direct Object References (4)
   - Missing Function Level Access Control (3)
   - Spoofing an Authentication Cookie (1)

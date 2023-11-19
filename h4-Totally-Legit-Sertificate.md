@@ -41,9 +41,7 @@ Ohjelmistot
     - Cross-site scripting on haavoittuvuus, joka mahdollistaa hyökkääjän vuorovaikutuksen haavoittuvan sovelluksen käyttäjien kanssa
     - voi johtaa erilaisiin haitallisiin seurauksiin, kuten tietojen varastamiseen, istuntojen kaappaamiseen ja käyttäjien manipulointiin
     - haavoittuvuuksia on kolme päätyyppiä: Reflected XSS, Stored XSS ja DOM-based XSS
-    - XSS-hyökkäyksen estämiseksi suositellaan seuraavia toimenpiteitä:
-      - suodata käyttäjän syötteet tarkasti sen perusteella, mikä on odotettua tai sallittua
-      - koodaa applikaatiossa käyttäjän ohjattavissa olevat tiedot estääksesi ne tulkittamasta aktiivisena sisältönä
+  
  
 - Karvinen 2020: [Using New Webgoat 2023.4 to Try Web Hacking](https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/)
   - artikkeli kertoo, kuinka asennetaa WebGoat

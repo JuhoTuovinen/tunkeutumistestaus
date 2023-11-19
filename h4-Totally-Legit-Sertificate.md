@@ -265,7 +265,56 @@ Loin käyttäjän.
 kesken, jatkuu pian.
 
   - Insecure Direct Object References (4)
+    IDOR ovat tietoturva-aukkoja, jossa sovellus ei asianmukaisesti valvo, kuka voi nähdä tai muokata tiettyjä objekteja tai resursseja. Hyökkääjä voi käyttää tätä aukkoa päästäkseen käsiksi tai muokatakseen tietoja, joihin hänellä ei pitäisi olla oikeuksia.
+
+Tehtävässä pyydetään kirjautumaan sisään käyttämällä tunnuksia tom ja cat.
+<img src="/images/tom.png" alt="" title="" width="70%" height="70%">
+Kirjautumisen jälkeen näemme profiilin tiedoissa tiedot:
+````
+name:Tom Cat
+color:yellow
+size:small
+````
+<img src="/images/roleuserid2.png" alt="" title="" width="70%" height="70%">
+
+Tehtävässä kysytään, että mitkä kaksi muuta attribuuttia löytyy vastauksesta. Tarkastelibn ZAP:lla pyyntöä ja sieltä löytyy kategoriat:
+`````
+"role" : 3,
+"color" : "yellow",
+"size" : "small,
+"name" : "Tom Cat",
+"userId" : "2342384"
+`````
+Eli uudet attribuutit olivat "role" ja "userID".
+
+<img src="/images/roleuserid.png" alt="" title="" width="70%" height="70%">
+
+Seuraavassa kohdassa kysytään vaihtoehtoista URL-osoitetta profiilin näyttämiseksi.
+
+<img src="/images/guessing.png" alt="" title="" width="70%" height="70%">
+
+Osoite profiiliin löytyi mysö ZAP:n avulla pyyntöä tutkiessa. Pyynnössä näkyvän linkin perään lisäämme käyttänä userID:n, ja linkki johtaa silloin käyttäjän profiiliin.
+
+<img src="/images/profile.png" alt="" title="" width="70%" height="70%">
+
+Seuraavaksi on tarkoitus katsoa toisen henkilö profiilia käyttämällä vaihtoehtoista polkua. Aikaisemmin käytimme vaihtoehtoista polkua
+<code>http://127.0.0.1:8888/WebGoat/IDOR/profile/2342384</code>, joten syötämme tämän hakukenttään.
+
+<img src="/images/4.png" alt="" title="" width="70%" height="70%">
+
+Voimme löytää lisää käyttäjiiä userID:tä fuzzaamalla. Lähdin käsin kokeilemaan vaihtamalla viimisintä numeroa numerosarjassa ja userID:llä 2342388 sattui löytymään käyttäjä Buffalo Bill.
+
+<img src="/images/8.png" alt="" title="" width="70%" height="70%">
+
+Kopioin Buffalo Bill:n useID.n ja suunniistin takaisin WebGoatin tehtäväsivulle ja "View Prfofile"- napista painoin hiiren oikealla "inspect" ja muutin userID-kohdan linkistä saamaamme Bill:n usedID:ksi, jolloin saamme tehtävän suoritettua? Käytin samaa tekniikkaa myös käyttäjän muokkaus- kohdassa. En ole varma kuuluiko tehtävää suorittaa noin, sillä mitään tietoja en muokannut. Tämä pitää selvittää myöhemmin.
+
+<img src="/images/f12c.png" alt="" title="" width="70%" height="70%">
+<img src="/images/solved9.png" alt="" title="" width="70%" height="70%">
+
+Apuna: https://www.youtube.com/watch?v=K5BBP88kBjU
+
   - Missing Function Level Access Control (3)
+    Tehtävässä
   - Spoofing an Authentication Cookie (1)
 - n) (A7) Identity & Auth Failure (WebGoat 2023.4)
   - Authentication Bypasses (1)
@@ -281,4 +330,5 @@ https://www.youtube.com/watch?v=htZCniUCoa4
 https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/
 chat.openai.com
 https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h4%20Totally%20Legit%20Sertificate.md
+https://www.youtube.com/watch?v=K5BBP88kBjU
 

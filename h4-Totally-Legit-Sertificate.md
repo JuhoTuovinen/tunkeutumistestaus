@@ -342,6 +342,48 @@ Apuna: https://www.youtube.com/watch?v=K5BBP88kBjU
     käytin apuna: https://www.youtube.com/watch?v=Kp-R25Zy7NI
     
   - Spoofing an Authentication Cookie (1)
+
+Harjoitus käsittelee Authentication Cookieita. Nämä keksit ovat osa palveluita, jotka vaativat käyttäjän tunnistautumista. Kun käyttäjä kirjautuu palveluun henkilökohtaisella käyttäjänimellä ja salasanalla, palvelin tarkistaa annetut tunnistetiedot ja jos ne ovat oikeita, palvelin luo istunnon. Jokaisella istunnolla on uniikki tunniste.
+
+Tehtävän tavoitteena on ohittaa todennusmekanismi väärentämällä keksi.
+
+Kirjauduin ensin sisälle käyttämällä tunnuksia admin:admin ja webgoat:webgoat. ZAP:illa löysin keksin ja tallensin sen muistioon.
+
+<img src="/images/admin2.png" alt="" title="" width="70%" height="70%">
+
+Keksit näköjään myös näkyivät käyttöliittymässä, joten tallensin myös webgoat-käyttäjän keksin muistioon.
+
+<img src="/images/goat.png" alt="" title="" width="70%" height="70%">
+
+Molemmat keksit ovat Base64-koodattu. Sen tunnistaa siitä, esim. että hash-funktio loppuu "=" ja sisältää pieniä- ja isojakirjaimia sekä numeroita ja erikoismerkkejä kuten / ja +. Käytin sivustoa https://www.base64decode.org/ dekoodaamiseen.  
+
+<img src="/images/base64.png" alt="" title="" width="70%" height="70%">
+
+Saimme hexakoodia, ja sen dekoodaamiseen käytin sivustoa https://cryptii.com/pipes/hex-to-text. 
+
+<img src="/images/hexa.png" alt="" title="" width="70%" height="70%">
+
+Käytin molempiin kekseihin samaa teksniikkaa. Sain seuraavat tulokset:
+
+`````
+admin:
+NGQ0ODZmNzg3NTUyNjQ2YTYzNTI2ZTY5NmQ2NDYx
+MHoxuRdjcRnimda
+
+webgoat:
+NGQ0ODZmNzg3NTUyNjQ2YTYzNTI3NDYxNmY2NzYyNjU3Nw== webgoat
+MHoxuRdjcRtaogbew
+`````
+Kun katsoo dekoodattuja koodeja, voimme huomata, että molempien käyttäjien sarjojen lopussa on käyttäjä nimi väärinpäin: nimda- > admin. Alussa kuitenkin molemmissa sama kirjainsarja. Tästä voi päätellä, että tehtävässä haettu Tomin keksi voisi mahdollisesti olla <code>MHoxuRdjcRmot</code> ja samalla tekniikalla enkoodattuna eli <code>NGQ0ODZmNzg3NTUyNjQ2YTYzNTI2ZDZmNzQ=</code>.
+
+ZAP:issa hain pyynnön, jossa olin kirjautunut sisälle. Avasin sen requester tabissa ja muutin keksiksi olettamani Tomin keksin ja lähetin kutsun. 
+
+<img src="/images/request.png" alt="" title="" width="70%" height="70%">
+
+Huomasinkin, että tehtävä oli suoritettu.
+
+<img src="/images/solved10.png" alt="" title="" width="70%" height="70%">
+    
 - n) (A7) Identity & Auth Failure (WebGoat 2023.4)
   - Authentication Bypasses (1)
   - Insecure Login (1)

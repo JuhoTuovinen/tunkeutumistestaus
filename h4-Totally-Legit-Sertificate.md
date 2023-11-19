@@ -314,7 +314,33 @@ Kopioin Buffalo Bill:n useID.n ja suunniistin takaisin WebGoatin tehtäväsivull
 Apuna: https://www.youtube.com/watch?v=K5BBP88kBjU
 
   - Missing Function Level Access Control (3)
-    Tehtävässä
+    
+    Tehtävässä täytyy etsiä alla olevasta valikosta kaksi näkymätöntä valikkokohtaa, jotka kiinnostaisivat hyökkääjää, ja lähettää kohteiden tunnisteet.
+    
+    <img src="/images/menu1.png" alt="" title="" width="70%" height="70%">
+
+    Aluksi katsoin sivun koodia, mutta en löytänyt mitään. Sitten painoin "Account"-painiketta ja katsoin ZAP:lla miltä näyttää.
+    
+    <img src="/images/zap1.png" alt="" title="" width="70%" height="70%">
+    
+    Siirryin selaimessa pyynnöstä löytyvään linkkiin ja sivulla näytti olevan samaa materiaalia kuin harjoituksen kuvauksessa, mutta ilman muotoiluja. Sivu on siis jotenkin rikki?
+    
+    <img src="/images/sivu.png" alt="" title="" width="70%" height="70%">
+
+    Tutkin sivun koodia, ja sieltä löytyi kaksi piiloitettua valikkokohtaa <code>Users</code> ja <code>Config</code>.
+
+    
+    <img src="/images/sivu2.png" alt="" title="" width="70%" height="70%">
+    <img src="/images/koodi.png" alt="" title="" width="70%" height="70%">
+
+    Kirjoitin vastaukseni lomakkeeseen ja ne näyttäisivät olevan oikein.
+
+    <img src="/images/menu2.png" alt="" title="" width="70%" height="70%">
+
+    Seuraavassa vaiheessa, jossa täytyy löytää Jerryn hash, epäonnistuin. Kokeilin piilotettuja valikkoja ja tarkastelin ZAP:ia. En keksinyt ratkaisua.
+    
+    käytin apuna: https://www.youtube.com/watch?v=Kp-R25Zy7NI
+    
   - Spoofing an Authentication Cookie (1)
 - n) (A7) Identity & Auth Failure (WebGoat 2023.4)
   - Authentication Bypasses (1)

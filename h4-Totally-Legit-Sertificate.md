@@ -465,7 +465,7 @@ Lähdin etenemään samalla tavalla kuin edellisessä tehtävässä. Vaihdoin ku
 
     Kokeilin ensin vaihtaa esim. option1 -> option3, 5 merkin merkkiraja -> 10 merkin raja. Tämä ei toiminut. Tajusin, että "value"-arvoa täytyy muuttaa, joten lisäsin merkin "x" kaikkien laatikoiden value-kohtaan.
 
-<img src="/images/valuex.png" alt="" title="" width="70%" height="70%">
+<img src="/images/value.png" alt="" title="" width="70%" height="70%">
 
 Se tepsi lomakkeeseen.
 

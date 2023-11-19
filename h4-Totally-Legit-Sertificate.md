@@ -33,13 +33,25 @@ Ohjelmistot
         - älä käytä estoluetteloita, ne voidaan ohittaa
     - Esimerkki skenaario: hyökkääjät voivat päästä käsiksi paikallisiin tiedostoihin tai sisäisiin palveluihin saadakseen arkaluonteista tietoa, kuten file:///etc/passwd ja http://localhost:28017/
 
-- PortSwigget Academy:
+- PortSwigger Academy:
   - [Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control) (IDOR on osa tätä)
   - [Server-side template injection](https://portswigger.net/web-security/server-side-template-injection)https://portswigger.net/web-security/server-side-template-injection
   - [Server-side request forgery (SSRF)](https://portswigger.net/web-security/ssrf)https://portswigger.net/web-security/ssrf
   - [Cross-site scripting](https://portswigger.net/web-security/cross-site-scripting)https://portswigger.net/web-security/cross-site-scripting
+    - Cross-site scripting on haavoittuvuus, joka mahdollistaa hyökkääjän vuorovaikutuksen haavoittuvan sovelluksen käyttäjien kanssa
+    - voi johtaa erilaisiin haitallisiin seurauksiin, kuten tietojen varastamiseen, istuntojen kaappaamiseen ja käyttäjien manipulointiin
+    - haavoittuvuuksia on kolme päätyyppiä: Reflected XSS, Stored XSS ja DOM-based XSS
+    - XSS-hyökkäyksen estämiseksi suositellaan seuraavia toimenpiteitä:
+      - suodata käyttäjän syötteet tarkasti sen perusteella, mikä on odotettua tai sallittua
+      - koodaa applikaatiossa käyttäjän ohjattavissa olevat tiedot estääksesi ne tulkittamasta aktiivisena sisältönä
  
 - Karvinen 2020: [Using New Webgoat 2023.4 to Try Web Hacking](https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/)
+  - artikkeli kertoo, kuinka asennetaa WebGoat
+  - asenna java ja palomuuri
+  - lataa uusin webgoat osoitteesta https://github.com/WebGoat/WebGoat/releases/
+  - aja webgoat esim. portissa 8888, koska sinulla on mahdollisesti OWASP ZAP jo portissa 8080
+  - webgoat on asennettu
+  - artikkelin lopusta löytyy muutamat vinkit troubleshootaukseen
 
 ## a) Totally Legit Sertificate. Asenna OWASP ZAP, generoi CA-sertifikaatti ja asenna se selaimeesi. Laita ZAP proxyksi selaimeesi. Osoita, että hakupyynnöt ilmestyvät ZAP:n käyttöliittymään. (Ei toimi localhost:lla ilman Foxyproxya)
 
@@ -265,4 +277,5 @@ Lähteet:
 https://www.youtube.com/watch?v=htZCniUCoa4
 https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/
 chat.openai.com
+https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h4%20Totally%20Legit%20Sertificate.md
 

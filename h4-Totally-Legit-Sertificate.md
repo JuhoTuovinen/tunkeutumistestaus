@@ -383,20 +383,115 @@ ZAP:issa hain pyynnön, jossa olin kirjautunut sisälle. Avasin sen requester ta
 Huomasinkin, että tehtävä oli suoritettu.
 
 <img src="/images/solved10.png" alt="" title="" width="70%" height="70%">
+
+Apuna: https://www.youtube.com/watch?v=-n4OmhUN3vA
     
 - n) (A7) Identity & Auth Failure (WebGoat 2023.4)
   - Authentication Bypasses (1)
+Autentikoinnin ohitus hyödyntää yleensä joitakin virheitä kokoonpanossa tai logiikassa.
+
+Harjoituksessa harjoitellaan autentikoinnin ohitusta tilanteessa, jossa olen nollannut salasanani. Mnun on vastattava turvakysymyksiin, mutta en muista vastauksia.
+
+<img src="/images/skenaario.png" alt="" title="" width="70%" height="70%">
+
+Aluksi kirjoitin kysymyksine kohdalle "test" ja katsoin ZAP:ista miltä näyttää. POST- pyynnön kohdalla valitsin "open in requester tab" ja poistin kohdat <code>secQuestion0=test&secQuestion1=test</code> ja lähetin pyynnön, mutta ei toiminut. 
+
+<img src="/images/sec2.png" alt="" title="" width="70%" height="70%">
+
+Poistin myös kohdan <code>verifyMethod=SEC_QUESTIONS</code>, sekään ei toiminut. Tehtävä ratkesi sillä, että muutti parametrit <code>secQuestion111=test&secQuestion000=test>/code>.
+
+<img src="/images/sec2.png" alt="" title="" width="70%" height="70%">
+
+Apuna: https://www.youtube.com/watch?v=4mv4qfUHaDg
+
   - Insecure Login (1)
+
+Salakirjoitus on olennainen työkalu turvallisen viestinnän varmistamiseksi. Tässä harjoituksessa tulee käyttää snifferiä kirjautumistietojen kaappaamiseen.
+
+<img src="/images/sec2.png" alt="" title="" width="70%" height="70%">
+
+Ensiksi painoin "Log In"- nappia ja tarkistin POST-pyynnön ZAP:issa. 
+
+<img src="/images/zap5.png" alt="" title="" width="70%" height="70%">
+
+ZAP paljastaa käyttäjätunnuksen <code>CaptainJack:BlackPearl</code>. Kokeilin tunnuksia sisäänkirjautumiseen ja pääsin kirjautumaan.
+
+<img src="/images/solved11.png" alt="" title="" width="70%" height="70%">
+
 - o) (A10) Server-side Request Forgery (WebGoat 2023.4)
   - Server-Side Request Forgery (2)
+
+    Server-Side Request Forgery -hyökkäyksessä hyökkääjä voi väärinkäyttää palvelimen toiminnallisuutta ja lukea tai päivittää sisäisiä resursseja. Hyökkääjä voi syöttää tai muokata URL-osoitetta, jonka        koodi palvelimella lukee tai lähettää tietoja hyökkääjälle.
+
+Tehtävässä täytyy saada palvelin jotakin muuta kuin pitäisi.
+    
+<img src="/images/alku12.png" alt="" title="" width="70%" height="70%">
+
+Painoin nappia "Steal the cheese" ja sain seuraavan kuvan:
+
+<img src="/images/tom1.png" alt="" title="" width="70%" height="70%">
+
+Painoin napin kohdalla hiiren oikeaa ja "inspect". Päätin ensimmäiseksi kokeilla muuttaa tom.png -> cheese.png
+
+<img src="/images/f12d.png" alt="" title="" width="70%" height="70%">
+
+Ja sainkin yllätyksekseni toisen kuvan.
+
+<img src="/images/plan.png" alt="" title="" width="70%" height="70%">
+
+Ilmeisesti tämä ei kuitenkaan tarkoita, että tehtävä on läpäisty. Sama näkymä tulee vaikka kuvan nimeksi antaisi jotain muuta. Kun vaihdoin tom.png -> jerry.png, saatiin tehtävä ratkaistua.
+
+<img src="/images/jerry.png" alt="" title="" width="70%" height="70%">
+    
+Seuraava tehtävä on samankaltainen. 
+
+<img src="/images/alku3.png" alt="" title="" width="70%" height="70%">
+
+Kun painaa nappia, näkymä on tällainen:
+
+<img src="/images/alku4.png" alt="" title="" width="70%" height="70%">
+
+Lähdin etenemään samalla tavalla kuin edellisessä tehtävässä. Vaihdoin kuvan osoitteen tehtävänannossa mainittuun osoitteeseen ja tehtävä saatiin ratkaistua.
+
+<img src="/images/f12e.png" alt="" title="" width="70%" height="70%">
+<img src="/images/solved13.png" alt="" title="" width="70%" height="70%">
+    
 - p) Client side (WebGoat 2023.4)
   - Bypass front-end restrictions (2)
+ 
+    Bypass front-end restrictions tarkoittaa yrittämistä ohittaa web-sovelluksen rajoitukset, kuten tiettyjen syötteiden estäminen tai salliminen. Hyökkääjä pyrkii manipuloimaan selaimen lähettämiä pyyntöjä voidakseen antaa tietynlaisia syötteitä, jotka muutoin olisivat estettyjä.
+
+    <img src="/images/alku5.png" alt="" title="" width="70%" height="70%">
+
+    Kokeilin ensin vaihtaa esim. option1 -> option3, 5 merkin merkkiraja -> 10 merkin raja. Tämä ei toiminut. Tajusin, että "value"-arvoa täytyy muuttaa, joten lisäsin merkin "x" kaikkien laatikoiden value-kohtaan.
+
+<img src="/images/valuex.png" alt="" title="" width="70%" height="70%">
+
+Se tepsi lomakkeeseen.
+
+<img src="/images/solved14.png" alt="" title="" width="70%" height="70%">
 
 Lähteet:
 
 https://www.youtube.com/watch?v=htZCniUCoa4
+
 https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/
+
 chat.openai.com
+
 https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h4%20Totally%20Legit%20Sertificate.md
+
 https://www.youtube.com/watch?v=K5BBP88kBjU
+
+https://www.youtube.com/watch?v=-n4OmhUN3vA
+
+https://www.base64encode.org/
+
+https://cryptii.com/pipes/hex-to-text
+
+https://www.youtube.com/watch?v=4mv4qfUHaDg
+
+
+
+
 

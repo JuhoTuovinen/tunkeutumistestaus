@@ -437,7 +437,7 @@ Painoin napin kohdalla hiiren oikeaa ja "inspect". Päätin ensimmäiseksi kokei
 
 Ja sainkin yllätyksekseni toisen kuvan.
 
-<img src="/images/plan.png" alt="" title="" width="70%" height="70%">
+<img src="/images/plan2.png" alt="" title="" width="70%" height="70%">
 
 Ilmeisesti tämä ei kuitenkaan tarkoita, että tehtävä on läpäisty. Sama näkymä tulee vaikka kuvan nimeksi antaisi jotain muuta. Kun vaihdoin tom.png -> jerry.png, saatiin tehtävä ratkaistua.
 

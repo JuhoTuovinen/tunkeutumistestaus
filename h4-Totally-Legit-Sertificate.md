@@ -112,8 +112,6 @@ Testailin chat-ominaisuutta kirjoittamalla chattiin. Mielenkiintoisempi ominaisu
 
 <img src="/images/f12.png" alt="" title="" width="70%" height="70%">
 
-<img src="/images/f12.png" alt="" title="" width="70%" height="70%">
-
 Kopioin osoitteen, mutta muutankin osoitetta niin, että tiedoston nimeksi tulee "1.txt":
 
     https://0a85004003acbc2c818dcf5000e80052.web-security-academy.net/download-transcript/1.txt

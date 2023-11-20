@@ -173,7 +173,7 @@ Poistin "image"-sanan ja labra oli suoritettu.
 <img src="/images/solved3.png" alt="" title="" width="70%" height="70%">
     
   - f) [File path traversal, traversal sequences stripped non-recursively](https://portswigger.net/web-security/file-path-traversal/lab-sequences-stripped-non-recursively)
-Harjoituksessa on sama kuvaus ja tehtävä kuin aikaisemmissa. Lähdin seuortittamaan testausta samalla tavalla kuin aikaisemmissa tehtävissä, mutta vaikuttaa siltä ettei hakemistoa löydy. Kokeilin hyödyntää <code>....//</code> URL:issa, jolloin yritetään siirtyä useita tasoja ylemmälle hakemistossa. Lopulta päätteellä <code>/?filename=/....//....//....//etc/passwd</code> löysimme halutun hakemiston.
+Harjoituksessa on sama kuvaus ja tehtävä kuin aikaisemmissa. Lähdin seuortittamaan testausta samalla tavalla kuin aikaisemmissa tehtävissä, mutta vaikuttaa siltä ettei hakemistoa löydy. Kokeilin hyödyntää <code>....//</code> URL:issa, jolloin ohitetaan filtteröinti. Lopulta päätteellä <code>/?filename=/....//....//....//etc/passwd</code> löysimme halutun hakemiston.
 
 <img src="/images/solved4.png" alt="" title="" width="70%" height="70%">
 

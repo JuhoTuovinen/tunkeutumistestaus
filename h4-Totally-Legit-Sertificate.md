@@ -182,6 +182,7 @@ Harjoituksessa on sama kuvaus ja tehtävä kuin aikaisemmissa. Lähdin seuortitt
 - Server Side Request Forgery (SSRF)
 
   - h) [Basic SSRF against the local server](https://portswigger.net/web-security/ssrf/lab-basic-ssrf-against-localhost)
+    
     Harjoitustehtävässä on varaston tarkistustoiminto, joka hakee tietoja sisäisestä järjestelmästä. Tehtävä tulee ratkaista vaihtamalla varaston tarkistuksen URL-osoite niin, että se kohdistaa admin-käyttöliittymään osoitteessa http://localhost/admin ja poista käyttäjän nimeltä "carlos".
 
 Ensiksi suuntasin kohtaan "My account", josta löytyy kirjautumiskohta.

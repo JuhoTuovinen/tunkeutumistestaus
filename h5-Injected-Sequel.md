@@ -16,6 +16,30 @@ Ohjelmistot
 ## x) Lue/katso/kuuntele ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)
 
 - Karvinen 2016: [PostgreSQL Install and One Table Database – SQL CRUD tutorial for Ubuntu](https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/) (Virtuaaliympäristöä ei tarvita, voit aloittaa kohdasta "Three line install"
+ 
+  - artikkelissa käsitellään PostgreSQL- tietokannan asennus
+  - PostgreSQL on suosittu tietokanta, jota käytetään usein yhdessä Python Djangon, Python Flaskin ja monien muiden frameworkien kanssa
+  - Asennus:
+    `````
+    $ sudo apt-get update
+    $ sudo apt-get -y install postgresql
+    $ sudo systemctl start postgresql # needed in 2023
+    $ sudo -u postgres createdb $(whoami)
+    $ sudo -u postgres createuser $(whoami)
+    `````
+  - kun käyttää Linux-järjestelmän käyttäjänimeäsi PostgreSQL-tietokannalle ja PostgreSQL-käyttäjälle, tunnistautuminen tapahtuu automaattisesti
+  - "help"- komennolla saadaan apua
+  - PostgreSQLn sisäiset komennot käyttävät kauttaviivaa "\" ja joitakin kirjaimia. Komentoapu on kauttaviiva - kysymysmerkki (/?)
+  - CRUD: create, read, update, delete
+  - tauluja luodessa jokaiselle taululle tulisi asettaa SERIAL id-kenttä pääavaimeksi
+  - Esimerkkiomentoja:
+    - CREATE TABLE - <code>CREATE TABLE students (id SERIAL PRIMARY KEY, name VARCHAR(200));</code> (luo taulun "students" tietokantaan)
+    - INSERT - <code>INSERT INTO students(name) VALUES ('Tero');</code> (lisää uusden rivin tauluun ja asettaa "name" -sarakkeen arvoksi 'Tero')
+    - SELECT - <code>SELECT * FROM students;</code> (hakee ja näyttää kaikki rivit taulusta "students")
+    - UPDATE - <code>UPDATE students SET name='Tero Karvinen' WHERE name='Tero';</code> (päivittää taulun "students" rivin tai rivit, joiden "name" -sarakkeen arvo on 'Tero' ja päivittää rivien sarakkeen arvoksi 'Tero Karvinen')
+    - DELETE - <code>DELETE FROM students WHERE name='Liisa';</code> (poistaa rivin tai rivit taulusta "students", joiden "name" -sarakkeen arvo on 'Liisa')
+ 
+  
 - OWASP 2017: [A1:2017-Injection](https://owasp.org/www-project-top-ten/2017/A1_2017-Injection)
 - PortSwigger Academy: SQL injection
   - Kaikki muut luvut paitsi ei "Blind SQL injection"

@@ -63,16 +63,39 @@ Ohjelmistot
     - käytä LIMIT- ja muita SQL-ohjaimia kyselyissä estääksesi tietueiden massapaljastuksen SQL-injektion tapauksessa
   - Esimerkki: <code>http://esimerkki.com/sovellus/tiliNakyma?id=' or '1'='1</code> - Tämä muuttaa molempien kyselyjen merkitystä palauttamaan kaikki tietueet tilien taulusta
   
-- PortSwigger Academy: SQL injection
+- PortSwigger Academy: [SQL injection](https://portswigger.net/web-security/sql-injection)
   - Kaikki muut luvut paitsi ei "Blind SQL injection"
   - Tämä kappale kannattaa pitää näkyvissä injektioita tehdessä [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)
 - Vapaaehtoinen: Karvinen 2019: [MitmProxy on Kali and Xubuntu – attack and testing](https://terokarvinen.com/2019/05/22/mitmproxy-on-kali-and-xubuntu-attack-and-testing/?fromSearch=mitmproxy) (Nykyisin asennus 'sudo apt-get install mitmproxy')
 
 ## a) CRUD. Tee uusi PostgreSQL-tietokanta ja demonstroi sillä create, read, update, delete (CRUD). Keksi taulujen ja kenttien nimet itse. Taulujen nimet monikossa, kenttien nimet yksikössä, molemmat englanniksi.
+
+PostgreSQL oli asennettu aikaisemmin. Käynnistin tietokannan:
+
+`````
+$ sudo systemctl start postgresql                                                                       
+$ systemctl status postgresql 
+
+● postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/lib/systemd/system/postgresql.service; disabled; pr>
+     Active: active (exited) since Thu 2023-11-23 16:11:42 EET; 17s ago
+    Process: 5751 ExecStart=/bin/true (code=exited, status=0/SUCCESS)
+   Main PID: 5751 (code=exited, status=0/SUCCESS)
+        CPU: 3ms
+
+`````
+Avaa terminaali ja kirjoita "psql" ja paina Enter.
+
+
+
+
 ## b) SQLi me. Kuvaile yksinkertainen SQL-injektio, ja demonstroi se omaan tietokantaasi psql-komennolla. Selitä, mikä osa on käyttäjän syötettä ja mikä valmiina ohjelmassa. (Tässä harjoituksessa voit vain kertoa koodista, ei siis tarvitse välttämättä koodata sitä ohjelmaa, joka yhdistää käyttäjän syötteen SQL:n)
 ## PortSwigger Labs
 
 - c) (Alakohta c poistettu, tämänhän ratkoimme jo aiemmin: [SQL injection vulnerability in WHERE clause allowing retrieval of hidden data)](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)
+
+
+  
 - d) [SQL injection vulnerability allowing login bypass](https://portswigger.net/web-security/sql-injection/lab-login-bypass)
 - e) [SQL injection attack, querying the database type and version on Oracle](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
 - f) [SQL injection attack, querying the database type and version on MySQL and Microsoft](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)

@@ -1,5 +1,5 @@
 # Injected Sequel
-Juho Tuovinen
+Juho Tuovinen TARKISTA POSTGRES
 
 Tässä raportissa aioin kertoa kuinka suoritin tehtävät, jotka on annettu Haaga Helian Tunkeutumisteustaus kurssilla. Tehtävät löytyvät [täältä](https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h5-injected-sequel).
 
@@ -70,6 +70,7 @@ Ohjelmistot
 
 ## a) CRUD. Tee uusi PostgreSQL-tietokanta ja demonstroi sillä create, read, update, delete (CRUD). Keksi taulujen ja kenttien nimet itse. Taulujen nimet monikossa, kenttien nimet yksikössä, molemmat englanniksi.
 
+https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/
 PostgreSQL oli asennettu aikaisemmin. Käynnistin tietokannan:
 
 `````
@@ -78,18 +79,201 @@ $ systemctl status postgresql
 
 ● postgresql.service - PostgreSQL RDBMS
      Loaded: loaded (/lib/systemd/system/postgresql.service; disabled; pr>
-     Active: active (exited) since Thu 2023-11-23 16:11:42 EET; 17s ago
-    Process: 5751 ExecStart=/bin/true (code=exited, status=0/SUCCESS)
+     Active: active (exited) since Thu 2023-11-23 16:11:42 EET; 1h 4min a>
    Main PID: 5751 (code=exited, status=0/SUCCESS)
         CPU: 3ms
 
 `````
-Avaa terminaali ja kirjoita "psql" ja paina Enter.
+Komennolla <code>sudo -u postgres createdb $(whoami)</code> sain seuraavan virheilmoituksen:
+
+````
+$ sudo -u postgres createdb $(whoami)
+could not change directory to "/home/kali": Permission denied
+WARNING:  database "postgres" has a collation version mismatch
+DETAIL:  The database was created using collation version 2.36, but the operating system provides version 2.37.
+HINT:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+createdb: error: database creation failed: ERROR:  template database "template1" has a collation version mismatch
+DETAIL:  The template database was created using collation version 2.36, but the operating system provides version 2.37.
+HINT:  Rebuild all objects in the template database that use the default collation and run ALTER DATABASE template1 REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+````
+Collation version mismatch -virheen sain korjattua komennolla <code>sudo -u postgres psql -c "ALTER DATABASE template1 REFRESH COLLATION VERSION;"</code>, jolloin uudelleen ajamalla komenot sain seuraavan virheilmoituksen:
+
+`````
+$ sudo -u postgres createdb $(whoami)
+could not change directory to "/home/kali": Permission denied
+createdb: error: database creation failed: ERROR:  database "kali" already exists
+            
+`````
+
+Tarkistin onko kyseistä tietokantaa jo luotu komennolla <code>sudo -u postgres psql -l</code> ja sellainen oli jo luotu.
+
+`````
+  Name    |  Owner   | Encoding | Locale Provider |   Collate   |    Ctype    | ICU Locale | ICU Rules |   Access privileges   
+-----------+----------+----------+-----------------+-------------+-------------+------------+-----------+-----------------------
+ kali      | postgres | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | 
+`````
+
+Ajoin komennon <code>sudo -u postgres createuser $(whoami)</code>.
+
+`````
+$ sudo -u postgres createuser $(whoami)
+could not change directory to "/home/kali": Permission denied
+createuser: error: creation of new role failed: ERROR:  role "kali" already exists
+`````
+
+Tarkiston onko käyttäjä jo luotu.
+
+``````
+$ sudo -u postgres psql -c "\du"
+
+                             List of roles
+ Role name |                         Attributes                         
+-----------+------------------------------------------------------------
+ kali      | 
+
+``````
+
+Aloitetaan vuorovaikutus tieotkannan kanssa komennolla <code>spql</code>.
+
+### CREATE
+Aloitan luomalla taulun "cars" komennolla <code>CREATE TABLE cars (id SERIAL PRIMARY KEY, name VARCHAR(200));</code>.
+
+``````
+kali=> CREATE TABLE cars (id SERIAL PRIMARY KEY, name VARCHAR(200));
+ERROR:  permission denied for schema public
+LINE 1: CREATE TABLE cars (id SERIAL PRIMARY KEY, name VARCHAR(200))...
+``````
+En saanut käyttäjälle "kali" oikeuksia, joten avasin tietokannan käyttäjänä "postgres".
+
+    sudo -u postgres psql 
+
+Aloitin taulun luomisen uudestaan. Ja nyt ei tullut virheitä.
+
+`````
+postgres=# CREATE TABLE cars (id SERIAL PRIMARY KEY, name VARCHAR(200));
+CREATE TABLE
+postgres=#
+`````
+Tarkistetaan taulu komennolla <code>\d</code>.
+
+``````
+postgres=# \d
+             List of relations
+ Schema |    Name     |   Type   |  Owner   
+--------+-------------+----------+----------
+ public | cars        | table    | postgres
+ public | cars_id_seq | sequence | postgres
+(2 rows)
+
+``````
+
+Taulun luominen onnistui. 
+
+### Create Records: INSERT
+
+Lisäsin tauluun arvon "Toyota".
+
+    INSERT INTO cars(name) VALUES ('Toyota');
+
+Tämän jälkeen lisäsin samalla tavalla arvon "Honda".
+
+### Read: SELECT
+
+Katsotaan mitä taulusta löytyy:
+
+``````
+postgres=# SELECT * FROM cars;
+ id |  name  
+----+--------
+  1 | Toyota
+  2 | Honda
+(2 rows)
+
+``````
+Sieltä löytyy lisäämämme arvot "Toyota" ja "Honda".
+
+### Update
 
 
+    UPDATE cars SET name='Kia' WHERE name='Toyota';
 
+Tarkistus:
+
+``````
+postgres=# UPDATE cars SET name='Kia' WHERE name='Toyota';
+UPDATE 1
+postgres=# SELECT * FROM cars;
+ id | name  
+----+-------
+  2 | Honda
+  1 | Kia
+(2 rows)
+``````
+
+Näemme, että Toyota on muuttunut Kiaksi.
+
+## DELETE
+
+Poistetaan arvo "Kia" tietokannasta.
+
+    DELETE FROM cars WHERE name='Kia';
+
+Tarkistus:
+
+``````
+postgres=# SELECT * FROM cars;
+ id | name  
+----+-------
+  2 | Honda
+(1 row)
+
+``````
+
+Näemme, että arvo "Kia" on poistettu tietokannasta.
 
 ## b) SQLi me. Kuvaile yksinkertainen SQL-injektio, ja demonstroi se omaan tietokantaasi psql-komennolla. Selitä, mikä osa on käyttäjän syötettä ja mikä valmiina ohjelmassa. (Tässä harjoituksessa voit vain kertoa koodista, ei siis tarvitse välttämättä koodata sitä ohjelmaa, joka yhdistää käyttäjän syötteen SQL:n)
+
+Tässä on tietokantamme:
+
+``````
+postgres=# SELECT * FROM cars;
+ id |  name  
+----+--------
+  2 | Honda
+  4 | Toyota
+  5 | Audi
+  6 | Ford
+  7 | BMW
+(5 rows)
+``````
+
+Voimme normaalisti hakea tietoa esimerkiksi komennolla <code>SELECT * FROM käyttäjät WHERE nimi = '[käyttäjän syöte]';</code>. Jos saamme laitettau haitallista koodia "käyttäjän syöte" -kohtaa, haavoittuvainen tietokanta voi paljastaa arkaluonteista tietoa, jota käyttäjän ei kuuluisi nähdä. 
+
+Esimerkki injektiosta:
+
+    '' OR '1'='1';
+
+- <code>''</code>:tyhjä merkkijono
+- <code>OR</code>: TAI-operaattori, joka palauttaa totuusarvon, jos ainakin yksi ehto on tosi
+- <code>'1'='1'</code>: verrataa kahta arvoa keskenään. Palauttaa totuusarvon, jos arvot ovat samat.
+- <code>;</code>: sulkee alkuperäisen tietokantakyselyn
+
+Seuraavaksi kokeilemme injektiosyötettä "käyttäjän syöte"- kohtaan.
+
+``````
+postgres=# SELECT * FROM cars WHERE name = '' OR '1'='1'; --';
+ id |  name  
+----+--------
+  2 | Honda
+  4 | Toyota
+  5 | Audi
+  6 | Ford
+  7 | BMW
+(5 rows)
+``````
+
+Tietokanta palauttaa meille taulun tiedot kokonaisuudessaa, ilman, että meidän täytyy tietää mitään taulun sisällöstä. Taulun sisältö näytetään koska 1=1 on aina tosi.
+
 ## PortSwigger Labs
 
 - c) (Alakohta c poistettu, tämänhän ratkoimme jo aiemmin: [SQL injection vulnerability in WHERE clause allowing retrieval of hidden data)](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)

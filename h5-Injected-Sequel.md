@@ -279,6 +279,7 @@ Tietokanta palauttaa meille taulun tiedot kokonaisuudessaa, ilman, että meidän
 - d) [SQL injection vulnerability allowing login bypass](https://portswigger.net/web-security/sql-injection/lab-login-bypass)
 
 <img src="/images/kuvaus5.png" alt="" title="" width="70%" height="70%">
+<img src="/images/login4.png" alt="" title="" width="70%" height="70%">
 
 Kokeilien ensin <code>'' OR '1'='1';:'' OR '1'='1';</code> ja <code>admin:'' OR '1'='1';</code>, mutta ei toiminut. Katsoin labran vinkkejä ja siellä neuvottiin muokkaamaan "username"- parametria vastaamaan "administrator'--". Kun annamme tämän käyttäjänimeksi, ei salasanalla ole väliä. 
 
@@ -296,7 +297,7 @@ Koska <code>--</code> on kommenttimerkki SQL-kyselyissä, ei silloin kyselyssä 
 
 - e) [SQL injection attack, querying the database type and version on Oracle](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
  
-
+<img src="/images/kuvaus6.png" alt="" title="" width="70%" height="70%">
 
 
 

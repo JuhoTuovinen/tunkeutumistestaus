@@ -135,7 +135,7 @@ $ sudo -u postgres psql -c "\du"
 
 Aloitetaan vuorovaikutus tieotkannan kanssa komennolla <code>spql</code>.
 
-### CREATE
+#### CREATE TABLE
 Aloitan luomalla taulun "cars" komennolla <code>CREATE TABLE cars (id SERIAL PRIMARY KEY, name VARCHAR(200));</code>.
 
 ``````
@@ -169,7 +169,7 @@ postgres=# \d
 
 Taulun luominen onnistui. 
 
-### Create Records: INSERT
+#### Create Records: INSERT
 
 Lisäsin tauluun arvon "Toyota".
 
@@ -177,7 +177,7 @@ Lisäsin tauluun arvon "Toyota".
 
 Tämän jälkeen lisäsin samalla tavalla arvon "Honda".
 
-### Read: SELECT
+#### Read: SELECT
 
 Katsotaan mitä taulusta löytyy:
 
@@ -192,7 +192,7 @@ postgres=# SELECT * FROM cars;
 ``````
 Sieltä löytyy lisäämämme arvot "Toyota" ja "Honda".
 
-### Update
+#### Update
 
 
     UPDATE cars SET name='Kia' WHERE name='Toyota';
@@ -212,7 +212,7 @@ postgres=# SELECT * FROM cars;
 
 Näemme, että Toyota on muuttunut Kiaksi.
 
-## DELETE
+#### DELETE
 
 Poistetaan arvo "Kia" tietokannasta.
 
@@ -261,7 +261,7 @@ Esimerkki injektiosta:
 Seuraavaksi kokeilemme injektiosyötettä "käyttäjän syöte"- kohtaan.
 
 ``````
-postgres=# SELECT * FROM cars WHERE name = '' OR '1'='1'; --';
+postgres=# SELECT * FROM cars WHERE name = '' OR '1'='1';
  id |  name  
 ----+--------
   2 | Honda
@@ -275,12 +275,25 @@ postgres=# SELECT * FROM cars WHERE name = '' OR '1'='1'; --';
 Tietokanta palauttaa meille taulun tiedot kokonaisuudessaa, ilman, että meidän täytyy tietää mitään taulun sisällöstä. Taulun sisältö näytetään koska 1=1 on aina tosi.
 
 ## PortSwigger Labs
-
-- c) (Alakohta c poistettu, tämänhän ratkoimme jo aiemmin: [SQL injection vulnerability in WHERE clause allowing retrieval of hidden data)](https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data)
-
-
   
 - d) [SQL injection vulnerability allowing login bypass](https://portswigger.net/web-security/sql-injection/lab-login-bypass)
+
+<img src="/images/kuvaus5.png" alt="" title="" width="70%" height="70%">
+
+Kokeilien ensin <code>'' OR '1'='1';:'' OR '1'='1';</code> ja <code>admin:'' OR '1'='1';</code>, mutta ei toiminut. Katsoin labran vinkkejä ja siellä neuvottiin muokkaamaan "username"- parametria vastaamaan "administrator'--". Kun annamme tämän käyttäjänimeksi, ei salasanalla ole väliä. 
+
+Tässä voidaan siis oletta, että kysely näyttää esimekriksi tältä: 
+
+    SELECT * FROM users WHERE username = 'username' AND password = 'password';
+
+Kun lisäämme käyttäjänimeksi <code></code> , näyttäisi haku silloin tältä:
+
+    SELECT * FROM users WHERE username = 'administrator'--' AND salasana = 'salasana';
+
+Koska <code>--</code> on kommenttimerkki SQL-kyselyissä, ei silloin kyselyssä haeta mitään  <code>--</code> jälkeen. Tällöin salasana ohitetaan ja kirjaudutaan administrator- käyttäjänä.
+
+<img src="/images/solved15.png" alt="" title="" width="70%" height="70%">
+
 - e) [SQL injection attack, querying the database type and version on Oracle](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
 - f) [SQL injection attack, querying the database type and version on MySQL and Microsoft](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)
 - g) [SQL injection attack, listing the database contents on non-Oracle databases](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle)

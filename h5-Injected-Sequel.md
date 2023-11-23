@@ -41,6 +41,28 @@ Ohjelmistot
  
   
 - OWASP 2017: [A1:2017-Injection](https://owasp.org/www-project-top-ten/2017/A1_2017-Injection)
+  
+  - hyökkäysvektori:
+    - lähes mikä tahansa datalähde voi olla injektiotekijä, kuten ympäristömuuttujat, parametrit, ulkoiset ja sisäiset verkkopalvelut sekä käyttäjät. Injektiovirheet tapahtuvat, kun hyökkääjä voi lähettää haitallista dataa tulkille
+  - heikkous:
+    - Injektiovirheet yleisiä erityisesti vanhoissa koodeissa. Haavoittuvaisuuksia löytyy usein SQL-, LDAP-, XPath- tai NoSQL-kyselyistä, käyttöjärjestelmän komentoriveiltä, XML-parserilta, SMTP-otsikoilta ja ORM-kyselyistä
+    - virheet ovat helppo havaita koodia tutkittaessa
+  - vaikutukset:
+    - injektio voi johtaa tietojen menetykseen, vääristymiseen tai paljastumiseen luvattomille osapuolille, vastuun menetykseen tai käyttöoikeuden kieltämiseen
+    - voi joskus myös johtaa täydelliseen isäntäkoneen haltuunottoon
+  - sovellus on altis hyökkäykselle, kun:
+    - käyttäjän toimittamaa dataa ei validoitu, suodateta tai puhdisteta sovelluksessa
+    - dynaamisia kyselyitä tai parametroimattomia puheluita ilman context-aware escaping, käytetään suoraan tulkissa
+    - haitallista dataa käytetään ORM (object-relational mapping) hakuparametreissa saadakseen lisää herkkiä tietueita
+    - haitallista dataa käytetään suoraan tai yhdistetään niin, että SQL tai komento sisältää sekä rakenteen että haitallisen datan dynaamisissa kyselyissä, komennoissa tai tallennetuissa proseduureissa
+  - lähdekoodin tarkastelu on paras tapa havaita, ovatko sovellukset alttiita injektioille
+  - miten estää:
+    - on tarpeen pitää data erillään komennoista ja kyselyistä
+    - käyttä turvallista API:a, joka välttää tulkin käytön kokonaan tai tarjoaa parametroitavan rajapinnan
+    - käytä positiivista tai "whitelist" -puolella olevaa palvelinpohjaista syötteiden validointia
+    - käytä LIMIT- ja muita SQL-ohjaimia kyselyissä estääksesi tietueiden massapaljastuksen SQL-injektion tapauksessa
+  - Esimerkki: <code>http://esimerkki.com/sovellus/tiliNakyma?id=' or '1'='1</code> - Tämä muuttaa molempien kyselyjen merkitystä palauttamaan kaikki tietueet tilien taulusta
+  
 - PortSwigger Academy: SQL injection
   - Kaikki muut luvut paitsi ei "Blind SQL injection"
   - Tämä kappale kannattaa pitää näkyvissä injektioita tehdessä [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)
@@ -66,4 +88,8 @@ Ohjelmistot
 Lähteet:
 
 https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h5-injected-sequel
+
+https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/
+
+
 

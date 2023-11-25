@@ -297,8 +297,44 @@ Koska <code>--</code> on kommenttimerkki SQL-kyselyissä, ei silloin kyselyssä 
 
 - e) [SQL injection attack, querying the database type and version on Oracle](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
  
+
+Tehtävässä käytetään hyväksi SQL-injektiohaavoittuvuutta hyväski tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. UNION-hyökkäys on injektio, jossa yhdistetään kaksi tai useampia kyselyitä yhdeksi taulukoksi, joka tulostetaan.
+
 <img src="/images/kuvaus6.png" alt="" title="" width="70%" height="70%">
 
+Aloitin tutkimalla kategoriaa "Lifestyle". Tehtävä oli haastava, enkä tiennyt mistä aloittaa, joten käytin apuna tehtävän vinkkejä ja [läpikävelyvideota](https://www.youtube.com/watch?v=4sg7ur5Yptk) apuna.
+
+ZAP:issa näimme kyselyn kategoriaa "Lifestyle" painaessa.
+
+<img src="/images/life1.png" alt="" title="" width="70%" height="70%">
+
+Kaappasin pyynnön Requesteriin ja lähdin muokkaamaan URL-kenttää pyynnössä. PortSwiggerin vinkit auttoivat kyselyn muodostamisessa. Katsotaan mitä tapahtuu kyselyllä, johon lisätään <code>'+UNION+SELECT+null,null+FROM+dual--/code>
+
+- <code>UNION</code>: SQL-komento, joka yhdistää kyselyitä
+- <code>SELECT+null,null+FROM+dual</code>: valitaan taulusta "dual" arvoja "null, null"
+- <code>--</code>: kommentti-merkki
+
+<img src="/images/life2.png" alt="" title="" width="70%" height="70%">
+
+Sivusto palauttaa "200 OK", eli tiedämme, että tietokannassa on kaksi saraketta, josta meidän pitää selvittää mikä käsitteleee kirjaimia. Muutin ensimmäisen sarakkeen "null" kohtaan "abc".
+
+<img src="/images/life3.png" alt="" title="" width="70%" height="70%">
+
+Sivusto palauttaa edelleen "200 OK", eli ensimmäinen sarake käsittelee kirjaimia. Testasin vielä toisen sarakkeen numeroilla.
+
+<img src="/images/life4.png" alt="" title="" width="70%" height="70%">
+
+Sivusto palautti taas "200 OK". Seuraavaksi kokeilin payloadia <code>'+UNION+SELECT+BANNER,+NULL+FROM+v$version--</code>. Tässä <code>v$version</code>- taulustpyritään saamaan <code>BANNER</code> -sarakkeen arvot. Tämä hyökkäys pyrkii hankkimaan tietoja tietokannasta, erityisesti Oracle-tietokannan version. <code>v$version</code> -taulu sisältää tietoa tietokannan versiosta ja asennetusta ohjelmistosta.
+
+<img src="/images/life5.png" alt="" title="" width="70%" height="70%">
+
+ZAPISSA sivusto näyttää antavan vielä "200 OK", joten kopioin injektion ja lisäsin sen verkkosivulla URL:iin, jotta näen paremmin mitä tapahtuu. 
+
+<img src="/images/life6.png" alt="" title="" width="70%" height="70%">
+
+Sivulle on ilmestynyt tietoa tietokannan versiotiedot.
+
+<img src="/images/solved16.png" alt="" title="" width="70%" height="70%">
 
 
 - f) [SQL injection attack, querying the database type and version on MySQL and Microsoft](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)

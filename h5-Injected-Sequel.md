@@ -426,7 +426,7 @@ Tehtävä suoritettu!
 
 - h) [SQL injection UNION attack, determining the number of columns returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
 
-Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Sovelluksessa on kirjautumistoiminto, ja tietokanta sisältää taulun, joka pitää sisällään käyttäjänimet ja salasanat. Tehtävässä täytyy määrittää kyselyn palauttamien sarakkeiden lukumäärä suorittamalla SQL-injektio UNION-hyökkäys, joka palauttaa lisärivin, jossa on null-arvoja.
+Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä.
 
 <img src="/images/kuvaus9.png" alt="" title="" width="70%" height="70%">
 <img src="/images/alku9.png" alt="" title="" width="70%" height="70%">
@@ -440,6 +440,36 @@ Tarkistin vielä selaimesta ja tehtävä oli suoritettu.
 <img src="/images/solved19.png" alt="" title="" width="70%" height="70%">
 
 - i) [SQL injection UNION attack, retrieving data from other tables](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)
+
+Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Tietokannassa on toinen taulu nimeltään "users" (käyttäjät), jossa on sarakkeet nimeltään "username" (käyttäjänimi) ja "password" (salasana). Tehtävän ratkaisemiseksi täytyy suorittaa UNION-hyökkäys, joka noutaa kaikki käyttäjänimet ja salasanat. NÄitä tietoja käyttämällä kirjaudutaan sisään administratorin käyttäjänä.
+
+<img src="/images/kuvaus9.png" alt="" title="" width="70%" height="70%">
+<img src="/images/alku9.png" alt="" title="" width="70%" height="70%">
+
+Lähdin kokeilemaan samalla tekniikalla kuin aikaisemmissa:
+
+    '+UNION+SELECT+null,+NULL+FROM+dual--
+
+Kuitenkin tuloksetta. Aloin pudottamaan loppupäästä tekstiä:
+
+    '+UNION+SELECT+null,+NULL--
+
+<img src="/images/tech1.png" alt="" title="" width="70%" height="70%">
+
+Saimme "200 OK". Tehtävässä kerrottiin, että on taulu "users", jossa on sarakkeet nimeltään "username" ja "password", joten lisätään ne payloadiin ja saadaan:
+
+    '+UNION+SELECT+username,password+FROM+users--
+
+<img src="/images/tech2.png" alt="" title="" width="70%" height="70%">
+
+Admin -tunnukset löytyivät. Käytimme tunnuksia sisäänkirjautumiseen.
+
+<img src="/images/tech3.png" alt="" title="" width="70%" height="70%">
+
+Tehtävä suoritettu!
+
+<img src="/images/solved20.png" alt="" title="" width="70%" height="70%">
+
 - j) [SQL injection UNION attack, retrieving multiple values in a single column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
 
 ## k) Vapaaaehtoinen: Mitmproxy. Demonstroi mitmproxy:n käyttöä terminaalista (TUI tai CLI).

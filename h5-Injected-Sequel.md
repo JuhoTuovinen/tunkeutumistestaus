@@ -308,7 +308,7 @@ ZAP:issa näimme kyselyn kategoriaa "Lifestyle" painaessa.
 
 <img src="/images/life1.png" alt="" title="" width="70%" height="70%">
 
-Kaappasin pyynnön Requesteriin ja lähdin muokkaamaan URL-kenttää pyynnössä. PortSwiggerin vinkit auttoivat kyselyn muodostamisessa. Katsotaan mitä tapahtuu kyselyllä, johon lisätään <code>'+UNION+SELECT+null,null+FROM+dual--/code>
+Kaappasin pyynnön Requesteriin ja lähdin muokkaamaan URL-kenttää pyynnössä. PortSwiggerin vinkit auttoivat kyselyn muodostamisessa. Katsotaan mitä tapahtuu kyselyllä, johon lisätään <code>'+UNION+SELECT+null,null+FROM+dual--</code>
 
 - <code>UNION</code>: SQL-komento, joka yhdistää kyselyitä
 - <code>SELECT+null,null+FROM+dual</code>: valitaan taulusta "dual" arvoja "null, null"
@@ -339,7 +339,33 @@ Sivulle on ilmestynyt tietoa tietokannan versiotiedot.
 
 - f) [SQL injection attack, querying the database type and version on MySQL and Microsoft](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)
 
+Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Tehtävä ratkeaa kun saadaan tietokannan versiotieto.
 
+<img src="/images/kuvaus7.png" alt="" title="" width="70%" height="70%">
+
+Tehtävä vaikuttaa samanlaiselta kuin edellinen.
+
+<img src="/images/alku7.png" alt="" title="" width="70%" height="70%">
+
+Kokeillaan heti samaa hyökkkäystä <code>'+UNION+SELECT+BANNER,+NULL+FROM+v$version--</code>. Harmiksemme selain vastaa: "500 Internal Server Error."
+
+<img src="/images/life7.png" alt="" title="" width="70%" height="70%">
+
+Seuraavaksi kokeilin <code>'+UNION+SELECT+null,+NULL+FROM+dual--</code> sekä lisäsin lisää "null" sarakkeita, mutta selain näytti vielä "500 Internal Server Error". Katsoin vihjeen labrasta ja siinä kehotettiin tarkastelin hieman [payloadeja](https://portswigger.net/web-security/sql-injection/cheat-sheet). Koska kyseessä Microsoftin tietokanta, ppätin kokeilla injektiota <code>'+UNION+SELECT+@@version--</code>, joka on sama injektio kuin aikaisemmin, mutta Microsoftin tietokantaan.
+
+<img src="/images/life8.png" alt="" title="" width="70%" height="70%">
+
+Ei toiminut. Meni hetki, ennen kuin tajusin, että kommenttimerkki täytyy vaihtaa. Täytyy siis käyttää "#". Ajoin injektion <code>'+UNION+SELECT+@@version,+null#</code>
+
+<img src="/images/life8.png" alt="" title="" width="70%" height="70%">
+
+Nyt sivusto sanoo "200 OK". Tarkistetaan, mitlä se näyttää selaimessa.
+
+<img src="/images/solved17.png" alt="" title="" width="70%" height="70%">
+
+Tehtävä suoritettu ja sivun alalaidassa näkyy veriotiedot.
+
+<img src="/images/life10.png" alt="" title="" width="70%" height="70%">
 
 
 - g) [SQL injection attack, listing the database contents on non-Oracle databases](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle)

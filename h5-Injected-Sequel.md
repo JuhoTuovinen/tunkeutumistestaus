@@ -425,6 +425,20 @@ Sieltä löyty kolme käyttäjää: administrator, carlos ja wiener. Käytämme 
 Tehtävä suoritettu!
 
 - h) [SQL injection UNION attack, determining the number of columns returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
+
+Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Sovelluksessa on kirjautumistoiminto, ja tietokanta sisältää taulun, joka pitää sisällään käyttäjänimet ja salasanat. Tehtävässä täytyy määrittää kyselyn palauttamien sarakkeiden lukumäärä suorittamalla SQL-injektio UNION-hyökkäys, joka palauttaa lisärivin, jossa on null-arvoja.
+
+<img src="/images/kuvaus9.png" alt="" title="" width="70%" height="70%">
+<img src="/images/alku9.png" alt="" title="" width="70%" height="70%">
+
+Kokeilin taas Pets- kategoriasta lähteä liikkeelle payloadilla <code>'+UNION+SELECT+null,+NULL+FROM+dual--</code>, niinkuin aikaisemmissakin. Selain kuitenkin antaa"500 INternal Server Error". Lähdin poistamaan tavaraa ja kokeilin <code>'+UNION+SELECT+null,NULL--</code>, mutta tuloksetta. Lisäsin vielä yhden null-arvon ja sillä saatiin vastaus "200 OK".
+
+<img src="/images/pets8.png" alt="" title="" width="70%" height="70%">
+
+Tarkistin vielä selaimesta ja tehtävä oli suoritettu.
+
+<img src="/images/solved19.png" alt="" title="" width="70%" height="70%">
+
 - i) [SQL injection UNION attack, retrieving data from other tables](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)
 - j) [SQL injection UNION attack, retrieving multiple values in a single column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
 

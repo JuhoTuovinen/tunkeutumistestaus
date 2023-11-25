@@ -369,6 +369,35 @@ Tehtävä suoritettu ja sivun alalaidassa näkyy veriotiedot.
 
 
 - g) [SQL injection attack, listing the database contents on non-Oracle databases](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle)
+
+Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Sovelluksessa on kirjautumistoiminto, ja tietokanta sisältää taulun, joka pitää sisällään käyttäjänimet ja salasanat. Tehtävässä täytyy määrittää tämän taulun nimi ja sen sarakkeet, jonka jälkeen haetaan taulun sisältö;  käyttäjien käyttäjänimet ja salasanat. Tehtävä ratkaistaan kun kirjaudutaan sisään administrator- käyttäjänä.
+
+<img src="/images/kuvaus8.png" alt="" title="" width="70%" height="70%">
+
+Ensiksi suuntasin "My acoount sivustolle.
+
+<img src="/images/alku8.png" alt="" title="" width="70%" height="70%">
+
+Siellä on sisäänkirjautuminen.
+
+<img src="/images/login8.png" alt="" title="" width="70%" height="70%">
+
+Suuntasin takaisin ja menin kategoriaan "Pets". Aloin suorittamaan samalla tavalla kuin aikaisemmin. <code>'+UNION+SELECT+null,+NULL+FROM+dual--</code> toimii. Myös <code>'+UNION+SELECT+null,+NULL+FROM+all_tables--</code> toimii. Käytän tässä apuna aikaisempaa [cheatsheetia](https://portswigger.net/web-security/sql-injection/cheat-sheet). <code>'+UNION+SELECT+user,+NULL+FROM+all_tables--</code> toimii, katsoin miltä se näyttää selaimessa ja sieltä paljastui käyttäjä "Peter", mutta ei muita käyttäjiä. 
+
+
+<code>'+UNION+SELECT+table_name,+null+FROM+all_tables--</code> paljastui tuhansia tauluja. 
+
+KÄytin selaimessa CMD+F, jolloin voidaan käyttää hakutoimintoa. Hain hakusanalalla "USER". Lopulta löysin mielenkiintoisen taulun.
+
+
+<code>'UNION+SELECT+USERNAME_ULJADC,+PASSWORD_EOGGKV+FROM+USERS_YIFANH--</code>
+
+<img src="/images/adminpass.png" alt="" title="" width="70%" height="70%">
+<img src="/images/solved18.png" alt="" title="" width="70%" height="70%">
+
+
+
+  
 - h) [SQL injection UNION attack, determining the number of columns returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
 - i) [SQL injection UNION attack, retrieving data from other tables](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)
 - j) [SQL injection UNION attack, retrieving multiple values in a single column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)

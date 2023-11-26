@@ -548,5 +548,20 @@ https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h5-injected-sequel
 
 https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/
 
+https://portswigger.net/web-security/sql-injection/cheat-sheet
 
+https://portswigger.net/web-security/sql-injection/lab-login-bypass
 
+https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle
+
+https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft
+
+https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle
+
+https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns
+
+https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables
+
+https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column
+
+https://owasp.org/www-project-top-ten/2017/A1_2017-Injection

@@ -303,7 +303,7 @@ Tietokanta palauttaa meille taulun tiedot kokonaisuudessaa, ilman, että meidän
 
 ## PortSwigger Labs
   
-- d) [SQL injection vulnerability allowing login bypass](https://portswigger.net/web-security/sql-injection/lab-login-bypass)
+### d) [SQL injection vulnerability allowing login bypass](https://portswigger.net/web-security/sql-injection/lab-login-bypass)
 
 <img src="/images/kuvaus5.png" alt="" title="" width="70%" height="70%">
 <img src="/images/login4.png" alt="" title="" width="70%" height="70%">
@@ -322,7 +322,7 @@ Koska <code>--</code> on kommenttimerkki SQL-kyselyissä, ei silloin kyselyssä 
 
 <img src="/images/solved15.png" alt="" title="" width="70%" height="70%">
 
-- e) [SQL injection attack, querying the database type and version on Oracle](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
+### e) [SQL injection attack, querying the database type and version on Oracle](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
  
 
 Tehtävässä käytetään hyväksi SQL-injektiohaavoittuvuutta hyväski tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. UNION-hyökkäys on injektio, jossa yhdistetään kaksi tai useampia kyselyitä yhdeksi taulukoksi, joka tulostetaan.
@@ -364,7 +364,7 @@ Sivulle on ilmestynyt tietoa tietokannan versiotiedot.
 <img src="/images/solved16.png" alt="" title="" width="70%" height="70%">
 
 
-- f) [SQL injection attack, querying the database type and version on MySQL and Microsoft](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)
+### f) [SQL injection attack, querying the database type and version on MySQL and Microsoft](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)
 
 Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Tehtävä ratkeaa kun saadaan tietokannan versiotieto.
 
@@ -395,7 +395,7 @@ Tehtävä suoritettu ja sivun alalaidassa näkyy veriotiedot.
 <img src="/images/life10.png" alt="" title="" width="70%" height="70%">
 
 
-- g) [SQL injection attack, listing the database contents on non-Oracle databases](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle)
+### g) [SQL injection attack, listing the database contents on non-Oracle databases](https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle)
 
 Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Sovelluksessa on kirjautumistoiminto, ja tietokanta sisältää taulun, joka pitää sisällään käyttäjänimet ja salasanat. Tehtävässä täytyy määrittää tämän taulun nimi ja sen sarakkeet, jonka jälkeen haetaan taulun sisältö;  käyttäjien käyttäjänimet ja salasanat. Tehtävä ratkaistaan kun kirjaudutaan sisään administrator- käyttäjänä.
 
@@ -451,7 +451,7 @@ Sieltä löyty kolme käyttäjää: administrator, carlos ja wiener. Käytämme 
 
 Tehtävä suoritettu!
 
-- h) [SQL injection UNION attack, determining the number of columns returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
+### h) [SQL injection UNION attack, determining the number of columns returned by the query](https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
 
 Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä.
 
@@ -466,7 +466,7 @@ Tarkistin vielä selaimesta ja tehtävä oli suoritettu.
 
 <img src="/images/solved19.png" alt="" title="" width="70%" height="70%">
 
-- i) [SQL injection UNION attack, retrieving data from other tables](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)
+### i) [SQL injection UNION attack, retrieving data from other tables](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)
 
 Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Tietokannassa on toinen taulu nimeltään "users" (käyttäjät), jossa on sarakkeet nimeltään "username" (käyttäjänimi) ja "password" (salasana). Tehtävän ratkaisemiseksi täytyy suorittaa UNION-hyökkäys, joka noutaa kaikki käyttäjänimet ja salasanat. NÄitä tietoja käyttämällä kirjaudutaan sisään administratorin käyttäjänä.
 
@@ -497,7 +497,7 @@ Tehtävä suoritettu!
 
 <img src="/images/solved20.png" alt="" title="" width="70%" height="70%">
 
-- j) [SQL injection UNION attack, retrieving multiple values in a single column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
+### j) [SQL injection UNION attack, retrieving multiple values in a single column](https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
 
 Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Tietokannassa on toinen taulu nimeltään "users" (käyttäjät), jossa on sarakkeet nimeltään "username" (käyttäjänimi) ja "password" (salasana). Tehtävän ratkaisemiseksi täytyy suorittaa UNION-hyökkäys, joka noutaa kaikki käyttäjänimet ja salasanat. NÄitä tietoja käyttämällä kirjaudutaan sisään administratorin käyttäjänä.
 

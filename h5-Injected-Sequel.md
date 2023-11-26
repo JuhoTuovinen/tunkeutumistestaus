@@ -1,5 +1,5 @@
 # Injected Sequel
-Juho Tuovinen TARKISTA POSTGRES
+Juho Tuovinen
 
 Tässä raportissa aioin kertoa kuinka suoritin tehtävät, jotka on annettu Haaga Helian Tunkeutumisteustaus kurssilla. Tehtävät löytyvät [täältä](https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h5-injected-sequel).
 
@@ -65,13 +65,40 @@ Ohjelmistot
   
 - PortSwigger Academy: [SQL injection](https://portswigger.net/web-security/sql-injection)
   - Kaikki muut luvut paitsi ei "Blind SQL injection"
+    - SQL-injektio on haavoittuvuus, joka mahdollistaa hyökkääjän puuttumisen sovelluksen tietokantakyselyihin. Tämä voi sallia hyökkääjän nähdä tietoja, joihin heillä ei normaalisti olisi pääsyä esim. käyttäjätunnukset, salasanat, luottotiedot tai muut arkaluontoiset tiedot.
+    - SQL-injektiohaavoittuvaisuuksia voi havaita manuaalisesti suorittamalla systemaattisesti testejä jokaiseen sovelluksen syötekohtaan
+    - paikkoja, joissa SQL-injektio voi esiintyä:
+      - SELECT-kyselyn WHERE-lauseessa
+      - UPDATE-lauseissa, päivitettävien arvojen tai WHERE-lauseen sisällä
+      - INSERT-lauseissa, lisättävien arvojen sisällä
+      - SELECT-lauseissa, taulun tai sarakkeen nimen sisällä
+      - SELECT-lauseissa, ORDER BY -lauseessa
+    - SQL-injektita:
+      - Piilotetun datan noutaminen
+      - Sovelluslogiikan kiertäminen
+      - UNION-hyökkäykset
+      - Blind SQL-injektio
+    - Kuinka estää injektiot:
+      - käyttämällä parametroituja kyselyitä (prepared statements) sen sijaan, että liittäisit merkkijonoja suoraan kyselyyn
+      - jotta paramoitu kysely olisi tehokas SQL-injektion estämisessä, kyselyssä käytettävän merkkijonon on aina oltava kovakoodattu vakio. Sen ei koskaan pidä sisältää muuttuvia tietoja mistään lähteestä.
+
   - Tämä kappale kannattaa pitää näkyvissä injektioita tehdessä [SQL injection cheat sheet](https://portswigger.net/web-security/sql-injection/cheat-sheet)
+    - sisältää esimerkkejä hyödyllisestä syntaksista, jotka usein tulevat esiin SQL-injektiohyökkäyksiä suorittaessa
+    - Esimerkiksi:
+      - Stringin konkatenointi
+      - Kommentit
+      - Tietokannan versio
+      - Tietokannan sisältö
+      - DNS-haku
+      - ja muita
+        
 - Vapaaehtoinen: Karvinen 2019: [MitmProxy on Kali and Xubuntu – attack and testing](https://terokarvinen.com/2019/05/22/mitmproxy-on-kali-and-xubuntu-attack-and-testing/?fromSearch=mitmproxy) (Nykyisin asennus 'sudo apt-get install mitmproxy')
 
 ## a) CRUD. Tee uusi PostgreSQL-tietokanta ja demonstroi sillä create, read, update, delete (CRUD). Keksi taulujen ja kenttien nimet itse. Taulujen nimet monikossa, kenttien nimet yksikössä, molemmat englanniksi.
 
-https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/
-PostgreSQL oli asennettu aikaisemmin. Käynnistin tietokannan:
+Seurasin [Tero Karvisen ohjeita](https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/).
+
+PostgreSQL oli asennettu aikaisemmin, joten käynnistin tietokannan:
 
 `````
 $ sudo systemctl start postgresql                                                                       
@@ -96,7 +123,7 @@ createdb: error: database creation failed: ERROR:  template database "template1"
 DETAIL:  The template database was created using collation version 2.36, but the operating system provides version 2.37.
 HINT:  Rebuild all objects in the template database that use the default collation and run ALTER DATABASE template1 REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
 ````
-Collation version mismatch -virheen sain korjattua komennolla <code>sudo -u postgres psql -c "ALTER DATABASE template1 REFRESH COLLATION VERSION;"</code>, jolloin uudelleen ajamalla komenot sain seuraavan virheilmoituksen:
+Collation version mismatch -virheen sain korjattua komennolla <code>sudo -u postgres psql -c "ALTER DATABASE template1 REFRESH COLLATION VERSION;"</code>, tämä päivittää "template1" -tietokannan kollaatiosversion. Uudelleen ajamalla komenon sain seuraavan virheilmoituksen:
 
 `````
 $ sudo -u postgres createdb $(whoami)
@@ -121,7 +148,7 @@ could not change directory to "/home/kali": Permission denied
 createuser: error: creation of new role failed: ERROR:  role "kali" already exists
 `````
 
-Tarkiston onko käyttäjä jo luotu.
+Tarkistin onko käyttäjä jo luotu.
 
 ``````
 $ sudo -u postgres psql -c "\du"
@@ -133,7 +160,7 @@ $ sudo -u postgres psql -c "\du"
 
 ``````
 
-Aloitetaan vuorovaikutus tieotkannan kanssa komennolla <code>spql</code>.
+KÄyttäjäkin oli luotu, joten aloitetaan vuorovaikutus tieotkannan kanssa komennolla <code>spql</code>.
 
 #### CREATE TABLE
 Aloitan luomalla taulun "cars" komennolla <code>CREATE TABLE cars (id SERIAL PRIMARY KEY, name VARCHAR(200));</code>.

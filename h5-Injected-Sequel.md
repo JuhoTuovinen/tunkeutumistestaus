@@ -474,8 +474,8 @@ Tehtävä suoritettu!
 
 Harjoitus sisältää SQL-injektiohaavoittuvuuden tuotekategorian suodattimessa. Tehtävässä tulee käyttää UNION-hyökkäystä. Tietokannassa on toinen taulu nimeltään "users" (käyttäjät), jossa on sarakkeet nimeltään "username" (käyttäjänimi) ja "password" (salasana). Tehtävän ratkaisemiseksi täytyy suorittaa UNION-hyökkäys, joka noutaa kaikki käyttäjänimet ja salasanat. NÄitä tietoja käyttämällä kirjaudutaan sisään administratorin käyttäjänä.
 
-<img src="/images/kuvaus10.png" alt="" title="" width="70%" height="70%">
-<img src="/images/alku10.png" alt="" title="" width="70%" height="70%">
+<img src="/images/kuvaus11.png" alt="" title="" width="70%" height="70%">
+<img src="/images/alku11.png" alt="" title="" width="70%" height="70%">
 
 Koska tehtävä on samantyyppinen kuin äskeinen, lähden etenemään taas samalla tekniikalla:
 

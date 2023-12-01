@@ -19,15 +19,39 @@ Ohjelmistot
 - Yehoshua and Kosayev 2021: [Antivirus Bypass Techniques](https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/), luku:
   - [Chapter 1: Introduction to the Security Landscape](https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/B17257_01_Epub_AM.xhtml#_idParaDest-18)
 - Halonen, Rajala ja Ollikainen 2023: [PhishSticks Youtube Channel](https://www.youtube.com/@phishsticks_pentest/videos), kahdeksan videota, yhteensä noin 15 min
+  - [PhishSticks - The Ethical Hackers tool for BadUSB](https://www.youtube.com/watch?v=bDzVevtZiWE): Videossa esitellään kuinka tavallisen näköinen USB-tikku voikin olla haitallinen laite. Liittäessä USB-tikun koneeseen, laite ajaa komentoja, joka käynnistää keyloggerin. Keylogger lähettää hyökkääjälle kaiken, mitä uhri kirjoittaa tietokoneellaan. Näin voidaan varastaa esimerkikis uhrin käyttäjätunnukset.
+  - [Ethical Hacking with USB device - Reverse Shell](https://www.youtube.com/watch?v=ll4ojo6q-rM): Videossa esitellään, kuinka saadaan uhrin kone haltuun reverse shellillä, käyttämällä haitallista tiedostoa.
+  - [Ethical Hacking with Digispark - Keylogger with HTTP POST requests](https://www.youtube.com/watch?v=XZkK8vzhyMw): Videossa demotaan aikaisempaa keyloggeria. Kun digisparks- laite kiinnitetään uhrin koneeseen, se ajaa komentoja ja aloittaa näppäimistön nauhoituksen taustalla. Nauhoitus tallennetaa tiedostoon, pilveen, josta hyökkääjä voi sen hakea.
+  - [Ethical Hacking with Digispark - Keylogger initial demo](https://www.youtube.com/watch?v=sWYUGl7JiFA): Vastaavanlainen keylogger digisparkissa kuin aikaisempi. Digisparkin ollessa kiinni laitteessa, se nauhoittaa uhrin näppäimistön kirjoitusta ja lähettään ne hyökkääjän sähköpostiin.
+  - [Ethical hacking with Digispark - ransomware initial demo](https://www.youtube.com/watch?v=Bi2QOMSHeKI): Videossa esitellään kiristyshaittaohjelmaa. Kun digisparks- laitteen laitta koneesee, ajetaan powershell skripti. Haittaohjelma kryptaa tiedostot ja vaatii salasanaa tiedostone dekryptaamiseen.
+  - [Ransomware initial testing demo](https://www.youtube.com/watch?v=glqK_-qdDkw): Videossa demotaan aikaisempaa kiristyshaittaohjelmaa. Ohjelma kryptaa tiedot ja oikealla salasanalla ne dekryptataan.
+  - [Reverse Shell - Initial testing demo](https://www.youtube.com/watch?v=h5MMKu6TMxg): Avaamalla haitallinen kansio, saadaan luotua reverse shell yhteys hyökkääjän ja uhrin koneen välille.
+  - [BadUSB Reverse Shell using Flipper Zero](https://www.youtube.com/watch?v=1kqqIdBoKr0): Flipper Zero toimii näppäimistön lailla ja ajaa powershell komentoja, luoden reverse shell yhteyden uhrin koneeseen.
+ 
+
 - Halonen, Rajala ja Ollikainen 2023: [PhishSticks Git Repository](https://github.com/therealhalonen/PhishSticks/), sivut:
   - [README.md](https://github.com/therealhalonen/PhishSticks/tree/master) (Aikajärjestyksessä, jos aloitat pohjalta. Kuvailee, miten näitä tekniikoita opeteltiin ja kehitettiin)
+    - PhishSticks on Infra Project 2023 -kurssille tehty projekti. Projektin tavoitteena on luoda työkalu eettiseen tunkeutumistestaukseen tekemällä simuloitu hyökkäys käyttämällä haitallista USB-laitetta. Erilaisia haittaohjelmia ovat muun muassa keylogger, ransomware ja reverse shell.
+    - Week 38: työ on aloitettu ja GItHub-sivut projektille luotu
+    - Week 39: alustavia käsikirjoituksia tehty. Tutkimustyöt reverse shelliin ja lunnasohjelmaa koskien on aloitettu. Digispaarksit saapuivat. Alustavan graafinen käyttöliittymän lunnasohjelmaa varten tehty. Youtube-tili luotu.
+    - Week 40: Fyysisen BadUSB-prototyypi tehty. Suomenkielinen ulkoasu Digisparks DigiKeyboardille. Edistytty hieman Python-hyötykuorman muuntamisessa suoritettavaksi tiedostoksi. 
+    - Week 41: Payloadit ovat nyt onlinereita (= nopeampi suoritus). Reverse shell ja lunnasohjelma alkavat olla demokunnossa.
+    - Week 43: keylogger payloadia hiottu. 2 toimivaa keylogger skriptiä, jotka ohittavat Windowd Defenderin.
+    - Week 44: Youtube- video julkaistiin; demo keyloggerista
+    - Week 47: On tutkittu kuinka voidaan torjua hyökkäys. Windows Defender on alkanut huomata lunnasohjelman.
+    - Week 48: Uusi informatiivinen video projektista ulkona. Projektia esitelty Tero Karvisen tunkeutumistestauskurssilla sekä HelSec:n tapahtumassa.
   - [Revshell](https://github.com/therealhalonen/PhishSticks/tree/master/payloads/revshell)
   - [Mitigations](https://github.com/therealhalonen/PhishSticks/blob/master/documentation/Mitigations.md)
   - [Installing Windows 10 on a virtual machine](https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md)
 - [MITRE Att&ck Frequently Asked Questions](https://attack.mitre.org/resources/faq/): Part 1. General
-  - Erityisesti kehikon omat määritelmät termeille tactics, techniques and procedures
+  - ATT&CK koostuu kahdesta osasta: ATT&CK for Enterprise, joka kattaa yritysten IT-verkkoihin ja pilvipalveluihin kohdistuvan käyttäytymisen, ja ATT&CK for Mobile, joka keskittyy mobiililaitteisiin kohdistuvaan käyttäytymiseen
+  - tactics: vastustajan taktinen tavoite ja syy miksi toimitaan
+  - techniques: miten vastustaja saavuttaa taktisen tavoitteensa suorittamalla jonkin toiminnon
+  - sub-techniques: tarkempi kuvaus tekniikoista tavoitteeseen pääsemiseksi
+  - procedures: tekniikoiden tai alatekniikoiden erityinen toteutus, jota vastustaja käyttää
+
 - [MITRE Att&ck Enterprise Matrix](https://attack.mitre.org/)
-  - Silmäile, poimi muutama esimerkki. Koko kehikko on laaja, eikä sitä tarvitse lukea tässä kokonaan.
+  - 
 
 ## a) The OS pwns you. Asenna Windows virtuaalikoneeseen samaan verkkoon hyökkäyskoneen (esim. Kali, Debian) kanssa. Kokeile, että saat koneen irrotettua Internetistä.
 

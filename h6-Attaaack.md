@@ -7,7 +7,7 @@ Tietokoneen speksit, jolla suoritan toimenpiteen:
 - Apple MacBook 2015
 - macOs Monterey versio 12.7
 - Ram -muistia 16GB
-- levytilaa/muistia vapaana 11,96 GB.
+- levytilaa/muistia vapaana 22,66 GB.
 
 Ohjelmistot
 - UTM Version 4.1.6 (75)
@@ -67,6 +67,19 @@ Ohjelmistot
   - 
 
 ## a) The OS pwns you. Asenna Windows virtuaalikoneeseen samaan verkkoon hyökkäyskoneen (esim. Kali, Debian) kanssa. Kokeile, että saat koneen irrotettua Internetistä.
+
+käytin aikesempaa ohjetta: https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md
+
+latasin English (Great Britain), ISO – Enterprise LTSC, 64-bit edition
+
+
+Kokeilin asentaa UTM:lle, mutta ei onnistunut. KOkeilien "Virtualize" ja "emulate" -vaihtoehtoja mutta sain aina saman virheen.
+Vaihdoin välissä VirtualBoxiin ja siellä tilanne näytti hetken paremmalta; kone lähti käyntiin. Kuitenkin käynnistys oli tavanomaisempaa hitaampaa, joten kone oli pakko poistaa. Sillä ei pystynyt työskentelemään. Muistelin että olen joskus ladannut koneen täältä: https://www.microsoft.com/en-us/software-download/windows10ISO. Ei toiminut, sama virhe. KOkeilin muuttaa Ram muistin määrää sekä levytilna määrää, mutta ei auttanut. 
+
+Muistelin, että olen aikaisemmin Tero Karvisen Infa kurssilla asentanut windows virtuaalikoneen. Löysinkin [raporttini](https://github.com/JuhoTuovinen/linux-course/blob/main/h5-Vaihtoehdot.md), jossa olen koneen asentanut aikaisemmin. Olen kuitenkin ladannut samasta paikasta ISO_tiedoston kuin aikaisemmin ja käyttänyt UTM:ää, mutta kuitenkaan tämä ei nyt toimi. Aioa syy mitä keksin, on levytilan puute. Minulla on 43 gigaa.
+
+
+
 
 
 ## b) Trustme.lnk. Kokeile PhishSticksin [revshell](https://github.com/therealhalonen/PhishSticks/tree/master/payloads/revshell) vihamielistä tiedostoa, joka avaa käänteisen shellin hyökkääjän koneelle. Selitä, mitä tapahtuu ja miksi. Testaa, että pysyt antamaan kohdekoneelle komentoja reverse shellin kautta.

@@ -55,7 +55,7 @@ Ohjelmistot
     - Windowd 10 asennusohje
     - asennetaan VirtualBoxiin virtuaaliseksikoneeksi
     - käytetään Host-Only -vaihtoehtoa VirtualBoxissa, jotta kone on samassa verkossa kuin hyökkääjäkone, muttai ei kuitenkaan yllä internettiin
-    - 
+    
 - [MITRE Att&ck Frequently Asked Questions](https://attack.mitre.org/resources/faq/): Part 1. General
   - ATT&CK koostuu kahdesta osasta: ATT&CK for Enterprise, joka kattaa yritysten IT-verkkoihin ja pilvipalveluihin kohdistuvan käyttäytymisen, ja ATT&CK for Mobile, joka keskittyy mobiililaitteisiin kohdistuvaan käyttäytymiseen
   - tactics: vastustajan taktinen tavoite ja syy miksi toimitaan
@@ -74,13 +74,21 @@ latasin English (Great Britain), ISO – Enterprise LTSC, 64-bit edition
 
 
 Kokeilin asentaa UTM:lle, mutta ei onnistunut. KOkeilien "Virtualize" ja "emulate" -vaihtoehtoja mutta sain aina saman virheen.
-Vaihdoin välissä VirtualBoxiin ja siellä tilanne näytti hetken paremmalta; kone lähti käyntiin. Kuitenkin käynnistys oli tavanomaisempaa hitaampaa, joten kone oli pakko poistaa. Sillä ei pystynyt työskentelemään. Muistelin että olen joskus ladannut koneen täältä: https://www.microsoft.com/en-us/software-download/windows10ISO. Ei toiminut, sama virhe. KOkeilin muuttaa Ram muistin määrää sekä levytilna määrää, mutta ei auttanut. 
+Vaihdoin välissä VirtualBoxiin ja siellä tilanne näytti hetken paremmalta; kone lähti käyntiin. Kuitenkin käynnistys oli tavanomaisempaa hitaampaa, joten kone oli pakko poistaa. Sillä ei pystynyt työskentelemään. Muistelin että olen joskus ladannut koneen täältä: https://www.microsoft.com/en-us/software-download/windows10ISO. Ei toiminut, sama virhe. Kokeilin muuttaa Ram muistin määrää sekä levytilna määrää, mutta ei auttanut. 
 
-Muistelin, että olen aikaisemmin Tero Karvisen Infa kurssilla asentanut windows virtuaalikoneen. Löysinkin [raporttini](https://github.com/JuhoTuovinen/linux-course/blob/main/h5-Vaihtoehdot.md), jossa olen koneen asentanut aikaisemmin. Olen kuitenkin ladannut samasta paikasta ISO_tiedoston kuin aikaisemmin ja käyttänyt UTM:ää, mutta kuitenkaan tämä ei nyt toimi. Aioa syy mitä keksin, on levytilan puute. Minulla on 43 gigaa.
+<img src="/images/error1.png" alt="" title="" width="70%" height="70%">
 
+Muistelin, että olen aikaisemmin Tero Karvisen Infa kurssilla asentanut windows virtuaalikoneen. Löysinkin [raporttini](https://github.com/JuhoTuovinen/linux-course/blob/main/h5-Vaihtoehdot.md), jossa olen koneen asentanut aikaisemmin. Olen kuitenkin ladannut samasta paikasta ISO_tiedoston kuin aikaisemmin ja käyttänyt UTM:ää, mutta kuitenkaan tämä ei nyt toimi. Aioa syy mitä keksin, on levytilan puute. Minulla on nyt 43 gigaa muistia.
 
+Kokeilin hetken päästä asentaa konetta uudelleen ja sain sen toimimaan seuraavilla spekseillä:
 
+<img src="/images/settings1.png" alt="" title="" width="70%" height="70%">
+<img src="/images/settings2.png" alt="" title="" width="70%" height="70%">
 
+Toimii!
+<img src="/images/win1.png" alt="" title="" width="70%" height="70%">
+
+Virhe johtui siis vähäisestä muistista. Aiemmin testatessa minulla oli muistia 20 gigaa, mutta siivosin konetta ja nostin sitä 40:een ja tämä oli tarpeeksi virtuaalikoneen pyörittämiseen. 
 
 ## b) Trustme.lnk. Kokeile PhishSticksin [revshell](https://github.com/therealhalonen/PhishSticks/tree/master/payloads/revshell) vihamielistä tiedostoa, joka avaa käänteisen shellin hyökkääjän koneelle. Selitä, mitä tapahtuu ja miksi. Testaa, että pysyt antamaan kohdekoneelle komentoja reverse shellin kautta.
 

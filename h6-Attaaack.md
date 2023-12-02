@@ -41,8 +41,21 @@ Ohjelmistot
     - Week 47: On tutkittu kuinka voidaan torjua hyökkäys. Windows Defender on alkanut huomata lunnasohjelman.
     - Week 48: Uusi informatiivinen video projektista ulkona. Projektia esitelty Tero Karvisen tunkeutumistestauskurssilla sekä HelSec:n tapahtumassa.
   - [Revshell](https://github.com/therealhalonen/PhishSticks/tree/master/payloads/revshell)
+   - Kun yrityksen raportin pikakuvaketta klikataan, ladataan väärennetty raport.txt-tiedosto ja netcat. Kun lataukset on suoritettu, tiedosto aukeaa samalla kun käynnistetään reverse shell hyökkääjän hallitsemaan tietokoneeseen.
+
   - [Mitigations](https://github.com/therealhalonen/PhishSticks/blob/master/documentation/Mitigations.md)
+    - Estämistoimet:
+      - Powershellin käytön poistaminen käytöstä
+      - Powershellin estäminen Windowsin palomuurista
+      - Poista Windows Run tavallisen käyttäjän käytöstä
+      - Valvottu kansioiden käyttöoikeus
+      - Irrotettavien laitteiden poistaminen käytöstä
+        
   - [Installing Windows 10 on a virtual machine](https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md)
+    - Windowd 10 asennusohje
+    - asennetaan VirtualBoxiin virtuaaliseksikoneeksi
+    - käytetään Host-Only -vaihtoehtoa VirtualBoxissa, jotta kone on samassa verkossa kuin hyökkääjäkone, muttai ei kuitenkaan yllä internettiin
+    - 
 - [MITRE Att&ck Frequently Asked Questions](https://attack.mitre.org/resources/faq/): Part 1. General
   - ATT&CK koostuu kahdesta osasta: ATT&CK for Enterprise, joka kattaa yritysten IT-verkkoihin ja pilvipalveluihin kohdistuvan käyttäytymisen, ja ATT&CK for Mobile, joka keskittyy mobiililaitteisiin kohdistuvaan käyttäytymiseen
   - tactics: vastustajan taktinen tavoite ja syy miksi toimitaan

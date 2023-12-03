@@ -204,7 +204,9 @@ Tulokset:
 `````
 
 
-### X. Discovery/TA0043 - File and Directory Discovery/T1083
+### 3. Initial Access/TA0001 - [Exploit Public-Facing Application/T1190](https://attack.mitre.org/techniques/T1190/)
+
+Argument Injection- hyökkäys PHP CGI:ssä. Haavoittuvuus johtuu virheestä, jossa haavoittuva ohjelmisto käsittelee haitallista pyyntöä. Sen avulla hyökkääjä voi suorittaa mielivaltaista koodia muokatun URI:n kautta.
 
 Aikaisemmasta fuzzauksesta löysimme <code>/phpinfo.php</code> hakemiston, josta löytyy tietoa palvelimesta.
 

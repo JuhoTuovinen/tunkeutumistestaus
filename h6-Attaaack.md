@@ -101,12 +101,11 @@ Valitsin Host-Only verkkovaihtoehdon, jolloin kone ei ole yhteydessä internetti
 
 
 ## d) PageRank. Laita [linkki raporttiisi kurssisivun kommentiksi](https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#comments).
-- Kannattaa mainita URL sekä leipätekstissä ("Comment") että kotisivun osoitteessa ("Homepage"), jotta sitä on helppo klikata.
-- Yksikin lause sisällöstä tai jostain kiinostavasta huomiosta lisännee klikkauksia
-- PhishSticks etsii tästä viitattavia projekteja, joten tästä voi saada useita sisääntulevia linkkejä kerralla.
-- Tämä kommentin lisääminen on erittäin suositeltava, mutta vapaaehtoinen. Olet kirjoittanut raportteja tunteja ja päiviä - miksi kirjoittaa pöytälaatikolle?
-- Email-kohtaan pitää täyttää joku osoite, jotta se toimii. Voit laittaa tuohon oman osoitteen tai example.com.invalid-osoitteen, sillä osoite ei tule näkyviin.
-- Hyväksyn kommentit käsin, ne tulevat siis näkyviin viiveellä.
+
+Github -varastoni, jossa kotitehtävät, on nyt lisätty sivulle.
+
+<img src="/images/laksy1.png" alt="" title="" width="70%" height="70%">
+<img src="/images/laksy2.png" alt="" title="" width="70%" height="70%">
 
 
 ## c) Attaaack! [MITRE Attack Enterprise Matrix](https://attack.mitre.org/): Demonstroi viisi tekniikkaa viidestä eri taktiikasta.

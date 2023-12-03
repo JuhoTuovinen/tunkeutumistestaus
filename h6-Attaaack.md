@@ -77,7 +77,12 @@ Ohjelmistot
   - procedures: tekniikoiden tai alatekniikoiden erityinen toteutus, jota vastustaja käyttää
 
 - [MITRE Att&ck Enterprise Matrix](https://attack.mitre.org/)
-  - 
+  - MITRE ATT&CK on tietoturva-alan kehys, joka tarjoaa katsauksen erilaisiin hyökkäystekniikoihin ja -taktiikoihin. Se kertoo, kuinka mahdolliset hyökkääjät voivat toimia ja mitkä ovat tyypillisiä polkuja, joita ne voivat seurata tietoverkkoon tai järjestelmään tunkeutuessaan.
+  - kehyksessä on 14 taktiikkaa, joita voidaan hyödyntää hyökkäyksissä
+  - jokaisessa taksiikassa on tarkempia tekniikoita ja alatekniikoita
+  - kehystä voidaan lukea vasemmalta oikealle ja tällön nähdä mitä tekniikoita ja taktiikoita käyttämällä voidaan edetä hyökkäyksessä. Kehyksen taktiikat etenevät kybertappoketjun mukaisesti
+  - tutkailemalla kehystä voidaan ennustaa hyökkääjän liikkeitä
+  - kehys on tärkeä organisaatioille tietoturvan parantamiseksi, sillä se sisältää myös ehkäisymenetelmät
 
 ## a) The OS pwns you. Asenna Windows virtuaalikoneeseen samaan verkkoon hyökkäyskoneen (esim. Kali, Debian) kanssa. Kokeile, että saat koneen irrotettua Internetistä.
 

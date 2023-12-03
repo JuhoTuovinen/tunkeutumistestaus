@@ -68,12 +68,10 @@ Ohjelmistot
 
 ## a) The OS pwns you. Asenna Windows virtuaalikoneeseen samaan verkkoon hyökkäyskoneen (esim. Kali, Debian) kanssa. Kokeile, että saat koneen irrotettua Internetistä.
 
-käytin aikesempaa ohjetta: https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md
-
-latasin English (Great Britain), ISO – Enterprise LTSC, 64-bit edition
+Käytin aikesempaa ohjetta: https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md Windowsin asennukseen. Latasin English (Great Britain), ISO – Enterprise LTSC, 64-bit edition -version lähteestä https://www.microsoft.com/en-us/evalcenter/download-windows-10-enterprise.
 
 
-Kokeilin asentaa UTM:lle, mutta ei onnistunut. KOkeilien "Virtualize" ja "emulate" -vaihtoehtoja mutta sain aina saman virheen.
+Kokeilin asentaa UTM:lle, mutta ei onnistunut. Kokeilien "Virtualize" ja "emulate" -vaihtoehtoja mutta sain aina saman virheen.
 Vaihdoin välissä VirtualBoxiin ja siellä tilanne näytti hetken paremmalta; kone lähti käyntiin. Kuitenkin käynnistys oli tavanomaisempaa hitaampaa, joten kone oli pakko poistaa. Sillä ei pystynyt työskentelemään. Muistelin että olen joskus ladannut koneen täältä: https://www.microsoft.com/en-us/software-download/windows10ISO. Ei toiminut, sama virhe. Kokeilin muuttaa Ram muistin määrää sekä levytilna määrää, mutta ei auttanut. 
 
 <img src="/images/error1.png" alt="" title="" width="70%" height="70%">
@@ -104,20 +102,10 @@ Valitsin Host-Only verkkovaihtoehdon, jolloin kone ei ole yhteydessä internetti
 
 Github -varastoni, jossa kotitehtävät, on nyt lisätty sivulle.
 
-<img src="/images/laksy1.png" alt="" title="" width="70%" height="70%">
 <img src="/images/laksy2.png" alt="" title="" width="70%" height="70%">
 
 
 ## c) Attaaack! [MITRE Attack Enterprise Matrix](https://attack.mitre.org/): Demonstroi viisi tekniikkaa viidestä eri taktiikasta.
-- Tekniikkaa tulee kokeilla käytännössä, kuvailu ei riitä.
-- Asenna tarvittaessa omat harjoitusmaalit. Eristä tarvittaessa koneet Internetistä harjoittelun ajaksi.
-- Voit käyttää kurssilla jo opeteltuja työkaluja (helpompaa) tai kokeilla uusia. Aiemminkin käytetyistä tekniikoista pitää tehdä uusi demonstraatio tässä tehtävässä.
-  - Mikäli haluat tehtävästä helpon version, tekniikoiden valinta auttaa. Tuolta löytyy myös tuttuja ja helppoja tekniikoita.
-- Selitä, mitä esimerkissä tapahtuu.
-- Nimeä käytetyt taktiikat, tekniikat ja alitekniikat. Merkitse myös numerot T0123.456.
-
-
-
 
 ### 1. Discovery/TA0043 - [Network Service Discovery/T1046](https://attack.mitre.org/techniques/T1046/)
 

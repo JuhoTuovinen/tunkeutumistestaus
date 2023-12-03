@@ -353,3 +353,53 @@ Nyt kansiota ja niiden sisältöä ei ole enää olemassa. Ne ovat tuhottu.
 
 [Data Destruction](https://attack.mitre.org/techniques/T1485/) -kuvauksessa kerrotaan, että del ja rm, poistavat usein vain osoittimet tiedostoihin pyyhkimättä itse tiedostojen sisältöä, jolloin tiedostot ovat palautettavissa asianmukaisin rikosteknisin menetelmin. Joten on siis mahdollista, että tiedot voidaan palauttaa, mutta tämä testi demonstroi tilannetta käytännössä. 
 
+
+## Lähteet
+
+https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h6-attaaack
+
+https://attack.mitre.org/
+
+https://attack.mitre.org/techniques/T1485/
+
+https://attack.mitre.org/techniques/T1485/
+
+https://www.youtube.com/watch?v=EavbD2EWzVA
+
+https://attack.mitre.org/techniques/T1110/001/
+
+https://attack.mitre.org/techniques/T1190/
+
+https://www.youtube.com/watch?v=HH7DPfYTfoI
+
+https://attack.mitre.org/techniques/T1595/003/
+
+https://attack.mitre.org/techniques/T1046/
+
+https://github.com/therealhalonen/PhishSticks/tree/master/payloads/revshell
+
+https://attack.mitre.org/resources/faq/
+
+https://github.com/JuhoTuovinen/linux-course/blob/main/h5-Vaihtoehdot.md
+
+https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md
+
+https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/
+
+https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/B17257_01_Epub_AM.xhtml#_idParaDest-18
+
+https://www.youtube.com/watch?v=bDzVevtZiWE
+
+https://www.youtube.com/watch?v=ll4ojo6q-rM
+
+https://www.youtube.com/watch?v=XZkK8vzhyMw
+
+https://www.youtube.com/watch?v=sWYUGl7JiFA
+
+https://www.youtube.com/watch?v=Bi2QOMSHeKI
+
+https://www.youtube.com/watch?v=glqK_-qdDkw
+
+https://www.youtube.com/watch?v=h5MMKu6TMxg
+
+https://github.com/therealhalonen/PhishSticks/tree/master

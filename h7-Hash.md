@@ -155,7 +155,7 @@ kokeillaan lähteekö seuraavalla komennolla: hashcat -m 1470 hash3.txt /usr/sha
 
 - en saanut kuitenkaan hashia murrettua hashcatilla.
 - päätin lähteä yrittämään internetistä löytyviä sha-256 dekoodereita ja törmäsin https://md5decrypt.net/en/Sha256/, jolla dekryptaus onnistuikin. Sanaksi paljastui "Sertificate". 
-<img src="/images/sha256.png" alt="" title="" width="70%" height="70%">
+<img src="/images/sah256.png" alt="" title="" width="70%" height="70%">
 
 Sana myös lukee sivulla niin kuin tehtävän annossa kerrotaan. Eli tiiviste suurella todennäköisyydella on SHA-256.
 

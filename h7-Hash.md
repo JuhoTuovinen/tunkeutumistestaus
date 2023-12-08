@@ -177,8 +177,22 @@ Sana myös lukee sivulla niin kuin tehtävän annossa kerrotaan. Eli tiiviste su
 
 ## Lähteet
 
-https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h6-attaaack
+https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h7-hash
 
 https://www.youtube.com/watch?v=fVgzY5OJeIE
 
 https://www.md5hashgenerator.com/
+
+https://md5decrypt.net/en/Sha256/
+
+https://www.dcode.fr/sha256-hash
+
+https://www.youtube.com/watch?v=TfmY03B07ww
+
+https://github.com/openwall/john
+
+https://md5hashing.net/hash
+
+https://www.youtube.com/watch?v=XjVYl1Ts6XI&t=383s
+
+https://chat.openai.com/

@@ -154,16 +154,19 @@ tallennetaan tiedostoon
 kokeillaan lähteekö seuraavalla komennolla: hashcat -m 1470 hash3.txt /usr/share/wordlists/rockyou.txt
 
 - en saanut kuitenkaan hashia murrettua hashcatilla.
-- päätin lähteä yrittämään internetistä löytyviä sha-256 dekoodereita ja törmäsin https://md5decrypt.net/en/Sha256/, jolla dekryptaus onnistuikin. Sanaksi paljastui "Sertificate".
-
+- päätin lähteä yrittämään internetistä löytyviä sha-256 dekoodereita ja törmäsin https://md5decrypt.net/en/Sha256/, jolla dekryptaus onnistuikin. Sanaksi paljastui "Sertificate". 
 <img src="/images/sha256.png" alt="" title="" width="70%" height="70%">
 
-Sana myös lukee sivulla niin kuin tehtävän annossa kerrotaan.
+Sana myös lukee sivulla niin kuin tehtävän annossa kerrotaan. Eli tiiviste suurella todennäköisyydella on SHA-256.
+
 
 <img src="/images/serti.png" alt="" title="" width="70%" height="70%">
 
 
 ## d) Cheatsheet. Kerää kurssilaisten raporteista käteviä tekniikoita. Kerää itse tekniikat ja komennot, älä pelkästään kuvaile. Muista lähdeviitteet. Tee tiivis ja selkeä cheatsheet, josta löydät tarvittavat tiedot lipunryöstössä. (Tässä alatehtävässä ei tarvitse tehdä testejä koneella)
+
+
+
 
 
 

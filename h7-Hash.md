@@ -195,14 +195,32 @@ Sana myös klytyy sivulta, niin kuin tehtävänannossa kerrotaan. Eli tiiviste s
    - <code>sudo nmap [IP] -p- -A</code> skannaa kaikki portit ja suorittaa käyttöjärjestelmän tunnistuksen ja version tunnistuksen ([Sawulohi](https://github.com/sawulohi/PenTest/blob/main/h1/README.md)).
 
 
-### SQL injektiot
+### Tietokannat
 
 
+- CREATE TABLE - <code>CREATE TABLE students (id SERIAL PRIMARY KEY, name VARCHAR(200));</code> (luo taulun "students" tietokantaan)
+- INSERT - <code>INSERT INTO students(name) VALUES ('Tero');</code> (lisää uusden rivin tauluun ja asettaa "name" -sarakkeen arvoksi 'Tero')
+- SELECT - <code>SELECT * FROM students;</code> (hakee ja näyttää kaikki rivit taulusta "students")
+- UPDATE - <code>UPDATE students SET name='Tero Karvinen' WHERE name='Tero';</code> (päivittää taulun "students" rivin tai rivit, joiden "name" 
+ -sarakkeen arvo on 'Tero' ja päivittää rivien sarakkeen arvoksi 'Tero Karvinen')
+- DELETE - <code>DELETE FROM students WHERE name='Liisa';</code> (poistaa rivin tai rivit taulusta "students", joiden "name" -sarakkeen arvo on 'Liisa')
+ 
+Lähde: https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/
+
+- <code>../../../</code>: File path traversal (https://github.com/jjenska/PenTest/blob/main/h4/h4.md)
+- <code>....//....//</code>: jos suodatus päällä (https://github.com/jjenska/PenTest/blob/main/h4/h4.md)
+- <code>'' OR '1'='1';/code>: SQL injektio (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
+- <code>'+UNION+SELECT+null,null+FROM+dual--</code>: injektio (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
+- <code>--</code>: komentti (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
+- <code>'+UNION+SELECT+BANNER,+NULL+FROM+v$version--</code>: Oracle-tietokannan versio (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
+- <code>'+UNION+SELECT+@@version--</code>: Microsoft-tietokannan tiedot (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
 
 ### msf konsoli
 
 - <code>serach [palvelu]</code>: etsii haavoittuvuuksia https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h3_laksyt.md
 - <code>use 0</code>: valitsee exploitin 0
+- <code>info 0</code>: antaa infoa moduulista 0 https://github.com/sawulohi/PenTest/blob/main/h3/README.md
+- <code>options</code>: esittää moduulin asetukset https://github.com/sawulohi/PenTest/blob/main/h3/README.md
 - <code>set rhosts [kohde ip]</code>: kohde, johon suorietaan hyökkäys
 - <code>exploit</code>: aloitetaan hyökkäys
 
@@ -236,3 +254,9 @@ https://md5hashing.net/hash
 https://www.youtube.com/watch?v=XjVYl1Ts6XI&t=383s
 
 https://chat.openai.com/
+
+https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/
+
+https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md
+
+

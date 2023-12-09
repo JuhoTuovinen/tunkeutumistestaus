@@ -146,7 +146,7 @@ Nyt onnistui.
 
 ## c) f5bc7fcc7f5b3b6af7ff79e0feafad6d1a948b6a2c18de414993c1226be48c1f on erään tällä tehtäväsivulla olevan yksittäisen sanan tiiviste. Käytin hyvin yleistä ja tunnettua tiivistealgoritmia. Sanassa voi olla isoja kirjaimia, mutta ei erikoismerkkejä. Minkä sanan tiiviste on kyseessä?
 
-Hash identifier kertoo:
+Kokeilin ensin Hash Identifier:ia:
 
 ``````
  HASH: f5bc7fcc7f5b3b6af7ff79e0feafad6d1a948b6a2c18de414993c1226be48c1f
@@ -163,21 +163,17 @@ $ hashcat -h |grep sha
    1770 | sha512(utf16le($pass))                                     | Raw Hash
   21300 | md5($salt.sha1($salt.$pass))                               | Raw Hash salted and/or itera
 ```````
-tallennetaan tiedostoon
+Tallennetaan has tiedostoon hash3.txt. Koska tehtävänannossa kerrottiin "Käytin hyvin yleistä ja tunnettua tiivistealgoritmia", oletan, että kyseessä voisi olla SHA-256.
 
     echo "f5bc7fcc7f5b3b6af7ff79e0feafad6d1a948b6a2c18de414993c1226be48c1f" > hash3.txt            
 
-kokeillaan lähteekö seuraavalla komennolla: hashcat -m 1470 hash3.txt /usr/share/wordlists/rockyou.txt
+Kokeillaan lähteekö seuraavalla komennolla <code>hashcat -m 1470 hash3.txt /usr/share/wordlists/rockyou.txt</code>. "Exhausted" eli en saanut hashia murrettua Hashcatilla. Sanalistan sanat eivät täsmännee tiivisteen kanssa. Päätin lähteä yrittämään internetistä löytyviä sha-256 dekoodereita ja törmäsin https://md5decrypt.net/en/Sha256/, jolla dekryptaus yllätyksekseni onnistuikin. Sanaksi paljastui "Sertificate". 
 
-- en saanut kuitenkaan hashia murrettua hashcatilla.
-- päätin lähteä yrittämään internetistä löytyviä sha-256 dekoodereita ja törmäsin https://md5decrypt.net/en/Sha256/, jolla dekryptaus onnistuikin. Sanaksi paljastui "Sertificate". 
 <img src="/images/sah256.png" alt="" title="" width="70%" height="70%">
 
-Sana myös lukee sivulla niin kuin tehtävän annossa kerrotaan. Eli tiiviste suurella todennäköisyydella on SHA-256.
-
+Sana myös klytyy sivulta, niin kuin tehtävänannossa kerrotaan. Eli tiiviste suurella todennäköisyydella on tyyppiä SHA-256.
 
 <img src="/images/serti.png" alt="" title="" width="70%" height="70%">
-
 
 ## d) Cheatsheet. Kerää kurssilaisten raporteista käteviä tekniikoita. Kerää itse tekniikat ja komennot, älä pelkästään kuvaile. Muista lähdeviitteet. Tee tiivis ja selkeä cheatsheet, josta löydät tarvittavat tiedot lipunryöstössä. (Tässä alatehtävässä ei tarvitse tehdä testejä koneella)
 

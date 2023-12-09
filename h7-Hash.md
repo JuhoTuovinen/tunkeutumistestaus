@@ -204,7 +204,7 @@ Sana myös klytyy sivulta, niin kuin tehtävänannossa kerrotaan. Eli tiiviste s
 - <code>serach [palvelu]</code>: etsii haavoittuvuuksia https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h3_laksyt.md
 - <code>use 0</code>: valitsee exploitin 0
 - <code>set rhosts [kohde ip]</code>: kohde, johon suorietaan hyökkäys
-- <code>exploit<code>: aloitetaan hyökkäys
+- <code>exploit</code>: aloitetaan hyökkäys
 
 ## e) Viittaa. Tarkista, että jokaisessa raportissasi on lähdeviitteet kunnossa. Jokaisen raportin tulee viitata ainakin kurssiin / tehtäväsivuun. Kaikkiin muihinkin käytettyihin lähteisiin tulee viitata, kuten kurssikavereiden raportteihin, weppisivuihin, man-sivuihin... (Tässä alatehtävässä ei tarvitse tehdä testejä koneella).
 

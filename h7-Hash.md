@@ -177,7 +177,10 @@ Sana myös klytyy sivulta, niin kuin tehtävänannossa kerrotaan. Eli tiiviste s
 
 ## d) Cheatsheet. Kerää kurssilaisten raporteista käteviä tekniikoita. Kerää itse tekniikat ja komennot, älä pelkästään kuvaile. Muista lähdeviitteet. Tee tiivis ja selkeä cheatsheet, josta löydät tarvittavat tiedot lipunryöstössä. (Tässä alatehtävässä ei tarvitse tehdä testejä koneella)
 
-
+### Fuzzaus
+### Porttiskannaus
+   - <code>sudo nmap -p- -sV [IP]</code> skannaa portit 0-65535, <code>-sV<code> on palvelu- ja versiotiedot hakeva porttiskannaus ([Sawulohi](https://github.com/sawulohi/PenTest/tree/main/h6)).
+   - <code>sudo nmap [IP] -p- -A<code> skannaa kaikki portit ja suorittaa käyttöjärjestelmän tunnistuksen ja version tunnistuksen ([Sawulohi](https://github.com/sawulohi/PenTest/blob/main/h1/README.md)).
 
 
 

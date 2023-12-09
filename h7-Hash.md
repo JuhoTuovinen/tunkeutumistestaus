@@ -17,8 +17,22 @@ Ohjelmistot
 
 ## x) Lue/katso/kuuntele ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)
 - Karvinen 2022: [Cracking Passwords with Hashcat](https://terokarvinen.com/2022/cracking-passwords-with-hashcat/)
-- Karvinen 2023: [Crack File Password With John](https://terokarvinen.com/2023/crack-file-password-with-john/)
+  - Järjestelmät eivät tallenna alkuperäisiä salasanoja, vaan hasheja. Hashia ei voi muuttaa takaisin salasanaksi, mutta voit laittaa tietokoneen kokeilemaan kaikkia sanakirjan sanoja ja kertomaan, jos jokin niistä täsmää.
+  - Asenna Hashcat <code>sudo apt-get update && sudo apt-get -y install hashid hashcat wget</code>
+  - luo kansio projektille
+  - asenna rockyou.txt <code>wget https://github.com/danielmiessler/SecLists/raw/master/Passwords/Leaked-Databases/rockyou.txt.tar.gz</code>
+  - Hashcat tarvitsee hash-tyypin ratkaistakseen hashin, joten hashin tyyppi täytyy ensin tunistaa
+  - kräkätään hash komennolla <code>hashcat -m 0 '6b1628b016dff46e6fa35684be6acc96' rockyou.txt -o solved</code>
+  - nopeampi suorittaa koneen isäntäkoneen käyttöjärjestelmässä kuin virtuaalikoneessa
 
+- Karvinen 2023: [Crack File Password With John](https://terokarvinen.com/2023/crack-file-password-with-john/)
+  - Monet tiedostomuodot tukevat salasanasalausta. John the Ripper voi murtaa nämä salasanat sanakirjahyökkäyksellä. Tässä artikkelissa opetetaan hankkimaan Jumbo-versio ja kääntämään se sekä testataan salasanan murtamista testiympäristössä.
+  - John the ripperin asennus: <code>git clone --depth=1 https://github.com/openwall/john.git</code>
+  - Suoritettavat tiedostot ja skriptit löytyvät run/-kansiosta
+  - harjoituksessa käytettävä [zip-tiedosto](https://terokarvinen.com/2023/crack-file-password-with-john/tero.zip)
+  - aloitetaan murtaminen muuttamalla ZIP- tiedsoton salasana hashiksi <code>$HOME/john/run/zip2john tero.zip >tero.zip.hash</code>
+  - murretaan hash rockyou-sanakirjalla <code>$HOME/john/run/john tero.zip.hash </code>
+  - John the ripper pystyy murtamaan muitakin kohteita
 
 
 ## a) Hashcat. Asenna Hashcat ja testaa sen toimivuus ratkaisemalla tiiviste.
@@ -178,6 +192,8 @@ Sana myös lukee sivulla niin kuin tehtävän annossa kerrotaan. Eli tiiviste su
 ## Lähteet
 
 https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h7-hash
+
+https://terokarvinen.com/2022/cracking-passwords-with-hashcat/
 
 https://www.youtube.com/watch?v=fVgzY5OJeIE
 

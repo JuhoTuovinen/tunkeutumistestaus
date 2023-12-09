@@ -177,13 +177,34 @@ Sana myös klytyy sivulta, niin kuin tehtävänannossa kerrotaan. Eli tiiviste s
 
 ## d) Cheatsheet. Kerää kurssilaisten raporteista käteviä tekniikoita. Kerää itse tekniikat ja komennot, älä pelkästään kuvaile. Muista lähdeviitteet. Tee tiivis ja selkeä cheatsheet, josta löydät tarvittavat tiedot lipunryöstössä. (Tässä alatehtävässä ei tarvitse tehdä testejä koneella)
 
+### Yleishyödyllistä
+
+- SSH-yhteys: <code>ssh <palvelimen osoite> -p <portin numero></code> ([Jana Haltin raportista](https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md))
+- "-":llä alkavan tiedoston avaaminen <code>cat ./-</code>([Jana Haltin raportista](https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md))
+- telnet: <code>telnet [IP] [portti]</code>
+- luo tiedosto, jossa esim. hash: <code>echo "0cd698a0503946a852f2f81cc7d63ee3" > hash.txt"<code> ([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h7-Hash.md))
+
 ### Fuzzaus
+
+- <code>./ffuf -w common.txt -u [IP]:[PORTTI]/FUZZ</code>: fuzzaus käyttäen sanalistaa ([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md))
+- <code>./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -fs 154</code>: jos esim. halutaan suodattaa pois ei-toivotut vastaukset, jooiden koko on 154 tavua([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md)).
+- <code>ffuf -w [sanalista] -e .log -u [kohde]/FUZZ/</code>: e-kytkin määrittää tiedostopääteen, tässä tapauksessa ".log" ([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md))
+
 ### Porttiskannaus
-   - <code>sudo nmap -p- -sV [IP]</code> skannaa portit 0-65535, <code>-sV<code> on palvelu- ja versiotiedot hakeva porttiskannaus ([Sawulohi](https://github.com/sawulohi/PenTest/tree/main/h6)).
-   - <code>sudo nmap [IP] -p- -A<code> skannaa kaikki portit ja suorittaa käyttöjärjestelmän tunnistuksen ja version tunnistuksen ([Sawulohi](https://github.com/sawulohi/PenTest/blob/main/h1/README.md)).
+   - <code>sudo nmap -p- -sV [IP]</code> skannaa portit 0-65535, <code>-sV</code> on palvelu- ja versiotiedot hakeva porttiskannaus ([Sawulohi](https://github.com/sawulohi/PenTest/tree/main/h6)).
+   - <code>sudo nmap [IP] -p- -A</code> skannaa kaikki portit ja suorittaa käyttöjärjestelmän tunnistuksen ja version tunnistuksen ([Sawulohi](https://github.com/sawulohi/PenTest/blob/main/h1/README.md)).
+
+
+### SQL injektiot
 
 
 
+### msf konsoli
+
+- <code>serach [palvelu]</code>: etsii haavoittuvuuksia https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h3_laksyt.md
+- <code>use 0</code>: valitsee exploitin 0
+- <code>set rhosts [kohde ip]</code>: kohde, johon suorietaan hyökkäys
+- <code>exploit<code>: aloitetaan hyökkäys
 
 ## e) Viittaa. Tarkista, että jokaisessa raportissasi on lähdeviitteet kunnossa. Jokaisen raportin tulee viitata ainakin kurssiin / tehtäväsivuun. Kaikkiin muihinkin käytettyihin lähteisiin tulee viitata, kuten kurssikavereiden raportteihin, weppisivuihin, man-sivuihin... (Tässä alatehtävässä ei tarvitse tehdä testejä koneella).
 

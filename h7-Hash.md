@@ -36,25 +36,26 @@ Ohjelmistot
 
 
 ## a) Hashcat. Asenna Hashcat ja testaa sen toimivuus ratkaisemalla tiiviste.
-- asennus
+
+Aloitin asennuksen päivittämällä pakentinhallintajärjestelmän ja sen jälkeen asensin Hashcatin paketinhallinnasta.
+`````
 sudo apt update
 sudo apt install hashcat
-
+`````
+Tarkistin vielä että se on asentunu ja samalla tarkistin version.
+````
 $ hashcat --version
 v6.2.6
+````
 
-- tiedostn luonti
+Käytin apuna [How To Crack Hashes Using Hashcat](https://www.youtube.com/watch?v=fVgzY5OJeIE) -videota Hashcatin käyttöön ja hashin murtamiseen. Hashin luomiseen käytin verkkosivustoa https://www.md5hashgenerator.com/.
 
-echo "Salainen sisältö." > salainen_tiedosto.txt
-
-
-apuna: https://www.youtube.com/watch?v=fVgzY5OJeIE ja https://www.md5hashgenerator.com/
+Loin MD5 hashin. Salasanani on "kali123", josta on luotu hash.
 
 <img src="/images/cat1.png" alt="" title="" width="70%" height="70%">
 
+Testaan tunistaako Hash Identifier hashia. Avaan komennolla <code>hash-identifier</code> ja syötän hashin.
 
-- kopioin md5 hash
-- testaan hash identifier tunnistaako "hash-identifier"
 
 ``````
 HASH: 0cd698a0503946a852f2f81cc7d63ee3
@@ -63,14 +64,12 @@ Possible Hashs:
 [+] MD5
 [+] Domain Cached Credentials - MD4(MD4(($pass)).(strtolower($username)))
 ``````
-tunnisti että hash on MD5
+Identifier tunnisti, että hash on mahdollisesti tyyppiä MD5.
 
-- tallennan hashin tiedostoon "echo "0cd698a0503946a852f2f81cc7d63ee3" > hash.txt"
-- pitää tietää mitää modulia käytetään
+Tallennan hashin tiedostoon murtamista varten <code>echo "0cd698a0503946a852f2f81cc7d63ee3" > hash.txt"</code>. Tarkistan mitä modulia käytetään, jotta Hashcat osaa alkaa murtaman hashia.
 
 `````
-┌──(kali㉿kali)-[~/Desktop]
-└─$ hashcat -h |grep MD5                                                              
+$ hashcat -h |grep MD5                                                              
       0 | MD5                                                        | Raw Hash
    5100 | Half MD5                                                   | Raw Hash
      50 | HMAC-MD5 (key = $pass)                                     | Raw Hash authenticated
@@ -81,9 +80,12 @@ tunnisti että hash on MD5
     ....(JATKUU)....
 `````
 
-- tässä tapauksessa module 0 koska raw hash
-- aloitetaan kräkkääminen "hashcat -m 0 hash.txt /usr/share/wordlists/rockyou.txt"
-- kräkätty
+Tässä tapauksessa module "0", koska tarkaisemme pelkän hashin. Aloitetaan murtaminen <code>hashcat -m 0 hash.txt /usr/share/wordlists/rockyou.txt"</code>.
+- <code>-m 0</code>: moduli 0
+- <code>hash.txt</code>: tiedosto, johon olen tallentanut luomani MD5-hashin
+- <code>/usr/share/wordlists/rockyou.txt</code>: kansio, jossa sanakirja sijaitsee. Käytän tässä rockyou.txt- sanakirjaa apuna.
+
+Tulos:
 ``````
 0cd698a0503946a852f2f81cc7d63ee3:kali123                  
                                                           
@@ -108,7 +110,7 @@ Candidates.#1....: superm -> jasons1
 Started: Fri Dec  8 15:00:05 2023
 Stopped: Fri Dec  8 15:00:52 2023
 ``````
-- ensimmäiseltä riviltä nähdään hash ja salasana, jonka muutin MD5 Hashiksi.
+Ensimmäiseltä riviltä nähdään hash ja salasana, jonka muutin alussa MD5-hashiksi, eli murtaminen onnistui.
 
 ## b) John. Asenna Jumbo John ja testaa sen toimivuus murtamalla jonkin tiedoston salasana.
 
@@ -194,6 +196,8 @@ Sana myös lukee sivulla niin kuin tehtävän annossa kerrotaan. Eli tiiviste su
 https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h7-hash
 
 https://terokarvinen.com/2022/cracking-passwords-with-hashcat/
+
+https://terokarvinen.com/2023/crack-file-password-with-john/
 
 https://www.youtube.com/watch?v=fVgzY5OJeIE
 

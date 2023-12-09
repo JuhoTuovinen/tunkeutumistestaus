@@ -209,7 +209,7 @@ Lähde: https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-dat
 
 - <code>../../../</code>: File path traversal (https://github.com/jjenska/PenTest/blob/main/h4/h4.md)
 - <code>....//....//</code>: jos suodatus päällä (https://github.com/jjenska/PenTest/blob/main/h4/h4.md)
-- <code>'' OR '1'='1';/code>: SQL injektio (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
+- <code>'' OR '1'='1';</code>: SQL injektio (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
 - <code>'+UNION+SELECT+null,null+FROM+dual--</code>: injektio (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
 - <code>--</code>: komentti (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
 - <code>'+UNION+SELECT+BANNER,+NULL+FROM+v$version--</code>: Oracle-tietokannan versio (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
@@ -259,4 +259,17 @@ https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sq
 
 https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md
 
+https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md
+
+https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md
+
+https://github.com/sawulohi/PenTest/tree/main/h6
+
+https://github.com/sawulohi/PenTest/blob/main/h1/README.md
+
+https://github.com/jjenska/PenTest/blob/main/h4/h4.md
+
+https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h3_laksyt.md
+
+https://github.com/sawulohi/PenTest/blob/main/h3/README.md
 

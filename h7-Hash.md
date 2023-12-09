@@ -182,7 +182,7 @@ Sana myös klytyy sivulta, niin kuin tehtävänannossa kerrotaan. Eli tiiviste s
 - SSH-yhteys: <code>ssh <palvelimen osoite> -p <portin numero></code> ([Jana Haltin raportista](https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md))
 - "-":llä alkavan tiedoston avaaminen <code>cat ./-</code>([Jana Haltin raportista](https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md))
 - telnet: <code>telnet [IP] [portti]</code>
-- luo tiedosto, jossa esim. hash: <code>echo "0cd698a0503946a852f2f81cc7d63ee3" > hash.txt"<code> ([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h7-Hash.md))
+- luo tiedosto, jossa esim. hash: <code>echo "0cd698a0503946a852f2f81cc7d63ee3" > hash.txt"</code> ([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h7-Hash.md))
 
 ### Fuzzaus
 

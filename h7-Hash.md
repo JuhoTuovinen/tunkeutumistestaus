@@ -14,7 +14,6 @@ Ohjelmistot
 - VM OS: Kali Linux 2023.3 (kali-rolling)
 
 
-
 ## x) Lue/katso/kuuntele ja tiivistä. (Tässä x-alakohdassa ei tarvitse tehdä testejä tietokoneella, vain lukeminen tai kuunteleminen ja tiivistelmä riittää. Tiivistämiseen riittää muutama ranskalainen viiva.)
 - Karvinen 2022: [Cracking Passwords with Hashcat](https://terokarvinen.com/2022/cracking-passwords-with-hashcat/)
   - Järjestelmät eivät tallenna alkuperäisiä salasanoja, vaan hasheja. Hashia ei voi muuttaa takaisin salasanaksi, mutta voit laittaa tietokoneen kokeilemaan kaikkia sanakirjan sanoja ja kertomaan, jos jokin niistä täsmää.
@@ -114,21 +113,20 @@ Ensimmäiseltä riviltä nähdään hash ja salasana, jonka muutin alussa MD5-ha
 
 ## b) John. Asenna Jumbo John ja testaa sen toimivuus murtamalla jonkin tiedoston salasana.
 
+Asennan John the ripper -github varaston työpöydälle <code>git clone https://github.com/openwall/john.git</code>. Luon aikaisemmin luodusta hash.txt- tiedostosta ZIP- tiedoston, joka aukeaa salasananalla "kali123".
 
-- asennan työpöydälle git clone https://github.com/openwall/john.git
-- luon aikaisemmin luodusta hahs.txt- tiedostosta zip tiedoston joka aukeaa salasananalla "kali123": zip --password kali123 hash.zip hash.txt 
+    zip --password kali123 hash.zip hash.txt 
 
 <img src="/images/zip1.png" alt="" title="" width="70%" height="70%">
 
-- tarvitsemme password hashin, käytetään zip2john
+Tarvitsemme salasanasta hashin; käytetään <code>zip2john</code>
 
 ``````
 $ zip2john hash.zip
 ver 1.0 efh 5455 efh 7875 hash.zip/hash.txt PKZIP Encr: 2b chk, TS_chk, cmplen=45, decmplen=33, crc=22B5A86E ts=75A2 cs=75a2 type=0
 hash.zip/hash.txt:$pkzip$1*2*2*0*2d*21*22b5a86e*0*42*0*2d*75a2*9be3a7a90bc22865b4132e73371ee66c96797fe16cf103398412fc302c188ca026e9c8b3d0a5b5befb9300f206*$/pkzip$:hash.txt:hash.zip::hash.zip
 ``````
-- tallenetaa hash tiedostoon "zip2john hash.zip > hash2.txt". Annoin uuden tiedoston nimeksi hash2.
-- aloitetaan kräkkäys
+Tallenetaa hash uuteen tiedostoon hash2.txt: <code>zip2john hash.zip > hash2.txt"</code>. Siten aloitetaan murtaminen
 
 ``````
 $ john --format=zip hash2.txt                                            
@@ -136,13 +134,15 @@ Using default input encoding: UTF-8
 No password hashes loaded (see FAQ)
 ``````
 
-ei onnistunut
+Ei onnistunut.
 
-- siirtin hash2.txt tiedoston cp ~/Desktop/hash2.txt ~/Desktop/john/run ja ajoin sillä john hash2.txt. nyt onnistui
+Katsoin apua aikaisemmasta [Tero Karvisen artikkelista](https://terokarvinen.com/2023/crack-file-password-with-john/) ja siirtin hash2.txt tiedoston työpöydältä run-kansioon ja ajoin siellä. 
 
+    john hash2.txt.
+
+Nyt onnistui.
 
 <img src="/images/john1.png" alt="" title="" width="70%" height="70%">
-
 
 ## c) f5bc7fcc7f5b3b6af7ff79e0feafad6d1a948b6a2c18de414993c1226be48c1f on erään tällä tehtäväsivulla olevan yksittäisen sanan tiiviste. Käytin hyvin yleistä ja tunnettua tiivistealgoritmia. Sanassa voi olla isoja kirjaimia, mutta ei erikoismerkkejä. Minkä sanan tiiviste on kyseessä?
 

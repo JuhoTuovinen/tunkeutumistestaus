@@ -179,20 +179,20 @@ Sana myös klytyy sivulta, niin kuin tehtävänannossa kerrotaan. Eli tiiviste s
 
 ### Yleishyödyllistä
 
-- SSH-yhteys: <code>ssh <palvelimen osoite> -p <portin numero></code> ([Jana Haltin raportista](https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md))
-- "-":llä alkavan tiedoston avaaminen <code>cat ./-</code>([Jana Haltin raportista](https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md))
+- SSH-yhteys: <code>ssh <palvelimen osoite> -p <portin numero></code> (https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md)
+- "-":llä alkavan tiedoston avaaminen <code>cat ./-</code>(https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md)
 - telnet: <code>telnet [IP] [portti]</code>
-- luo tiedosto, jossa esim. hash: <code>echo "0cd698a0503946a852f2f81cc7d63ee3" > hash.txt"</code> ([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h7-Hash.md))
+- luo tiedosto, jossa esim. hash: <code>echo "0cd698a0503946a852f2f81cc7d63ee3" > hash.txt"</code>(https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h7-Hash.md)
 
 ### Fuzzaus
 
-- <code>./ffuf -w common.txt -u [IP]:[PORTTI]/FUZZ</code>: fuzzaus käyttäen sanalistaa ([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md))
-- <code>./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -fs 154</code>: jos esim. halutaan suodattaa pois ei-toivotut vastaukset, jooiden koko on 154 tavua([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md)).
-- <code>ffuf -w [sanalista] -e .log -u [kohde]/FUZZ/</code>: e-kytkin määrittää tiedostopääteen, tässä tapauksessa ".log" ([JuhoTuovinen](https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md))
+- <code>./ffuf -w common.txt -u [IP]:[PORTTI]/FUZZ</code>: fuzzaus käyttäen sanalistaa (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md)
+- <code>./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -fs 154</code>: jos esim. halutaan suodattaa pois ei-toivotut vastaukset, jooiden koko on 154 tavua (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md).
+- <code>ffuf -w [sanalista] -e .log -u [kohde]/FUZZ/</code>: e-kytkin määrittää tiedostopääteen, tässä tapauksessa ".log" (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md)
 
 ### Porttiskannaus
-   - <code>sudo nmap -p- -sV [IP]</code> skannaa portit 0-65535, <code>-sV</code> on palvelu- ja versiotiedot hakeva porttiskannaus ([Sawulohi](https://github.com/sawulohi/PenTest/tree/main/h6)).
-   - <code>sudo nmap [IP] -p- -A</code> skannaa kaikki portit ja suorittaa käyttöjärjestelmän tunnistuksen ja version tunnistuksen ([Sawulohi](https://github.com/sawulohi/PenTest/blob/main/h1/README.md)).
+   - <code>sudo nmap -p- -sV [IP]</code> skannaa portit 0-65535, <code>-sV</code> on palvelu- ja versiotiedot hakeva porttiskannaus (https://github.com/sawulohi/PenTest/tree/main/h6).
+   - <code>sudo nmap [IP] -p- -A</code> skannaa kaikki portit ja suorittaa käyttöjärjestelmän tunnistuksen ja version tunnistuksen (https://github.com/sawulohi/PenTest/blob/main/h1/README.md).
 
 
 ### Tietokannat
@@ -217,59 +217,59 @@ Lähde: https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-dat
 
 ### msf konsoli
 
-- <code>serach [palvelu]</code>: etsii haavoittuvuuksia https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h3_laksyt.md
+- <code>serach [palvelu]</code>: etsii haavoittuvuuksia (https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h3_laksyt.md)
 - <code>use 0</code>: valitsee exploitin 0
-- <code>info 0</code>: antaa infoa moduulista 0 https://github.com/sawulohi/PenTest/blob/main/h3/README.md
-- <code>options</code>: esittää moduulin asetukset https://github.com/sawulohi/PenTest/blob/main/h3/README.md
+- <code>info 0</code>: antaa infoa moduulista 0 (https://github.com/sawulohi/PenTest/blob/main/h3/README.md)
+- <code>options</code>: esittää moduulin asetukset (https://github.com/sawulohi/PenTest/blob/main/h3/README.md)
 - <code>set rhosts [kohde ip]</code>: kohde, johon suorietaan hyökkäys
 - <code>exploit</code>: aloitetaan hyökkäys
 
 ## e) Viittaa. Tarkista, että jokaisessa raportissasi on lähdeviitteet kunnossa. Jokaisen raportin tulee viitata ainakin kurssiin / tehtäväsivuun. Kaikkiin muihinkin käytettyihin lähteisiin tulee viitata, kuten kurssikavereiden raportteihin, weppisivuihin, man-sivuihin... (Tässä alatehtävässä ei tarvitse tehdä testejä koneella).
 
-
+Viittaukset mintissä.
 
 
 ## Lähteet
 
-https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h7-hash
+Karvinen Tero, Tunkeutumistestaus, h7 Hash, 2023 (https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h7-hash)
 
-https://terokarvinen.com/2022/cracking-passwords-with-hashcat/
+Karvinen Tero, Cracking Passwords with Hashcat, 2023 (https://terokarvinen.com/2022/cracking-passwords-with-hashcat/)
 
-https://terokarvinen.com/2023/crack-file-password-with-john/
+Karvinen Tero, Crack File Password With John, 2023 (https://terokarvinen.com/2023/crack-file-password-with-john/)
 
-https://www.youtube.com/watch?v=fVgzY5OJeIE
+etc5had0w, How To Crack Hashes Using Hashcat, YouTube, 2023 (https://www.youtube.com/watch?v=fVgzY5OJeIE)
 
-https://www.md5hashgenerator.com/
+MD5 Hash Generator (https://www.md5hashgenerator.com/)
 
-https://md5decrypt.net/en/Sha256/
+Sha256 Decrypt & Encrypt (https://md5decrypt.net/en/Sha256/)
 
-https://www.dcode.fr/sha256-hash
+Dcode (https://www.dcode.fr/sha256-hash)
 
-https://www.youtube.com/watch?v=TfmY03B07ww
+AnonTech-Tube, How to Create Password Protected ZIP File in Linux, 2021 (https://www.youtube.com/watch?v=TfmY03B07ww)
 
-https://github.com/openwall/john
+OpenWall, John the Ripper (https://github.com/openwall/john)
 
-https://md5hashing.net/hash
+md5hashing (https://md5hashing.net/hash)
 
-https://www.youtube.com/watch?v=XjVYl1Ts6XI&t=383s
+HackerSploit, Password Cracking With John The Ripper - RAR/ZIP & Linux Passwords, YouTube, 2018 (https://www.youtube.com/watch?v=XjVYl1Ts6XI&t=383s)
 
-https://chat.openai.com/
+Chat GPT, 2023 (https://chat.openai.com/)
 
-https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/
+Karvinen Tero, PostgreSQL Install and One Table Database – SQL CRUD tutorial for Ubuntu, 2016 (https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/)
 
-https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md
+Juho Tuovinen, Tunkeutumistestaus, h5 Injected Sequel, Github, 2023 (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h5-Injected-Sequel.md)
 
-https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md
+Jana Halt, Ethical Hacking 2023, h7 Hash, Github, 2023 https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h7%20Hash.md)
 
-https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md
+Juho Tuovinen, Tunkeutumistestaus, h2 Sniff n Scan, Github, 2023 (https://github.com/JuhoTuovinen/tunkeutumistestaus/blob/main/h2-Sniff-n-Scan.md)
 
-https://github.com/sawulohi/PenTest/tree/main/h6
+Sawulohi, PenTest, h6, Github, 2023 (https://github.com/sawulohi/PenTest/tree/main/h6)
 
-https://github.com/sawulohi/PenTest/blob/main/h1/README.md
+Sawulohi, PenTest, h1, Github, 2023 (https://github.com/sawulohi/PenTest/blob/main/h1/README.md)
 
-https://github.com/jjenska/PenTest/blob/main/h4/h4.md
+jjenska, PenTest, h4 Totally Legit Certificate, 2023 (https://github.com/jjenska/PenTest/blob/main/h4/h4.md)
 
-https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h3_laksyt.md
+Vilpuuu, Tunkeutumistestaus, h3 Lab kid, Github, 2023 (https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h3_laksyt.md)
 
-https://github.com/sawulohi/PenTest/blob/main/h3/README.md
+Sawulohi, PenTest, h3, Github, 2023 (https://github.com/sawulohi/PenTest/blob/main/h3/README.md)
 

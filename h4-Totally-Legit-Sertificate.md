@@ -473,23 +473,25 @@ Se tepsi lomakkeeseen.
 
 Lähteet:
 
-https://www.youtube.com/watch?v=htZCniUCoa4
+Karvinen, Tero: Tunkeutumistestaus, h4-Totally Legit Sertificate (https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h4-totally-legit-sertificate)
 
-https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/
+Jezztom, Hijacking a session webgoat solution, YouTube, 2023 (https://www.youtube.com/watch?v=htZCniUCoa4)
 
-chat.openai.com
+Karvinen Tero, Tunkeutumistestaus, Try Web Hacking on New Webgoat 2023.4 (https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/)
 
-https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h4%20Totally%20Legit%20Sertificate.md
+Chat GPT (chat.openai.com)
 
-https://www.youtube.com/watch?v=K5BBP88kBjU
+Jana Halt, h4 Totally Legit Sertificate, Github, 2023 (https://github.com/JanaHalt/Ethical-Hacking-2023/blob/main/h4%20Totally%20Legit%20Sertificate.md)
 
-https://www.youtube.com/watch?v=-n4OmhUN3vA
+PseudoTime, WebGoat 8 - Insecure Direct Object References - Playing with the Patterns, YouTube, 2021 (https://www.youtube.com/watch?v=K5BBP88kBjU)
 
-https://www.base64encode.org/
+Max Integrations, [A1] Spoofing an Authentication Cookie - WebGoat, YouTube, 2022 (https://www.youtube.com/watch?v=-n4OmhUN3vA)
 
-https://cryptii.com/pipes/hex-to-text
+base64encode, base64 (https://www.base64encode.org/)
 
-https://www.youtube.com/watch?v=4mv4qfUHaDg
+Cryptii, hex to text (https://cryptii.com/pipes/hex-to-text)
+
+Hacking0x101, Web Goat Auth Bypass, 2021, (https://www.youtube.com/watch?v=4mv4qfUHaDg)
 
 
 

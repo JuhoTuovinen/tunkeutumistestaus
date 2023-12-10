@@ -361,50 +361,48 @@ Nyt kansiota ja niiden sisältöä ei ole enää olemassa. Ne ovat tuhottu.
 
 ## Lähteet
 
-https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h6-attaaack
+Karvinen Tero, Tunkeutumistestaus, h6 Attaaack, 2023 (https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h6-attaaack)
 
-https://attack.mitre.org/
+MITRE ATT&CK, 2023 (https://attack.mitre.org/)
 
-https://attack.mitre.org/techniques/T1485/
+MITRE ATT&CK, Data Destruction, 2023 (https://attack.mitre.org/techniques/T1485/)
 
-https://attack.mitre.org/techniques/T1485/
+Louay Karadsheh, PhD, CISSP, CEH, CASP, Exploiting Metasploitable 2 - Brute Force Attack for Telnet Password, YouTube, 2023 (https://www.youtube.com/watch?v=EavbD2EWzVA)
 
-https://www.youtube.com/watch?v=EavbD2EWzVA
+MITRE ATT&CK, Brute Force: Password Guessing, 2023 (https://attack.mitre.org/techniques/T1110/001/)
 
-https://attack.mitre.org/techniques/T1110/001/
+MITRE ATT&CK, Exploit Public-Facing Application, 2023 (https://attack.mitre.org/techniques/T1190/)
 
-https://attack.mitre.org/techniques/T1190/
+InfoSec Pat, How To Hack and Exploit Port 80 HTTP Metasploitable 2 Full Walkthrough - Home Hacking Lab Video 11, 2023 (https://www.youtube.com/watch?v=HH7DPfYTfoI)
 
-https://www.youtube.com/watch?v=HH7DPfYTfoI
+MITRE ATT&CK, Active Scanning: Wordlist Scanning, 2023 (https://attack.mitre.org/techniques/T1595/003/)
 
-https://attack.mitre.org/techniques/T1595/003/
+MITRE ATT&CK, Network Service Discovery, 2023 (https://attack.mitre.org/techniques/T1046/)
 
-https://attack.mitre.org/techniques/T1046/
+TheRealHalonen, PhishSticks, revshell, Github, 2023 (https://github.com/therealhalonen/PhishSticks/tree/master/payloads/revshell)
 
-https://github.com/therealhalonen/PhishSticks/tree/master/payloads/revshell
+MITRE ATT&CK, Frequently Asked Questions, 2023 (https://attack.mitre.org/resources/faq/)
 
-https://attack.mitre.org/resources/faq/
+Juho Tuovinen, Linux Course, Vaihtoehdot, Github, 2023 (https://github.com/JuhoTuovinen/linux-course/blob/main/h5-Vaihtoehdot.md)
 
-https://github.com/JuhoTuovinen/linux-course/blob/main/h5-Vaihtoehdot.md
+TheRealHalonen, PhishSticks, Installing Windows 10 on a virtual machine , Github, 2023 (https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md)
 
-https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md
+O´Reilly, Antivirus Bypass Techniques, 2023 (https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/)
 
-https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/
+O´Reilly, Antivirus Bypass Techniques by Nir Yehoshua, Uriel Kosayev, 2023 (https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/B17257_01_Epub_AM.xhtml#_idParaDest-18)
 
-https://learning.oreilly.com/library/view/antivirus-bypass-techniques/9781801079747/B17257_01_Epub_AM.xhtml#_idParaDest-18
+PhishSticks, PhishSticks - The Ethical Hackers tool for BadUSB, YouTube, 2023 (https://www.youtube.com/watch?v=bDzVevtZiWE)
 
-https://www.youtube.com/watch?v=bDzVevtZiWE
+PhishSticks, Ethical Hacking with USB device - Reverse Shell, YouTube, 2023 (https://www.youtube.com/watch?v=ll4ojo6q-rM)
 
-https://www.youtube.com/watch?v=ll4ojo6q-rM
+PhishSticks, Ethical Hacking with Digispark - Keylogger with HTTP POST requests, YouTube, 2023 (https://www.youtube.com/watch?v=XZkK8vzhyMw)
 
-https://www.youtube.com/watch?v=XZkK8vzhyMw
+PhishSticks, Ethical Hacking with Digispark - Keylogger initial demo, YouTube, 2023 (https://www.youtube.com/watch?v=sWYUGl7JiFA)
 
-https://www.youtube.com/watch?v=sWYUGl7JiFA
+PhishSticks, Ethical hacking with Digispark - ransomware initial demo, YouTube, 2023 (https://www.youtube.com/watch?v=Bi2QOMSHeKI)
 
-https://www.youtube.com/watch?v=Bi2QOMSHeKI
+PhishSticks, Ransomware initial testing demo, YouTube, 2023 (https://www.youtube.com/watch?v=glqK_-qdDkw)
 
-https://www.youtube.com/watch?v=glqK_-qdDkw
+PhishSticks, Reverse Shell - Initial testing demo, YouTube, 2023 (https://www.youtube.com/watch?v=h5MMKu6TMxg)
 
-https://www.youtube.com/watch?v=h5MMKu6TMxg
-
-https://github.com/therealhalonen/PhishSticks/tree/master
+TheRealHalonen, PhishSticks, Github, 2023 (https://github.com/therealhalonen/PhishSticks/tree/master)

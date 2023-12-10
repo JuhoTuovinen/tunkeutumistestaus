@@ -544,24 +544,25 @@ Tehtävä suoritettu!
 
 Lähteet:
 
-https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h5-injected-sequel
+Karvinen Tero, Tunkeutumistestaus, h5 Injected Sequel, 2023 (https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h5-injected-sequel)
 
-https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/
+Karvinen Tero, PostgreSQL Install and One Table Database – SQL CRUD tutorial for Ubuntu, 2016 (https://terokarvinen.com/2016/03/05/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/)
 
-https://portswigger.net/web-security/sql-injection/cheat-sheet
+Port Swigger, SQL injection cheat sheet, 2023 (https://portswigger.net/web-security/sql-injection/cheat-sheet)
 
-https://portswigger.net/web-security/sql-injection/lab-login-bypass
+Port Swigger, Lab: SQL injection vulnerability allowing login bypass, 2023 (https://portswigger.net/web-security/sql-injection/lab-login-bypass)
 
-https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle
+Port Swigger, Lab: SQL injection attack, querying the database type and version on Oracle, 2023 (https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-oracle)
 
-https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft
+Port Swigger, Lab: SQL injection attack, querying the database type and version on MySQL and Microsoft, 2023 (https://portswigger.net/web-security/sql-injection/examining-the-database/lab-querying-database-version-mysql-microsoft)
 
-https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle
+Port Swigger, Lab: SQL injection attack, listing the database contents on Oracle, 2023 (https://portswigger.net/web-security/sql-injection/examining-the-database/lab-listing-database-contents-oracle)
 
-https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns
+Port Swigger, Lab: SQL injection UNION attack, determining the number of columns returned by the query, 2023 (https://portswigger.net/web-security/sql-injection/union-attacks/lab-determine-number-of-columns)
 
-https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables
+Port Swigger, Lab: SQL injection UNION attack, retrieving data from other tables
+, 2023 (https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-data-from-other-tables)
 
-https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column
+Port Swigger, Lab: SQL injection UNION attack, retrieving multiple values in a single column, 2023 (https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column)
 
-https://owasp.org/www-project-top-ten/2017/A1_2017-Injection
+OWASP, A1:2017-Injection, 2023 (https://owasp.org/www-project-top-ten/2017/A1_2017-Injection)

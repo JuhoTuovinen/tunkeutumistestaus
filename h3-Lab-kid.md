@@ -300,17 +300,23 @@ Gobuster paljastaa meille mm. <code>/phpMyAdmin</code>-sivun, jossa kirjautumine
 ## Lähteet
 
 
-Karvinen, Tero: Oppitunnit 2023-11-06, Tunkeutumistestaus, h2-Lab Kid (https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h3-lab-kid)
+Karvinen, Tero: Oppitunnit 2023-11-06, Tunkeutumistestaus, h3-Lab Kid (https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h3-lab-kid)
 
-https://learning.oreilly.com/library/view/mastering-kali-linux/9781801819770/Text/Chapter_10.xhtml#_idParaDest-249
+O´Reilly, Masterin Kali Linux, 2023 (https://learning.oreilly.com/library/view/mastering-kali-linux/9781801819770/Text/Chapter_10.xhtml#_idParaDest-249)
 
-https://0xdf.gitlab.io/2023/11/09/htb-broker.html
+0xdf hacks stuff, HTB: Broker, 2023 (https://0xdf.gitlab.io/2023/11/09/htb-broker.html)
 
-https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h2_laksyt.md
+Vilppuuu, tunkeutumistestaus, Github, 2023 (https://github.com/vilppuuu/tunkeutumistestaus/blob/main/h2_laksyt.md)
 
-https://www.youtube.com/watch?time_continue=3&v=h9UWf7R49H8&embeds_referring_euri=https%3A%2F%2Fwww.nu11secur1ty.com%2F&source_ve_path=MzY4NDIsMzY4NDIsMzY4NDIsMTM5MTE3LDM2ODQyLDM2ODQyLDI4NjY2&feature=emb_logo
+nu11secur1ty, CVE-2023-33148, 2023 (https://www.youtube.com/watch?time_continue=3&v=h9UWf7R49H8&embeds_referring_euri=https%3A%2F%2Fwww.nu11secur1ty.com%2F&source_ve_path=MzY4NDIsMzY4NDIsMzY4NDIsMTM5MTE3LDM2ODQyLDM2ODQyLDI4NjY2&feature=emb_logo)
 
-https://www.exploit-db.com/exploits/51609
+Exploit Database, Microsoft Office 365 Version 18.2305.1222.0 - Elevation of Privilege + RCE., 2023 (https://www.exploit-db.com/exploits/51609)
 
-https://www.exploit-db.com/exploits/20558
+Exploit Database, Apache 1.2 - Denial of Service, 2023 (https://www.exploit-db.com/exploits/20558)
+
+SourceForge, Metasploitable, 2023 (https://sourceforge.net/projects/metasploitable)
+
+Cybercat Labs, How to install Metasploitable on a Macbook with an M1 Chip, YouTube, 2023 (https://www.youtube.com/watch?v=E3IJ_d3rAgA)
+
+
 
